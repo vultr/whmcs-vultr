@@ -6,78 +6,78 @@ require 'loader.php';
 
 function vultr_ConfigOptions($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->getConfigOptions();
+	$vultr = new Vultr($params);
+	return $vultr->getConfigOptions();
 }
 
 function vultr_CreateAccount($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->createAccount();
+	$vultr = new Vultr($params);
+	return $vultr->createAccount();
 }
 
 function vultr_SuspendAccount($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->suspendAccount();
+	$vultr = new Vultr($params);
+	return $vultr->suspendAccount();
 }
 
 function vultr_UnsuspendAccount($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->unsuspendAccount();
+	$vultr = new Vultr($params);
+	return $vultr->unsuspendAccount();
 }
 
 function vultr_TerminateAccount($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->terminateAccount();
+	$vultr = new Vultr($params);
+	return $vultr->terminateAccount();
 }
 
 function vultr_ChangePackage($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->changePackage();
+	$vultr = new Vultr($params);
+	return $vultr->changePackage();
 }
 
 function vultr_ClientArea($params)
 {
-    $render = new Vultrender($params);
-    return $render->render('ClientArea');
+	$render = new Vultrender($params);
+	return $render->render('ClientArea');
 }
 
 function vultr_AdminCustomButtonArray($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->getAdminCustomButtonArray();
+	$vultr = new Vultr($params);
+	return $vultr->getAdminCustomButtonArray();
 }
 
 function vultr_start($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->start();
+	$vultr = new Vultr($params);
+	return $vultr->start();
 }
 
 function vultr_reboot($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->reboot();
+	$vultr = new Vultr($params);
+	return $vultr->reboot();
 }
 
 function vultr_halt($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->halt();
+	$vultr = new Vultr($params);
+	return $vultr->halt();
 }
 
 function vultr_reinstall($params)
 {
-    $vultr = new Vultr($params);
-    return $vultr->reinstall();
+	$vultr = new Vultr($params);
+	return $vultr->reinstall();
 }
 
 function vultr_AdminServicesTabFieldsSave(array $params)
 {
-    $vultr = new Vultr($params);
-    $vultr->verifyAdminServiceSave();
+	$vultr = new Vultr($params);
+	$vultr->verifyAdminServiceSave();
 }

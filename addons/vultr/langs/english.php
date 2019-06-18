@@ -51,7 +51,7 @@ $_LANG['addonAA']['snapshots']['client'] = 'Client';
 $_LANG['addonAA']['snapshots']['snapshotsInfo'] = 'Snapshot Info';
 
 //Products Creator
-$_LANG['addonAA']['pagesLabels']['label']['productsCreator'] = 'Products Creator'; 
+$_LANG['addonAA']['pagesLabels']['label']['productsCreator'] = 'Products Creator';
 $_LANG['addonAA']['productsCreator']['productCreatorInfo'] = 'Product Info';
 $_LANG['addonAA']['productsCreator']['pricingSetupFee'] = 'Pricing Setup Fee';
 $_LANG['addonAA']['productsCreator']['pricingPrice'] = 'Pricing Price';
@@ -125,20 +125,20 @@ $_LANG['addonAA']['pagesLabels']['label']['documentation'] = 'Documentation';
 $_LANG['addonAA']['pagesLabels']['documentation']['proxmoxVPS'] = 'ProxmoxVPS';
 $_LANG['addonAA']['pagesLabels']['documentation']['proxmoxCloud'] = 'ProxmoxCloud';
 $_LANG['addonAA']['pagesLabels']['home']['label'] = 'Label';
-$_LANG['addonAA']['home']['error']['example']  = 'Example Errror,  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. ';
+$_LANG['addonAA']['home']['error']['example'] = 'Example Errror,  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. ';
 
-$_LANG['addonAA']['testPage']['table']['name']                       = 'Test Item List';
+$_LANG['addonAA']['testPage']['table']['name'] = 'Test Item List';
 
-$_LANG['addonAA']['testPage']['item']['header']                      = 'Test Form';
-$_LANG['addonAA']['testPage']['item']['text_name']['label']          = 'Some Text';
-$_LANG['addonAA']['testPage']['item']['text_name']['description']    = 'Some Text Description';
-$_LANG['addonAA']['testPage']['item']['text_name2']['label']         = 'Some Text2';
-$_LANG['addonAA']['testPage']['item']['text_name2']['description']   = 'Some Desc 2';
-$_LANG['addonAA']['testPage']['item']['text_name2']['placeholder']   = 'Example placeholder';
+$_LANG['addonAA']['testPage']['item']['header'] = 'Test Form';
+$_LANG['addonAA']['testPage']['item']['text_name']['label'] = 'Some Text';
+$_LANG['addonAA']['testPage']['item']['text_name']['description'] = 'Some Text Description';
+$_LANG['addonAA']['testPage']['item']['text_name2']['label'] = 'Some Text2';
+$_LANG['addonAA']['testPage']['item']['text_name2']['description'] = 'Some Desc 2';
+$_LANG['addonAA']['testPage']['item']['text_name2']['placeholder'] = 'Example placeholder';
 
-$_LANG['addonAA']['testPage']['item']['checkbox_name']['label']      = 'Test Checkbox';
+$_LANG['addonAA']['testPage']['item']['checkbox_name']['label'] = 'Test Checkbox';
 
-$_LANG['addonAA']['testPage']['item']['some_option']['label']        = 'Some Option';
+$_LANG['addonAA']['testPage']['item']['some_option']['label'] = 'Some Option';
 $_LANG['addonAA']['testPage']['item']['some_option']['options']['1'] = 'Option 1';
 $_LANG['addonAA']['testPage']['item']['some_option']['options']['2'] = 'Option 2';
 $_LANG['addonAA']['testPage']['item']['some_option']['options']['3'] = 'Option 3';
@@ -146,8 +146,7 @@ $_LANG['addonAA']['testPage']['item']['some_option']['options']['4'] = 'Option 4
 $_LANG['addonAA']['testPage']['item']['some_option']['options']['5'] = 'Option 5';
 
 
-
-$_LANG['addonAA']['testPage']['item']['some_option2']['label']        = 'Some Option';
+$_LANG['addonAA']['testPage']['item']['some_option2']['label'] = 'Some Option';
 
 $_LANG['addonAA']['testPage']['item']['some_option2']['options']['1'] = 'Option 1';
 $_LANG['addonAA']['testPage']['item']['some_option2']['options']['2'] = 'Option 2';
@@ -160,86 +159,83 @@ $_LANG['addonAA']['testPage']['item']['some_option2']['options']['8'] = 'Option 
 $_LANG['addonAA']['testPage']['item']['some_option2']['options']['9'] = 'Option 9';
 $_LANG['addonAA']['testPage']['item']['some_option2']['options']['10'] = 'Option 10';
 
-$_LANG['addonAA']['testPage']['item']['test']['content']       = 'Test Button';
-$_LANG['addonAA']['testPage']['item']['test2']['content']      = 'Test2 Button';
-$_LANG['addonAA']['testPage']['item']['test3']['content']      = 'Test3 Button';
-$_LANG['addonAA']['testPage']['item']['test']['label']         = 'Action Buttons';
+$_LANG['addonAA']['testPage']['item']['test']['content'] = 'Test Button';
+$_LANG['addonAA']['testPage']['item']['test2']['content'] = 'Test2 Button';
+$_LANG['addonAA']['testPage']['item']['test3']['content'] = 'Test3 Button';
+$_LANG['addonAA']['testPage']['item']['test']['label'] = 'Action Buttons';
 
 
-$_LANG['addonAA']['testPage']['item']['example_checkbox']['label']                 = 'Example Checkbox';
-$_LANG['addonAA']['testPage']['item']['example_checkbox']['options']['Option1']    = 'Option 1';
-$_LANG['addonAA']['testPage']['item']['example_checkbox']['options']['Option2']    = 'Option 2';
-$_LANG['addonAA']['testPage']['item']['example_checkbox']['options']['Option3']    = 'Option 3';
+$_LANG['addonAA']['testPage']['item']['example_checkbox']['label'] = 'Example Checkbox';
+$_LANG['addonAA']['testPage']['item']['example_checkbox']['options']['Option1'] = 'Option 1';
+$_LANG['addonAA']['testPage']['item']['example_checkbox']['options']['Option2'] = 'Option 2';
+$_LANG['addonAA']['testPage']['item']['example_checkbox']['options']['Option3'] = 'Option 3';
 
 
 $_LANG['addonAA']['testPage']['item']['example_legend']['label'] = 'Example Legend';
 
-$_LANG['addonAA']['testPage']['item']['onoff']['label']      = 'On/Off Field';
-$_LANG['addonAA']['testPage']['item']['onoff']['disabled']   = 'Disabled';
-$_LANG['addonAA']['testPage']['item']['onoff']['enabled']    = 'Enabled';
-$_LANG['addonAA']['testPage']['item']['pass']['label']       = 'Password';
-$_LANG['addonAA']['testPage']['item']['radio_field']['label']= 'Radio';
+$_LANG['addonAA']['testPage']['item']['onoff']['label'] = 'On/Off Field';
+$_LANG['addonAA']['testPage']['item']['onoff']['disabled'] = 'Disabled';
+$_LANG['addonAA']['testPage']['item']['onoff']['enabled'] = 'Enabled';
+$_LANG['addonAA']['testPage']['item']['pass']['label'] = 'Password';
+$_LANG['addonAA']['testPage']['item']['radio_field']['label'] = 'Radio';
 
-$_LANG['addonAA']['testPage']['item']['saveItem']['label']       = 'Save';
+$_LANG['addonAA']['testPage']['item']['saveItem']['label'] = 'Save';
 
-$_LANG['addonAA']['testPage']['item']['id']['label']          = 'ID';
-$_LANG['addonAA']['testPage']['item']['actions']['label']     = 'Actions';
+$_LANG['addonAA']['testPage']['item']['id']['label'] = 'ID';
+$_LANG['addonAA']['testPage']['item']['actions']['label'] = 'Actions';
 
 
-$_LANG['addonAA']['testPage']['previous']                 = 'Previous';
-$_LANG['addonAA']['testPage']['next']                     = 'Next';
-$_LANG['addonAA']['testPage']['actionButtons']['edit']    = 'Edit';
-$_LANG['addonAA']['testPage']['actionButtons']['delete']  = 'Delete';
+$_LANG['addonAA']['testPage']['previous'] = 'Previous';
+$_LANG['addonAA']['testPage']['next'] = 'Next';
+$_LANG['addonAA']['testPage']['actionButtons']['edit'] = 'Edit';
+$_LANG['addonAA']['testPage']['actionButtons']['delete'] = 'Delete';
 
-$_LANG['addonAA']['testPage']['modal']['editLabel']       = 'Edit Item:';
+$_LANG['addonAA']['testPage']['modal']['editLabel'] = 'Edit Item:';
 
-$_LANG['addonAA']['testPage']['modal']['deleteLabel']     = 'Delte Item: ';
-$_LANG['addonAA']['testPage']['modal']['delete']          = 'Delete';
-$_LANG['addonAA']['testPage']['modal']['close']           = 'Close';
+$_LANG['addonAA']['testPage']['modal']['deleteLabel'] = 'Delte Item: ';
+$_LANG['addonAA']['testPage']['modal']['delete'] = 'Delete';
+$_LANG['addonAA']['testPage']['modal']['close'] = 'Close';
 $_LANG['addonAA']['testPage']['modal']['deleteDescription'] = 'This action cannot be undone';
 
-$_LANG['addonAA']['testPage']['messages']['saveSuccess']   = 'Item Successfull Saved';
+$_LANG['addonAA']['testPage']['messages']['saveSuccess'] = 'Item Successfull Saved';
 $_LANG['addonAA']['testPage']['messages']['deleteSuccess'] = 'Item %s Successfull deleted';
 $_LANG['addonAA']['testPage']['messages']['deleteSuccess2'] = 'Item %s deleted';
 
-$_LANG['addonAA']['testPage']['messages']['validateError']    = 'Form Contains Errors, Please Check Fields Errors';
+$_LANG['addonAA']['testPage']['messages']['validateError'] = 'Form Contains Errors, Please Check Fields Errors';
 
 $_LANG['validationErrors']['emptyField'] = 'Field cannot be empty';
 
 $_LANG['addonAA']['testPage']['modal']['updateItem'] = 'Update';
-                                                                               
 
 
+$_LANG['addonAA']['testPageSimple']['item']['header'] = 'Simple Item';
+$_LANG['addonAA']['testPageSimple']['item']['text_name']['label'] = 'Name';
+$_LANG['addonAA']['testPageSimple']['item']['some_option']['label'] = 'Related Item';
+$_LANG['addonAA']['testPageSimple']['item']['saveItem']['label'] = 'Save Item';
+$_LANG['addonAA']['testPageSimple']['item']['id']['label'] = 'ID';
+$_LANG['addonAA']['testPageSimple']['item']['actions']['label'] = 'Actions';
 
-$_LANG['addonAA']['testPageSimple']['item']['header']                     = 'Simple Item';
-$_LANG['addonAA']['testPageSimple']['item']['text_name']['label']         = 'Name';
-$_LANG['addonAA']['testPageSimple']['item']['some_option']['label']       = 'Related Item';
-$_LANG['addonAA']['testPageSimple']['item']['saveItem']['label']          = 'Save Item';
-$_LANG['addonAA']['testPageSimple']['item']['id']['label']                = 'ID';
-$_LANG['addonAA']['testPageSimple']['item']['actions']['label']           = 'Actions';
-
-$_LANG['addonAA']['testPageSimple']['table']['name']                      = 'Simple Item List';
-$_LANG['addonAA']['testPageSimple']['messages']['saveSuccess']            = 'Item Added Successfull';
-
-
-$_LANG['addonAA']['testPageSimple']['modal']['editLabel']                 = 'Edit Item';
-$_LANG['addonAA']['testPageSimple']['modal']['close']                     = 'Close';
-$_LANG['addonAA']['testPageSimple']['modal']['updateItem']                = 'Update';
-
-$_LANG['addonAA']['testPageSimple']['modal']['deleteLabel']               = 'Delete Item';
-$_LANG['addonAA']['testPageSimple']['modal']['deleteDescription']         = 'This Action Cannot be undone';
-$_LANG['addonAA']['testPageSimple']['modal']['delete']                    = 'Delete';
-
-$_LANG['addonAA']['testPageSimple']['actionButtons']['edit']              = 'Edit';
-$_LANG['addonAA']['testPageSimple']['actionButtons']['delete']            = 'Delete';
-
-$_LANG['addonAA']['testPage']['item']['simpleNum']['label']               = 'Simple Number';
+$_LANG['addonAA']['testPageSimple']['table']['name'] = 'Simple Item List';
+$_LANG['addonAA']['testPageSimple']['messages']['saveSuccess'] = 'Item Added Successfull';
 
 
+$_LANG['addonAA']['testPageSimple']['modal']['editLabel'] = 'Edit Item';
+$_LANG['addonAA']['testPageSimple']['modal']['close'] = 'Close';
+$_LANG['addonAA']['testPageSimple']['modal']['updateItem'] = 'Update';
 
-$_LANG['serverAA']['configuration']['configuration']['header']          = 'Configuration';
-$_LANG['serverAA']['configuration']['configuration']['a']['label']      = 'A';
-$_LANG['serverAA']['configuration']['configuration']['b']['label']      = 'B';
+$_LANG['addonAA']['testPageSimple']['modal']['deleteLabel'] = 'Delete Item';
+$_LANG['addonAA']['testPageSimple']['modal']['deleteDescription'] = 'This Action Cannot be undone';
+$_LANG['addonAA']['testPageSimple']['modal']['delete'] = 'Delete';
+
+$_LANG['addonAA']['testPageSimple']['actionButtons']['edit'] = 'Edit';
+$_LANG['addonAA']['testPageSimple']['actionButtons']['delete'] = 'Delete';
+
+$_LANG['addonAA']['testPage']['item']['simpleNum']['label'] = 'Simple Number';
+
+
+$_LANG['serverAA']['configuration']['configuration']['header'] = 'Configuration';
+$_LANG['serverAA']['configuration']['configuration']['a']['label'] = 'A';
+$_LANG['serverAA']['configuration']['configuration']['b']['label'] = 'B';
 $_LANG['serverAA']['configuration']['configuration']['save']['content'] = 'Save';
 
 
@@ -434,10 +430,10 @@ $_LANG['addonAA']['accessDetails']['Reset'] = 'Reset';
 $_LANG['addonAA']['accessDetails']['Filter'] = 'Filter';
 $_LANG['addonAA']['accessDetails']['Client'] = 'Client';
 
-$_LANG['addonCA']['pagesLabels']['label']['home']="Owned Passwords";
-$_LANG['addonCA']['pagesLabels']['label']['shared']="Shared Passwords";
-$_LANG['addonCA']['pagesLabels']['label']['product']="Product Passwords";
-$_LANG['addonCA']['pagesLabels']['label']['categories']="Categories";
+$_LANG['addonCA']['pagesLabels']['label']['home'] = "Owned Passwords";
+$_LANG['addonCA']['pagesLabels']['label']['shared'] = "Shared Passwords";
+$_LANG['addonCA']['pagesLabels']['label']['product'] = "Product Passwords";
+$_LANG['addonCA']['pagesLabels']['label']['categories'] = "Categories";
 
 
 $_LANG['addonCA']['home']['Name'] = 'Name';
@@ -563,7 +559,7 @@ $_LANG['addonCA']['product']['IP Address'] = 'IP Address';
 $_LANG['addonCA']['product']['Status'] = 'Status';
 $_LANG['Monthly'] = 'Monthly';
 $_LANG['Free Account'] = 'Free Account';
-$_LANG['Passwords']='Passwords';
+$_LANG['Passwords'] = 'Passwords';
 
 
 

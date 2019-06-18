@@ -1,6 +1,7 @@
 <?php
 
 namespace MGModule\vultr\mgLibs\exceptions;
+
 use MGModule\vultr as main;
 
 /**
@@ -8,8 +9,10 @@ use MGModule\vultr as main;
  *
  * @author Michal Czech <michael@modulesgarden.com>
  */
-class System extends Base {
-    public function __construct($message, $code = 0, $previous = null) {
-        parent::__construct($message, $code, $previous);
-    }
+class System extends Base
+{
+	public function __construct($message, $code = 0, $previous = null)
+	{
+		parent::__construct($message, $code, $previous);
+	}
 }

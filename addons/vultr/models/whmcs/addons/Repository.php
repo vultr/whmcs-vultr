@@ -19,6 +19,7 @@
  * ******************************************************************** */
 
 namespace MGModule\vultr\models\whmcs\addons;
+
 use MGModule\vultr as main;
 
 /**
@@ -26,17 +27,20 @@ use MGModule\vultr as main;
  *
  * @author Pawel Kopec <pawelk@modulesgarden.com>
  */
-class Repository extends \MGModule\vultr\mgLibs\models\Repository{
-    public function getModelClass() {
-        return __NAMESPACE__.'\Addon';
-    }
-    
-    /**
-     * 
-     * @return Addon[]
-     */
-    public function get() {
-        return parent::get();
-    }
+class Repository extends \MGModule\vultr\mgLibs\models\Repository
+{
+	public function getModelClass()
+	{
+		return __NAMESPACE__ . '\Addon';
+	}
+
+	/**
+	 *
+	 * @return Addon[]
+	 */
+	public function get()
+	{
+		return parent::get();
+	}
 }
 

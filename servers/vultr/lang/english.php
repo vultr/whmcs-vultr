@@ -298,7 +298,7 @@ $_LANG['elements']['buttons']['ssh_keys'] = 'SSH Keys';
 $_LANG['elements']['buttons']['dns'] = 'DNS';
 $_LANG['elements']['buttons']['backups'] = 'Backups';
 /**
- * 
+ *
  */
 $_LANG['core']['client']['create_vm_first'] = 'Please create VM first!';
 $_LANG['core']['client']['action_not_found'] = 'Action Not Found (404)';

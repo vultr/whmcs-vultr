@@ -1,6 +1,7 @@
 <?php
 
 namespace MGModule\vultr\mgLibs\forms;
+
 use MGModule\vultr as main;
 
 /**
@@ -8,7 +9,8 @@ use MGModule\vultr as main;
  *
  * @author Michal Czech <michael@modulesgarden.com>
  */
-class TextareaField extends AbstractField{
-    public $enablePlaceholder = false;
-    public $type    = 'textarea';
+class TextareaField extends AbstractField
+{
+	public $enablePlaceholder = false;
+	public $type = 'textarea';
 }

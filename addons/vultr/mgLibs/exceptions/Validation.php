@@ -1,6 +1,7 @@
 <?php
 
 namespace MGModule\vultr\mgLibs\exceptions;
+
 use MGModule\vultr as main;
 
 /**
@@ -8,14 +9,18 @@ use MGModule\vultr as main;
  *
  * @author Michal Czech <michael@modulesgarden.com>
  */
-class validation extends System {
-    private $fields = array();
-    public function __construct($message,array $fields = array()) {
-        $this->fields = $fields;
-        parent::__construct($message);
-    }
-    
-    function getFields(){
-        return $this->fields;
-    }
+class validation extends System
+{
+	private $fields = array();
+
+	public function __construct($message, array $fields = array())
+	{
+		$this->fields = $fields;
+		parent::__construct($message);
+	}
+
+	function getFields()
+	{
+		return $this->fields;
+	}
 }

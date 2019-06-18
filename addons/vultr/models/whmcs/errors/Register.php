@@ -1,6 +1,7 @@
 <?php
 
 namespace MGModule\vultr\models\whmcs\errors;
+
 use MGModule\vultr as main;
 
 /**
@@ -9,27 +10,29 @@ use MGModule\vultr as main;
  * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
-class Register extends main\mgLibs\models\Orm {
-    /**
-     * Register Exception in WHMCS Module Log
-     * 
-     * @author Michal Czech <michael@modulesgarden.com>
-     * @param Exception $ex
-     */
-    static function register($ex){
-        $token = 'Unknow Token';
+class Register extends main\mgLibs\models\Orm
+{
+	/**
+	 * Register Exception in WHMCS Module Log
+	 *
+	 * @param Exception $ex
+	 * @author Michal Czech <michael@modulesgarden.com>
+	 */
+	static function register($ex)
+	{
+		$token = 'Unknow Token';
 
-        if(method_exists($ex, 'getToken'))
-        {
-            $token = $ex->getToken();
-        }
+		if (method_exists($ex, 'getToken'))
+		{
+			$token = $ex->getToken();
+		}
 
-        $debug = print_r($ex,true);
+		$debug = print_r($ex, true);
 
-        \logModuleCall("MGError",__NAMESPACE__,array(
-                    'message' => $ex->getMessage()
-                    ,'code'   => $ex->getCode()
-                    ,'token'  => $token
-                ),  $debug,0,0);
-    }
+		\logModuleCall("MGError", __NAMESPACE__, array(
+			'message' => $ex->getMessage()
+		, 'code' => $ex->getCode()
+		, 'token' => $token
+		), $debug, 0, 0);
+	}
 }

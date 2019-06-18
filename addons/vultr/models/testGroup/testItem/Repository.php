@@ -1,6 +1,7 @@
 <?php
 
 namespace MGModule\vultr\models\testGroup\TestItem;
+
 use MGModule\vultr as main;
 use MGModule\vultr\mgLibs;
 use MGModule\vultr\models\testGroup\simpleItem;
@@ -10,47 +11,50 @@ use MGModule\vultr\models\testGroup\simpleItem;
  *
  * @author Michal Czech <michael@modulesgarden.com>
  */
-class Repository extends \MGModule\vultr\mgLibs\models\Repository{
-    public function getModelClass() {
-        return __NAMESPACE__.'\TestItem';
-    }
-    
-    public function get() {      
-        $sql = "
+class Repository extends \MGModule\vultr\mgLibs\models\Repository
+{
+	public function get()
+	{
+		$sql = "
             SELECT
-                ".mgLibs\MySQL\Query::formatSelectFields(testItem::fieldDeclaration(),'B')."
-                ,count(S.`". simpleItem\simpleItem::getProperyColumn('id')."`) as simpleNum
+                " . mgLibs\MySQL\Query::formatSelectFields(testItem::fieldDeclaration(), 'B') . "
+                ,count(S.`" . simpleItem\simpleItem::getProperyColumn('id') . "`) as simpleNum
             FROM
-                ".testItem::tableName()." B
+                " . testItem::tableName() . " B
             LEFT JOIN
-                ".simpleItem\simpleItem::tableName()." S
+                " . simpleItem\simpleItem::tableName() . " S
                 ON
-                    S.`". simpleItem\simpleItem::getProperyColumn('testItemID')."` = B.`".testItem::getProperyColumn('id')."`
+                    S.`" . simpleItem\simpleItem::getProperyColumn('testItemID') . "` = B.`" . testItem::getProperyColumn('id') . "`
         ";
 
-        $conditionParsed = mgLibs\MySQL\Query::parseConditions($this->_filters,$params,'B');
+		$conditionParsed = mgLibs\MySQL\Query::parseConditions($this->_filters, $params, 'B');
 
-        if($conditionParsed)
-        {
-            $sql .= " WHERE ".$conditionParsed;
-        }
-        
-        $sql .= " GROUP BY `B`.`".testItem::getProperyColumn('id')."` ";
+		if ($conditionParsed)
+		{
+			$sql .= " WHERE " . $conditionParsed;
+		}
 
-        
-        $sql .= mgLibs\MySQL\Query::formarLimit($this->_limit, $this->_offest);
+		$sql .= " GROUP BY `B`.`" . testItem::getProperyColumn('id') . "` ";
 
-        $result = mgLibs\MySQL\Query::query($sql,$params);
-        
-        $output = array();
-        
-        $class = $this->getModelClass();
-        
-        while($row = $result->fetch())
-        {
-            $output[] = new $class($row['id'],$row);
-        }
 
-        return $output;
-    }
+		$sql .= mgLibs\MySQL\Query::formarLimit($this->_limit, $this->_offest);
+
+		$result = mgLibs\MySQL\Query::query($sql, $params);
+
+		$output = array();
+
+		$class = $this->getModelClass();
+
+		while ($row = $result->fetch())
+		{
+			$output[] = new $class($row['id'], $row);
+		}
+
+		return $output;
+	}
+
+	public function getModelClass()
+	{
+		return __NAMESPACE__ . '\TestItem';
+	}
 }
