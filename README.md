@@ -15,7 +15,7 @@ The Vultr platform offers a powerful, feature-rich API that allows users to cont
 - Your WHMCS Server IPs being whitelisted for API Access
 
 ## Installation
-1. Download the latest release: [[Link]](https://github.com/vultr/whmcs-vultr/releases)
+1. Download the latest release: [Release](https://github.com/vultr/whmcs-vultr/releases)
 2. Upload the module files to your WHMCS Server following the directory hierarchy defined below:
    * modules
      * addons
