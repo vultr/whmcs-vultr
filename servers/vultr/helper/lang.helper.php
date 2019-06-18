@@ -91,7 +91,6 @@ class LangHelper
 			$language = 'english';
 		}
 
-
 		return strtolower($language);
 	}
 }

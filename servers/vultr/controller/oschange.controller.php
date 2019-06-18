@@ -1,18 +1,6 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of oschange
- *
- * @author Krystian
- */
 class OSChangeController extends VultrController
 {
-
 	public function __construct($params)
 	{
 		parent::__construct($params);
@@ -72,7 +60,6 @@ class OSChangeController extends VultrController
 
 					if (isset($_POST['vultrOSID']))
 					{
-
 						$code = $this->vultrAPI->os_change($this->params['customfields']['subid'], filter_input(INPUT_POST, 'vultrOSID'));
 						if ($code == '200')
 						{

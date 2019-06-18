@@ -4,10 +4,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 if (!class_exists('VultrHelper'))
 {
-
 	class VultrHelper
 	{
-
 		public static function parseRegions($data)
 		{
 
@@ -25,10 +23,6 @@ if (!class_exists('VultrHelper'))
 			$plans = array();
 			foreach ($data as $key => $value)
 			{
-				//if ($value['plan_type'] != 'SSD') {
-				//    unset($data[$key]);
-				//    continue;
-				//}
 				if (empty($value['available_locations']))
 				{
 					unset($data[$key]);
@@ -408,10 +402,6 @@ if (!class_exists('VultrHelper'))
 			return $snapshots;
 		}
 
-		/*
-		 * Get global snapshots
-		 */
-
 		public static function getGlobalSnapshots($snapshotList)
 		{
 			$globalSnapshots = Capsule::table('tbladdonmodules')->select('value')->where([
@@ -474,7 +464,6 @@ if (!class_exists('VultrHelper'))
 
 		public static function getAvailableIsos($isosList)
 		{
-
 			$isoSettings = Capsule::table('tbladdonmodules')->select('value')->where([
 				['module', '=', 'vultr'],
 				['setting', '=', 'isoSettings'],
@@ -497,10 +486,6 @@ if (!class_exists('VultrHelper'))
 			}
 			return $isosList;
 		}
-
-		/*
-		 * End global snapshots
-		 */
 
 		public static function getUserScripts($clientID, $scripts)
 		{
@@ -1177,7 +1162,5 @@ if (!class_exists('VultrHelper'))
 				Capsule::table('tblhostingconfigoptions')->where('id', $value->id)->delete();
 			}
 		}
-
 	}
-
 }

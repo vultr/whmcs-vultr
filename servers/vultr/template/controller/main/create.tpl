@@ -259,16 +259,7 @@
 					</select>
 				</div>
 				<!--Auto backups END-->
-				<!--Notify-->
-				<!--<div class="col-sm-5">
-                    <label for="vultrNotify">{$_LANG.main.create.notify_mail}</label>
-                    <select class="form-control" id="notify" name="vultrNotify">
-                        <option value="0" {if isset($postData['vultrNotify']) && $postData['vultrNotify']=='0'}selected{/if}>{$_LANG.main.create.no}</option>                    
-                        <option value="1" {if isset($postData['vultrNotify']) && $postData['vultrNotify']=='1'}selected{/if}>{$_LANG.main.create.yes}</option>                        
-                    </select>
-                </div>-->
 			</div>
-			<!--Notify END-->
 			<!--Submit-->
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1">
