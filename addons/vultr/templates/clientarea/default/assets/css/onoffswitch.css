@@ -1,0 +1,50 @@
+.mg-wrapper .onoffswitch {
+    position: relative; width: 120px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.mg-wrapper .onoffswitch-checkbox {
+    display: none;
+}
+.mg-wrapper .onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 1px solid #666666; border-radius: 5px;
+}
+.mg-wrapper .onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.mg-wrapper .onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 24px; padding: 0; line-height: 24px;
+    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.mg-wrapper .onoffswitch-inner:before {
+    content: attr(data-before);
+    padding-left: 10px;
+    background-color: #5CB85C; color: #FFFFFF;
+}
+.mg-wrapper .onoffswitch-inner:after {
+    content: attr(data-after);
+    padding-right: 10px;
+    background-color: #F8F8F8; color: #666666;
+    text-align: right;
+}
+.mg-wrapper .onoffswitch-switch {
+    display: block; width: 35px; margin: 0px; height: 26px;
+    background: #FFFFFF;
+    border: 1px solid #666666; border-radius: 5px;
+    position: absolute; top: 0; bottom: 0; right: 81px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+    background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+}
+.mg-wrapper .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.mg-wrapper .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}

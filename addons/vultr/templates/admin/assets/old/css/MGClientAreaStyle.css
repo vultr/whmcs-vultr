@@ -1,0 +1,46 @@
+        .whmcscontainer h2 .label-lg{
+            letter-spacing: 0;
+            font-size: 13px;
+            padding: 5px;
+            display: inline-block;
+            margin: -8px 0 0 5px;
+            vertical-align: middle;
+        }
+        #domain-mapping{
+            margin-top: 20px;
+        }
+        #domain-mapping .table-header{
+            background: #fff;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-width: 0 0 1px 0;
+        }
+        #domain-mapping .table{
+            margin-bottom: 0;
+        }
+        #add-domain-mapping .table-bottom{
+            background: #fff;
+            border-top: 1px solid #ddd;
+            padding: 10px 5px;
+        }
+        #add-domain-mapping .table-bottom .control-group{
+            text-align: center;
+        }
+        #add-domain-mapping .table-bottom .control-group label{
+            width: auto;
+            display: inline-block;
+            float: none;
+            margin: 0 10px 0 -6px;
+            line-height: 28px;
+            padding-top: 0;
+            font-weight: 700;
+        }
+        #add-domain-mapping .table-bottom .control-group .btn{
+            margin-left: -5px;
+        }
+        #add-domain-mapping .table-bottom .control-group input[type="text"]{
+            width: 378px;
+        }
+        #MGAlerts .alert .close {
+            top: 2px;
+        }
