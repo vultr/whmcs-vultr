@@ -18,6 +18,7 @@
  * ******************************************************************** */
 
 namespace MGModule\vultr\models\whmcs\product;
+
 use MGModule\vultr as main;
 
 /**
@@ -25,20 +26,22 @@ use MGModule\vultr as main;
  *
  * @author Michal Czech <michael@modulesgarden.com>
  */
-class ProductGroups extends main\mgLibs\models\Repository {
-    
-    public function getModelClass() {
-        return __NAMESPACE__.'\ProductGroup';
-    }
-    
-     /**
-     * 
-     * @return ProductGroup[]
-     */
-    public function get() {
-        return parent::get();
-    }
-    
+class ProductGroups extends main\mgLibs\models\Repository
+{
 
-    
+	public function getModelClass()
+	{
+		return __NAMESPACE__ . '\ProductGroup';
+	}
+
+	/**
+	 *
+	 * @return ProductGroup[]
+	 */
+	public function get()
+	{
+		return parent::get();
+	}
+
+
 }

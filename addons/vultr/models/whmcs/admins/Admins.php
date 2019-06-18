@@ -19,6 +19,7 @@
  * ******************************************************************** */
 
 namespace MGModule\vultr\models\whmcs\admins;
+
 use MGModule\vultr as main;
 
 
@@ -27,18 +28,21 @@ use MGModule\vultr as main;
  *
  * @author Pawel Kopec <pawelk@modulesgarden.com>
  */
-class Admins extends main\mgLibs\models\Repository{
-    
-    public function getModelClass() {
-        return __NAMESPACE__.'\Admin';
-    }
-    
-    /**
-     * 
-     * @return Admin[]
-     */
-    public function get() {
-        return parent::get();
-    }
+class Admins extends main\mgLibs\models\Repository
+{
+
+	public function getModelClass()
+	{
+		return __NAMESPACE__ . '\Admin';
+	}
+
+	/**
+	 *
+	 * @return Admin[]
+	 */
+	public function get()
+	{
+		return parent::get();
+	}
 }
 

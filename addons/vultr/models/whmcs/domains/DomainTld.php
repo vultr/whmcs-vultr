@@ -19,6 +19,7 @@
  * ******************************************************************** */
 
 namespace MGModule\vultr\models\whmcs\domains;
+
 use MGModule\vultr as main;
 
 /**
@@ -27,113 +28,127 @@ use MGModule\vultr as main;
  * @author Pawel Kopec <pawelk@modulesgarden.com>
  * @Table(name=tbldomainpricing,preventUpdate,prefixed=false)
  */
-class DomainTld extends main\mgLibs\models\Orm{
-    /**
-     * @Column()
-     * @var int
-     */
-    protected $id;
-    
-    /**
-     * @Column(name=extension)
-     * @var string 
-     */
-    protected $extension;
-    
-    /**
-     * @Column(name=dnsmanagement,as=dnsManagement)
-     * @var string 
-     */
-    protected $dnsManagement;
-    
-    /**
-     * @Column(name=emailforwarding,as=emailForwarding)
-     * @var string 
-     */
-    protected $emailForwarding;
-        
-    /**
-     * @Column(name=idprotection,as=idProtection)
-     * @var string 
-     */
-    protected $idProtection;
-    
-    /**
-     * @Column(name=eppcode,as=eppCode)
-     * @var string 
-     */
-    protected $eppCode;
-    
-    /**
-     * @Column(name=autoreg,as=autoreg)
-     * @var string 
-     */
-    protected $autoreg;
-    
-    private $_domainRegisterPricing;
-    
-    public function getId() {
-        return $this->id;
-    }
+class DomainTld extends main\mgLibs\models\Orm
+{
+	/**
+	 * @Column()
+	 * @var int
+	 */
+	protected $id;
 
-    public function getExtension() {
-        return $this->extension;
-    }
+	/**
+	 * @Column(name=extension)
+	 * @var string
+	 */
+	protected $extension;
 
-    public function getDnsManagement() {
-        return $this->dnsManagement;
-    }
+	/**
+	 * @Column(name=dnsmanagement,as=dnsManagement)
+	 * @var string
+	 */
+	protected $dnsManagement;
 
-    public function getEmailForwarding() {
-        return $this->emailForwarding;
-    }
+	/**
+	 * @Column(name=emailforwarding,as=emailForwarding)
+	 * @var string
+	 */
+	protected $emailForwarding;
 
-    public function getIdProtection() {
-        return $this->idProtection;
-    }
+	/**
+	 * @Column(name=idprotection,as=idProtection)
+	 * @var string
+	 */
+	protected $idProtection;
 
-    public function getEppCode() {
-        return $this->eppCode;
-    }
+	/**
+	 * @Column(name=eppcode,as=eppCode)
+	 * @var string
+	 */
+	protected $eppCode;
 
-    public function getAutoreg() {
-        return $this->autoreg;
-    }
+	/**
+	 * @Column(name=autoreg,as=autoreg)
+	 * @var string
+	 */
+	protected $autoreg;
 
-    /**
-     * Get Pricing
-     * @return main\models\whmcs\pricing\Price[]
-     */
-    public function getDomainRegisterPricing(){
-        if(!empty($this->_domainRegisterPricing))
-            return $this->_domainRegisterPricing;
-        
-        $repositor = new main\models\whmcs\pricing\Repository();
-        $repositor->onlyDomainRegister();
-        $repositor->withRelation($this->id);
-        $repositor->withDomainCycle();
-        $this->_domainRegisterPricing = array();
-        foreach($repositor->get() as $price){
-            $this->_domainRegisterPricing[] = $price;
-        }
-        unset($repositor);
-        return $this->_domainRegisterPricing;
-    }
-    
-    
-    public function getPrice($currencyId, $billingCycle){
-        
+	private $_domainRegisterPricing;
 
-        $repositor = new main\models\whmcs\pricing\Repository();
-        $repositor->onlyDomainRegister();
-        $repositor->withRelation($this->id);
-        $repositor->withDomainCycle();
-        $repositor->onlyCurrency($currencyId);
-        foreach($repositor->get() as $price){
-            return $price->getPrice($billingCycle);
-        }
-        
-        return null;
-    }
-    
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function getExtension()
+	{
+		return $this->extension;
+	}
+
+	public function getDnsManagement()
+	{
+		return $this->dnsManagement;
+	}
+
+	public function getEmailForwarding()
+	{
+		return $this->emailForwarding;
+	}
+
+	public function getIdProtection()
+	{
+		return $this->idProtection;
+	}
+
+	public function getEppCode()
+	{
+		return $this->eppCode;
+	}
+
+	public function getAutoreg()
+	{
+		return $this->autoreg;
+	}
+
+	/**
+	 * Get Pricing
+	 * @return main\models\whmcs\pricing\Price[]
+	 */
+	public function getDomainRegisterPricing()
+	{
+		if (!empty($this->_domainRegisterPricing))
+		{
+			return $this->_domainRegisterPricing;
+		}
+
+		$repositor = new main\models\whmcs\pricing\Repository();
+		$repositor->onlyDomainRegister();
+		$repositor->withRelation($this->id);
+		$repositor->withDomainCycle();
+		$this->_domainRegisterPricing = array();
+		foreach ($repositor->get() as $price)
+		{
+			$this->_domainRegisterPricing[] = $price;
+		}
+		unset($repositor);
+		return $this->_domainRegisterPricing;
+	}
+
+
+	public function getPrice($currencyId, $billingCycle)
+	{
+
+
+		$repositor = new main\models\whmcs\pricing\Repository();
+		$repositor->onlyDomainRegister();
+		$repositor->withRelation($this->id);
+		$repositor->withDomainCycle();
+		$repositor->onlyCurrency($currencyId);
+		foreach ($repositor->get() as $price)
+		{
+			return $price->getPrice($billingCycle);
+		}
+
+		return null;
+	}
+
 }

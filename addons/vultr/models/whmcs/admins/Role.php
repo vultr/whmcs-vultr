@@ -19,6 +19,7 @@
  * ******************************************************************** */
 
 namespace MGModule\vultr\models\whmcs\admins;
+
 use MGModule\vultr as main;
 
 /**
@@ -27,28 +28,31 @@ use MGModule\vultr as main;
  * @author Pawel Kopec <pawelk@modulesgarden.com>
  * @Table(name=tbladminroles,preventUpdate,prefixed=false)
  */
-class Role  extends main\mgLibs\models\Orm{
-    
-    /**
-     *
-     * @Column(id)
-     * @var int
-     */
-    protected $id;
-    
-    /**
-     *
-     * @Column()
-     * @var string 
-     */
-    protected $name;
-    
-    function getId() {
-        return $this->id;
-    }
+class Role extends main\mgLibs\models\Orm
+{
 
-    function getName() {
-        return $this->name;
-    }
-    
+	/**
+	 *
+	 * @Column(id)
+	 * @var int
+	 */
+	protected $id;
+
+	/**
+	 *
+	 * @Column()
+	 * @var string
+	 */
+	protected $name;
+
+	function getId()
+	{
+		return $this->id;
+	}
+
+	function getName()
+	{
+		return $this->name;
+	}
+
 }

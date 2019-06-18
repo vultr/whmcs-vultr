@@ -1,9 +1,13 @@
 <?php
 
 namespace MGModule\vultr;
+
 use MGModule\vultr as main;
 
-if(!defined('DS'))define('DS',DIRECTORY_SEPARATOR);
+if (!defined('DS'))
+{
+	define('DS', DIRECTORY_SEPARATOR);
+}
 
 /**
  * Module Class Loader
@@ -12,170 +16,180 @@ if(!defined('DS'))define('DS',DIRECTORY_SEPARATOR);
  * @SuppressWarnings(PHPMD)
  */
 
-if(!class_exists(__NAMESPACE__.'\Loader')){
-    class Loader {
-        static $whmcsDir;
-        static $myName;
-        static $avaiableDirs = array();
+if (!class_exists(__NAMESPACE__ . '\Loader'))
+{
+	class Loader
+	{
+		static $whmcsDir;
+		static $myName;
+		static $avaiableDirs = array();
 
-        /**
-         * Set Paths
-         * 
-         * @param string $dir
-         */
-        function __construct($dir = null){
-            if(empty($dir))
-            {
-                $checkDirs = array(
-                        'modules'.DS.'addons'.DS
-                        ,'modules'.DS.'servers'.DS
-                ); 
+		/**
+		 * Set Paths
+		 *
+		 * @param string $dir
+		 */
+		function __construct($dir = null)
+		{
+			if (empty($dir))
+			{
+				$checkDirs = array(
+					'modules' . DS . 'addons' . DS
+				, 'modules' . DS . 'servers' . DS
+				);
 
-                self::$myName = substr(__NAMESPACE__, 9);
+				self::$myName = substr(__NAMESPACE__, 9);
 
-                foreach($checkDirs as $dir)
-                {
-                    if($pos = strpos(__DIR__,$dir.self::$myName))
-                    {
-                        self::$whmcsDir = substr(__DIR__,0,$pos);
-                        break;
-                    }
-                }       
+				foreach ($checkDirs as $dir)
+				{
+					if ($pos = strpos(__DIR__, $dir . self::$myName))
+					{
+						self::$whmcsDir = substr(__DIR__, 0, $pos);
+						break;
+					}
+				}
 
-                if(self::$whmcsDir)
-                {
-                    foreach($checkDirs as $dir)
-                    {
-                        $tmp = self::$whmcsDir.$dir.self::$myName;
-                        if(file_exists($tmp))
-                        {
-                            self::$avaiableDirs[] = $tmp.DS;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                self::$mainDir = $dir;
-            }
+				if (self::$whmcsDir)
+				{
+					foreach ($checkDirs as $dir)
+					{
+						$tmp = self::$whmcsDir . $dir . self::$myName;
+						if (file_exists($tmp))
+						{
+							self::$avaiableDirs[] = $tmp . DS;
+						}
+					}
+				}
+			}
+			else
+			{
+				self::$mainDir = $dir;
+			}
 
-            spl_autoload_register(array($this,'loader'));
-        }
+			spl_autoload_register(array($this, 'loader'));
+		}
 
-        /**
-         * Load Class File
-         * 
-         * @author Michal Czech <michael@modulesgarden.com>
-         * @param string $className
-         * @return bool
-         * @throws main\mgLibs\exceptions\base
-         * @throws \Exception
-         */
-        static function loader($className){
-            if(strpos($className, __NAMESPACE__) === false)
-            {
-                return;
-            }
-            
-            $className = substr($className,strlen(__NAMESPACE__));
+		/**
+		 * Load Class File
+		 *
+		 * @param string $className
+		 * @return bool
+		 * @throws main\mgLibs\exceptions\base
+		 * @throws \Exception
+		 * @author Michal Czech <michael@modulesgarden.com>
+		 */
+		static function loader($className)
+		{
+			if (strpos($className, __NAMESPACE__) === false)
+			{
+				return;
+			}
 
-            $originClassName = $className;
-            $className = ltrim($className, '\\');
-            $fileName  = '';
-            $namespace = '';
-            if ($lastNsPos = strrpos($className, '\\')) {
-                $namespace = substr($className, 0, $lastNsPos);
-                $className = substr($className, $lastNsPos + 1);
-                $fileName  = str_replace('\\', DS, $namespace).DS;
-            }
+			$className = substr($className, strlen(__NAMESPACE__));
 
-            $fileName .= str_replace('_', DS, $className) . '.php';
+			$originClassName = $className;
+			$className = ltrim($className, '\\');
+			$fileName = '';
+			$namespace = '';
+			if ($lastNsPos = strrpos($className, '\\'))
+			{
+				$namespace = substr($className, 0, $lastNsPos);
+				$className = substr($className, $lastNsPos + 1);
+				$fileName = str_replace('\\', DS, $namespace) . DS;
+			}
 
-            $foundFile = false;
+			$fileName .= str_replace('_', DS, $className) . '.php';
 
-            $error = array();
+			$foundFile = false;
 
-            foreach(self::$avaiableDirs as $dir)
-            {
-                $tmp = $dir.$fileName;
+			$error = array();
 
-                if(file_exists($tmp))
-                {
-                    if($foundFile)
-                    {
-                        //todo THROW ERROR FOR DEVELOPER
-                    }
-                    else
-                    {
-                        $foundFile = $tmp;
-                    }
-                }
-            }
+			foreach (self::$avaiableDirs as $dir)
+			{
+				$tmp = $dir . $fileName;
 
-            if($foundFile)
-            {
-                require_once $foundFile;            
-                
-                if(!class_exists(__NAMESPACE__.$originClassName) && !interface_exists(__NAMESPACE__.$originClassName))
-                {
-                    $error['message'] = 'Unable to find class:'.$originClassName.' in file:'.$foundFile;
-                    $error['code']    = main\mgLibs\exceptions\Codes::MISING_FILE_CLASS;
-                }
-            } 
-            
-            if($error)
-            { 
-                if(class_exists(__NAMESPACE__.'\mgLibs\exceptions\Base',false))
-                {
-                    throw new main\mgLibs\exceptions\Base($error['message'], $error['code']);
-                }
-                else
-                {
-                    throw new \Exception($error['message'], $error['code']);
-                }
-            }
-            return true;
-        }
+				if (file_exists($tmp))
+				{
+					if ($foundFile)
+					{
+						//todo THROW ERROR FOR DEVELOPER
+					}
+					else
+					{
+						$foundFile = $tmp;
+					}
+				}
+			}
 
-        static function listClassesInNamespace($className){
-            $originClassName = $className;
-            $className = ltrim($className, '\\');
-            $fileName  = '';
-            $namespace = '';
-            if ($lastNsPos = strrpos($className, '\\')) {
-                $namespace = substr($className, 0, $lastNsPos);
-                $className = substr($className, $lastNsPos + 1);
-                $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-            }
+			if ($foundFile)
+			{
+				require_once $foundFile;
 
-            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className);
+				if (!class_exists(__NAMESPACE__ . $originClassName) && !interface_exists(__NAMESPACE__ . $originClassName))
+				{
+					$error['message'] = 'Unable to find class:' . $originClassName . ' in file:' . $foundFile;
+					$error['code'] = main\mgLibs\exceptions\Codes::MISING_FILE_CLASS;
+				}
+			}
 
-            foreach(self::$avaiableDirs as $dir)
-            {
-                $tmp = $dir.$fileName;
-                if(file_exists($tmp))
-                {
-                    $foundFile = $tmp;
-                }
-            }
+			if ($error)
+			{
+				if (class_exists(__NAMESPACE__ . '\mgLibs\exceptions\Base', false))
+				{
+					throw new main\mgLibs\exceptions\Base($error['message'], $error['code']);
+				}
+				else
+				{
+					throw new \Exception($error['message'], $error['code']);
+				}
+			}
+			return true;
+		}
 
-            $files = array();
+		static function listClassesInNamespace($className)
+		{
+			$originClassName = $className;
+			$className = ltrim($className, '\\');
+			$fileName = '';
+			$namespace = '';
+			if ($lastNsPos = strrpos($className, '\\'))
+			{
+				$namespace = substr($className, 0, $lastNsPos);
+				$className = substr($className, $lastNsPos + 1);
+				$fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+			}
 
-            if ($handle = opendir($foundFile)) {
-                while (false !== ($entry = readdir($handle))) {
-                    if (
-                            $entry != "." 
-                            && $entry != ".."
-                            && strpos($entry,'.php') === (strlen($entry)-4)
-                        ) {
+			$fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className);
 
-                        $files[] = __NAMESPACE__.'\\'.$originClassName.'\\'.substr($entry, 0,strlen($entry)-4);
-                    }
-                }
-                closedir($handle);
-            }
+			foreach (self::$avaiableDirs as $dir)
+			{
+				$tmp = $dir . $fileName;
+				if (file_exists($tmp))
+				{
+					$foundFile = $tmp;
+				}
+			}
 
-            return $files;
-        }
-    }
+			$files = array();
+
+			if ($handle = opendir($foundFile))
+			{
+				while (false !== ($entry = readdir($handle)))
+				{
+					if (
+						$entry != "."
+						&& $entry != ".."
+						&& strpos($entry, '.php') === (strlen($entry) - 4)
+					)
+					{
+
+						$files[] = __NAMESPACE__ . '\\' . $originClassName . '\\' . substr($entry, 0, strlen($entry) - 4);
+					}
+				}
+				closedir($handle);
+			}
+
+			return $files;
+		}
+	}
 }
