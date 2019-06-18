@@ -2,7 +2,6 @@
 
 class SessionHelper
 {
-
 	public static function setFlashMessage($type, $message)
 	{
 		$_SESSION['VULTR']['FLASH'][] = array('type' => $type, 'message' => $message);
@@ -21,6 +20,4 @@ class SessionHelper
 			return array();
 		}
 	}
-
-
 }

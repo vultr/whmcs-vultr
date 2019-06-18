@@ -1,7 +1,6 @@
 <?php
 if (!class_exists('VultrAPI'))
 {
-
 	/**
 	 * Vultr.com API Client
 	 * @package vultr
@@ -146,13 +145,6 @@ if (!class_exists('VultrAPI'))
 			$this->api_token = $token;
 			$this->cache_ttl = $cache_ttl;
 			$this->account = self::account_info();
-			/*  $this->snapshots = self::snapshot_list();
-			  $this->scripts   = self::startupscript_list();
-			  $this->regions   = self::regions_list();
-			  $this->servers   = self::server_list();
-			  $this->plans     = self::plans_list();
-			  $this->oses      = self::os_list();
-			  $this->ssh_keys  = self::sshkeys_list(); */
 		}
 
 		/**
@@ -919,7 +911,6 @@ if (!class_exists('VultrAPI'))
 					$response = $this->serveFromCache($_defaults[CURLOPT_URL]);
 					if ($response !== false)
 					{
-						//echo "FROM CACHE: $url\n";
 						return $response;
 					}
 					break;
@@ -937,7 +928,6 @@ if (!class_exists('VultrAPI'))
 			$apisess = curl_init();
 			curl_setopt_array($apisess, $_defaults);
 			$response = curl_exec($apisess);
-			// logModuleCall('Vultr',$url,$args,$response);
 			$httpCode = curl_getinfo($apisess, CURLINFO_HTTP_CODE);
 			logModuleCall('Vultr', $url, $args, "HTTP Code: " . $httpCode . "\n" . $response);
 			$this->writeLast();
@@ -1120,5 +1110,4 @@ if (!class_exists('VultrAPI'))
 			}
 		}
 	}
-
 }

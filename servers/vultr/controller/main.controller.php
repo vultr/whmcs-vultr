@@ -119,7 +119,7 @@ class MainController extends VultrController
 						}
 
 
-						//Get attached ISO file name
+						// Get attached ISO file name
 						$mountedIsoName = VultrHelper::getMountedIsoFileName($this->vultrAPI, $this->params['customfields']['subid']);
 						$isoStaus = $this->vultrAPI->iso_status($this->params['customfields']['subid'])["state"];
 						if ($mountedIsoName == "" && $isoStaus != "ready")
@@ -159,7 +159,6 @@ class MainController extends VultrController
 							$status = 'installing';
 						}
 						SessionHelper::setFlashMessage('info', LangHelper::T('main.index.vm_status_is') . $status);
-						//SessionHelper::setFlashMessage('info', LangHelper::T('main.index.vm_status_is') . $servers[$this->params['customfields']['subid']]['status']);
 						SessionHelper::setFlashMessage('info', LangHelper::T('main.create.reload_info'));
 					}
 				}
@@ -177,18 +176,11 @@ class MainController extends VultrController
 
 	private function validateHostname($ip)
 	{
-
 		if (preg_match('/([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+.[a-zA-Z]{2,5}/', $ip))
 		{
 			return true;
 		}
 		return false;
-		// var_dump((preg_match('/([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+.[a-zA-Z]{2,5}/', $ip)));
-//        if (preg_match('/^((?!\-)(?:[a-zA-Z\d\-]{0,62}[a-zA-Z\d]\.)){1,3}(?!\d+)[a-zA-Z\d]{2,62}$/', $ip) /* preg_match('/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/', $ip) || */
-//        ) {
-//            return TRUE;
-//        }
-//        return FALSE;
 	}
 
 	public function createAction()
@@ -201,10 +193,8 @@ class MainController extends VultrController
 
 		if ($this->getVultrAPI())
 		{
-
 			if (isset($_POST['cloudCreateAction']))
 			{
-
 				$error = false;
 				$vmParams = array(
 					'DCID' => filter_input(INPUT_POST, 'vultrRegionDCID'),
@@ -339,13 +329,7 @@ class MainController extends VultrController
 					}
 					if ($vmParams['OSID'] == '186')
 					{
-						//if ($appID = filter_input(INPUT_POST, 'appID')) {
 						$vmParams['APPID'] = $this->params['configoptions']['application'];
-						//}
-					}
-					if ($label = filter_input(INPUT_POST, 'vultrNotify'))
-					{
-						//$vmParams['notify_activate'] = 'yes';
 					}
 
 					$vm = $this->vultrAPI->create($vmParams);
@@ -362,17 +346,12 @@ class MainController extends VultrController
 					}
 				}
 			}
-			/*
-			 * Enable/Disable Server Location
-			 */
+			// Enable/Disable Server Location
 			$regionList = VultrHelper::getAvailableRegion($this->vultrAPI->regions_list());
 			$snapshotsList = VultrHelper::getAllSnapshots($this->vultrAPI->snapshot_list(), $this->params['userid']);
 
 			$isosList = VultrHelper::getAvailableIsos($this->vultrAPI->iso_list());
 
-			/*
-			 * End global snapshots
-			 */
 			return array(
 				'vars' => array(
 					'regions' => VultrHelper::prepareRegionList($regionList, $this->vultrAPI->plans_list(), $this->params['configoption2']),
@@ -443,5 +422,4 @@ class MainController extends VultrController
 		}
 		$this->redirect('clientarea.php?action=productdetails&id=' . $this->serviceID);
 	}
-
 }

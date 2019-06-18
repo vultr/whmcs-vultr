@@ -2,10 +2,6 @@
 
 use Illuminate\Database\Capsule\Manager as DB;
 
-//mysql_error() to try catch z PDOException
-//mysql_close wywalic
-//mysql_affected_rows ->> zmiana na PDOWrapper::num_rows($resource) 
-
 class PDOWrapper
 {
 	public static function query($query, $params = array())

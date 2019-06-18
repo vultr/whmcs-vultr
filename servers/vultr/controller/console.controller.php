@@ -37,7 +37,6 @@ class ConsoleController extends VultrController
 						$status = 'installing';
 					}
 					SessionHelper::setFlashMessage('info', LangHelper::T('main.index.vm_status_is') . $status);
-					//SessionHelper::setFlashMessage('info', LangHelper::T('main.index.vm_status_is') . $servers[$this->params['customfields']['subid']]['status']);
 					SessionHelper::setFlashMessage('info', LangHelper::T('main.create.reload_info'));
 				}
 			}

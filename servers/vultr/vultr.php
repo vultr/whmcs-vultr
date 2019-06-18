@@ -1,9 +1,6 @@
 <?php
 require 'loader.php';
 
-//error_reporting(E_ALL);
-
-
 function vultr_ConfigOptions($params)
 {
 	$vultr = new Vultr($params);

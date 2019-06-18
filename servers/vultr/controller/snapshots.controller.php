@@ -114,5 +114,4 @@ class SnapshotsController extends VultrController
 			return array('error' => LangHelper::T('scripts.core.connection_error'));
 		}
 	}
-
 }

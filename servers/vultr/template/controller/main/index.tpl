@@ -15,36 +15,33 @@
 			<div id="vultrAjaxLoader"
 				 style="background: rgba(255, 255, 255, 0.8) url('{$WEB_ROOT}/modules/servers/vultr/assets/images/loader.gif') no-repeat scroll 50% 50%; display: none;">
 
-			</div>
-			<div class="so_buttons">
-				<button class="btn" id="btn_boot">
-					<img class="manage_img"
-						 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/reboot.png"/> {$_LANG.main.index.boot}
-				</button>
-				<button class="btn" id="btn_reboot">
-					<img class="manage_img"
-						 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/repeat.png"/> {$_LANG.main.index.reboot}
-				</button>
-				<button class="btn" id="btn_stop">
-					<img class="manage_img"
-						 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/stop.png"/> {$_LANG.main.index.stop}
-				</button>
-				<button class="btn" id="btn_reinstall">
-					<img class="manage_img"
-						 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/package.png"/> {$_LANG.main.index.reinstall}
-				</button>
-				<button class="btn" id="btn_console"
-						onclick="window.open('{$server.kvm_url}', '{addslashes($server.label)}', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=720,height=435');
-								return false;">
-					<img class="manage_img"
-						 src="modules/servers/vultr/assets/images/console.png"/> {$_LANG.main.index.console}
-				</button>
-				<!--<button class="btn" id="btn_console" onclick="location.href='clientarea.php?action=productdetails&id={$serviceid}&cloudController=Console'">
-                    <img class="manage_img"  src="modules/servers/vultr/assets/images/console.png" /> {$_LANG.main.index.console}
-                </button>-->
-			</div>
+		</div>
+		<div class="so_buttons">
+			<button class="btn" id="btn_boot">
+				<img class="manage_img"
+					 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/reboot.png"/> {$_LANG.main.index.boot}
+			</button>
+			<button class="btn" id="btn_reboot">
+				<img class="manage_img"
+					 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/repeat.png"/> {$_LANG.main.index.reboot}
+			</button>
+			<button class="btn" id="btn_stop">
+				<img class="manage_img"
+					 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/stop.png"/> {$_LANG.main.index.stop}
+			</button>
+			<button class="btn" id="btn_reinstall">
+				<img class="manage_img"
+					 src="{$WEB_ROOT}/modules/servers/vultr/assets/images/package.png"/> {$_LANG.main.index.reinstall}
+			</button>
+			<button class="btn" id="btn_console"
+					onclick="window.open('{$server.kvm_url}', '{addslashes($server.label)}', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=720,height=435');
+							return false;">
+				<img class="manage_img"
+					 src="modules/servers/vultr/assets/images/console.png"/> {$_LANG.main.index.console}
+			</button>
 		</div>
 	</div>
+</div>
 	<div class="row">
 		<div class="col-sm-6 col-sm-offset-3">
 			<h3 class="so_title">
@@ -677,14 +674,6 @@
 						if (msg.vm_status != undefined)
 						{
 							$('span#vultr_vm_status strong').html(msg.vm_status);
-						}
-						if ($('h3.ajaxMessages div:last').length > 0)
-						{
-							//$('h3.ajaxMessages div:last').after(message);
-						}
-						else
-						{
-							//$('h3.ajaxMessages').html(message);
 						}
 					}
 				});

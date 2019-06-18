@@ -29,9 +29,6 @@
 					{if $mountedIsoName}{$_LANG.isochange.index.current} <strong>{$mountedIsoName}</strong>{/if}
 				</div>
 			</div>
-
-
-			<!--Submit-->
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1">
 					<a style="margin-bottom: 20px;" class="btn btn-default"
@@ -40,7 +37,6 @@
 							onclick="if (confirm('{$_LANG.oschange.index.confirm_os}')){ return true; } else { return false; }">{$_LANG.oschange.index.change}</button>
 				</div>
 			</div>
-			<!--Submit END-->
 		</form>
 	</div>
 </div>

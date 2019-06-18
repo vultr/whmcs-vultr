@@ -22,7 +22,6 @@ class DnsController extends VultrController
 			$dns = $this->vultrAPI->dns_list();
 			$domainsQuery = Capsule::table('vultr_dns')->select('domain')
 				->where('client_id', $this->clientID)
-				//->where('service_id', $this->serviceID)
 				->get();
 			$domains = array();
 			foreach ($domainsQuery as $domain)
@@ -36,10 +35,7 @@ class DnsController extends VultrController
 					unset($dns[$k]);
 				}
 			}
-			/*
-			 * NameServers
-			 * @author = Mateusz Pawłowski <mateusz.pa@moduelsgarden.com>
-			 */
+
 			$nameServers = Capsule::table('tbladdonmodules')->select('value')->where([
 				['module', '=', 'vultr'],
 				['setting', '=', 'nameServers'],
@@ -50,9 +46,6 @@ class DnsController extends VultrController
 					'ns' => unserialize($nameServers->value)
 				)
 			);
-			/*
-			 * end NameServers
-			 */
 		}
 		else
 		{
@@ -105,10 +98,7 @@ class DnsController extends VultrController
 					$nameServer1 = $nameservers['ns1'];
 					$apiResponse = $this->vultrAPI->soa_update(array("domain" => $domain, "nsprimary" => $nameServer1));
 
-					/*
-					 * Update NameServers after create
-					 * @author = Mateusz Pawłowski <mateusz.pa@moduelsgarden.com>
-					 */
+					// Update NameServers after create
 					$records = $this->vultrAPI->dns_records($domain);
 					$nsFlag = 1;
 					$nameServers = Capsule::table('tbladdonmodules')->select('value')->where([
@@ -130,9 +120,7 @@ class DnsController extends VultrController
 							$nsFlag++;
 						}
 					}
-					/*
-					 * end Update
-					 */
+
 					Capsule::table('vultr_dns')->insert(array('client_id' => $this->clientID, 'service_id' => $this->serviceID, 'domain' => $domain));
 					SessionHelper::setFlashMessage('success', LangHelper::T('dns.create.add_domain'));
 
@@ -157,7 +145,6 @@ class DnsController extends VultrController
 		$domain = filter_input(INPUT_GET, 'vultrID');
 		$allow = Capsule::table('vultr_dns')->where('domain', $domain)
 			->where('client_id', $this->clientID)
-			//->where('service_id', $this->serviceID)
 			->first();
 		if (!empty($allow))
 		{
@@ -190,7 +177,6 @@ class DnsController extends VultrController
 		$domain = filter_input(INPUT_GET, 'vultrID');
 		$allow = Capsule::table('vultr_dns')->where('domain', $domain)
 			->where('client_id', $this->clientID)
-			//->where('service_id', $this->serviceID)
 			->first();
 		if (!empty($allow))
 		{
@@ -310,5 +296,4 @@ class DnsController extends VultrController
 		}
 		$this->redirect('clientarea.php?action=productdetails&id=' . $this->serviceID . '&cloudController=Dns');
 	}
-
 }

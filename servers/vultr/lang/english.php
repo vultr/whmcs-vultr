@@ -1,5 +1,4 @@
 <?php
-/* * ********************************************************** */
 /**
  * Backups
  */
@@ -13,10 +12,9 @@ $_LANG['backups']['index']['confirm'] = 'Are you sure you want to restore?';
 $_LANG['backups']['index']['restore'] = 'Restore';
 $_LANG['backups']['index']['vm_not_found'] = 'VM not found!';
 $_LANG['backups']['index']['not_found'] = 'List is empty';
-/**/
 $_LANG['backups']['restore']['success'] = 'Restoring started!';
-/**/
 $_LANG['backups']['other']['not_available'] = 'Functionality not available in your package!';
+
 /**
  * DNS
  */
@@ -32,7 +30,6 @@ $_LANG['dns']['index']['not_found'] = 'List is empty';
 $_LANG['dns']['index']['dns_title'] = 'Name Servers';
 $_LANG['dns']['index']['dns1'] = 'ns1.vultr.com';
 $_LANG['dns']['index']['dns2'] = 'ns2.vultr.com';
-/**/
 $_LANG['dns']['create']['panel_title'] = 'DNS Manager - Add Domain';
 $_LANG['dns']['create']['select_domain'] = 'Select domain from list:';
 $_LANG['dns']['create']['input_domain'] = 'or enter other domain name';
@@ -42,10 +39,8 @@ $_LANG['dns']['create']['create'] = 'Add DNS Zone';
 $_LANG['dns']['create']['vm_not_found'] = 'Please create VM first!';
 $_LANG['dns']['create']['connection_error'] = 'Connection error!';
 $_LANG['dns']['create']['add_domain'] = 'Domain has been successfully added';
-/**/
 $_LANG['dns']['delete']['delete_success'] = 'Domain has been successfully removed!';
 $_LANG['dns']['delete']['delete_error'] = 'Error when delete domain! Please try again';
-/**/
 $_LANG['dns']['manage']['panel_title'] = 'DNS Manager';
 $_LANG['dns']['manage']['delete'] = 'Delete';
 $_LANG['dns']['manage']['type'] = 'Type';
@@ -72,6 +67,7 @@ $_LANG['dns']['manage']['record'] = 'Record ID';
 $_LANG['graphs']['index']['panel_title_incoming'] = 'Inbound Bandwidth';
 $_LANG['graphs']['index']['panel_title_outgoing'] = 'Outbound Bandwidth';
 $_LANG['graphs']['index']['empty_data'] = 'Usage graphs are not yet ready. Please come back later.';
+
 /**
  * Main
  */
@@ -137,10 +133,8 @@ $_LANG['main']['index']['label_success'] = 'Label changed!';
 $_LANG['main']['index']['label_error'] = 'Please enter a different label';
 $_LANG['main']['index']['change_app'] = 'Change APP';
 $_LANG['main']['index']['change_os'] = 'Change OS';
-
 $_LANG['main']['create']['hostname_empty'] = 'Please enter hostname!';
 $_LANG['main']['create']['hostname_not_valid'] = 'Hostname is not valid!';
-/**/
 $_LANG['main']['create']['panel_title'] = 'Setup Your Server';
 $_LANG['main']['create']['server_label'] = 'Server Label:';
 $_LANG['main']['create']['server_label_placeholder'] = 'Enter your server label';
@@ -176,6 +170,7 @@ $_LANG['main']['create']['created_success'] = 'Creating VPS has started. Please 
 $_LANG['main']['create']['no_script_found'] = 'No boot scripts found. Please create it first';
 $_LANG['main']['create']['no_ssh_found'] = 'No SSH keys found. Please create it first';
 $_LANG['main']['create']['reload_info'] = 'When VM is ready, page will reload automatically.';
+
 /**
  * SSHKeys
  */
@@ -188,10 +183,8 @@ $_LANG['sshkeys']['index']['add'] = 'Add New';
 $_LANG['sshkeys']['index']['delete'] = 'Delete';
 $_LANG['sshkeys']['index']['confirm'] = 'Are you sure you want to delete?';
 $_LANG['sshkeys']['index']['not_found'] = 'List is empty';
-/**/
 $_LANG['sshkeys']['delete']['delete_success'] = 'SSH key has been successfully deleted!';
 $_LANG['sshkeys']['delete']['delete_error'] = 'Error when deleted ssh key! Please try again';
-/**/
 $_LANG['sshkeys']['add']['name'] = 'Name';
 $_LANG['sshkeys']['add']['ssh_key'] = 'SSH Key';
 $_LANG['sshkeys']['add']['create'] = 'Create';
@@ -199,6 +192,7 @@ $_LANG['sshkeys']['add']['script_name'] = 'SSH key name';
 $_LANG['sshkeys']['add']['panel_title'] = 'Manage SSH keys - create new';
 $_LANG['sshkeys']['add']['add_success'] = 'SSH key has been successfully created!';
 $_LANG['sshkeys']['add']['add_error'] = 'Error when create SSH key!';
+
 /**
  * Scripts
  */
@@ -215,7 +209,6 @@ $_LANG['scripts']['index']['undefined'] = 'undefined';
 $_LANG['scripts']['index']['show'] = 'Show';
 $_LANG['scripts']['index']['hide'] = 'Hide';
 $_LANG['scripts']['index']['not_found'] = 'List is empty';
-/**/
 $_LANG['scripts']['add']['panel_title'] = 'Create new startup script';
 $_LANG['scripts']['add']['name'] = 'Name';
 $_LANG['scripts']['add']['type'] = 'Type';
@@ -226,11 +219,10 @@ $_LANG['scripts']['add']['pxe_script_error'] = 'IPXE script must start with #!ip
 $_LANG['scripts']['add']['undefined_script_type'] = 'Undefined script type';
 $_LANG['scripts']['add']['success_add'] = 'Startup script has been successfully created';
 $_LANG['scripts']['add']['error_add'] = 'Error when create script! Please try again';
-/**/
 $_LANG['scripts']['delete']['success_delete'] = 'Startup script has been successfully deleted!';
 $_LANG['scripts']['delete']['error_delete'] = 'Error when deleted script! Please try again';
-/**/
 $_LANG['scripts']['core']['connection_error'] = 'Connection error! Please try again later.';
+
 /**
  * Snapshots
  */
@@ -248,21 +240,18 @@ $_LANG['snapshots']['index']['delete'] = 'Delete';
 $_LANG['snapshots']['index']['restore'] = 'Restore';
 $_LANG['snapshots']['index']['not_found'] = 'List is empty';
 $_LANG['snapshots']['index']['pending'] = '(snapshot in progress)';
-/**/
 $_LANG['snapshots']['other']['not_available'] = 'Functionality not available in your package!';
-/**/
 $_LANG['snapshots']['add']['panel_title'] = 'Create new snapshot';
 $_LANG['snapshots']['add']['description'] = 'Description';
 $_LANG['snapshots']['add']['create'] = 'Create snapshot';
 $_LANG['snapshots']['add']['snapshot_limit'] = 'You have reached snapshots limit!';
 $_LANG['snapshots']['add']['created'] = 'Snapshot has been successfully created';
 $_LANG['snapshots']['add']['delete_error'] = 'Error when create snapshot! Please try again';
-/**/
 $_LANG['snapshots']['delete']['success'] = 'Snapshot has been successfully deleted!';
 $_LANG['snapshots']['delete']['error'] = 'Error when deleted snapshot! Please try again';
-/**/
 $_LANG['snapshots']['restore']['success'] = 'Restoring snapshot has been started. It can take a while.';
 $_LANG['snapshots']['restore']['error'] = 'Error when restored snapshot! Please try again';
+
 /**
  * OS Change
  */
@@ -280,6 +269,7 @@ $_LANG['oschange']['index']['no_available_oses'] = 'There are no OS available to
 $_LANG['oschange']['index']['no_available_app'] = 'There are no application available to change!';
 $_LANG['oschange']['index']['vm_not_found'] = 'VM not found!';
 $_LANG['oschange']['index']['back'] = 'Back';
+
 /**
  * ISO Change
  */
@@ -288,6 +278,7 @@ $_LANG['isochange']['index']['label'] = 'Select New ISO File';
 $_LANG['isochange']['index']['current'] = 'Current ISO is ';
 $_LANG['isochange']['index']['success'] = 'ISO successfully changed!';
 $_LANG['isochange']['index']['no_available_isos'] = 'There are no ISO file available to change!';
+
 /**
  * Others
  */
@@ -297,13 +288,12 @@ $_LANG['elements']['buttons']['scripts'] = 'Startup Scripts';
 $_LANG['elements']['buttons']['ssh_keys'] = 'SSH Keys';
 $_LANG['elements']['buttons']['dns'] = 'DNS';
 $_LANG['elements']['buttons']['backups'] = 'Backups';
-/**
- *
- */
+
 $_LANG['core']['client']['create_vm_first'] = 'Please create VM first!';
 $_LANG['core']['client']['action_not_found'] = 'Action Not Found (404)';
 $_LANG['core']['client']['controller_not_found'] = 'Module Not Found (404)';
 $_LANG['core']['client']['api_connection_error'] = 'Can not connect to Vultr!';
+
 /**
  * AJAX
  */
@@ -314,6 +304,7 @@ $_LANG['core']['ajax']['reinstall_success'] = 'Reinstall OS has been started!';
 $_LANG['core']['ajax']['checkStatus'] = 'Server status is: ';
 $_LANG['core']['ajax']['start_success'] = 'Server is running!';
 $_LANG['core']['ajax']['service_not_active'] = 'Service is not active!';
+
 /**
  * Hooks
  */
@@ -323,9 +314,7 @@ $_LANG['core']['hook']['save_key'] = 'Please first save your API key!';
 $_LANG['core']['hook']['configurable_options_success'] = 'Vultr Configurable Options successfully created! Please configure pricing.';
 $_LANG['core']['hook']['custom_field_success'] = 'Custom fields have been created successfully!';
 $_LANG['core']['hook']['custom_field_exist'] = 'Custom fields already exist!';
-/**
- * Other
- */
+
 $_LANG['core']['action']['action_not_supported'] = 'Action not supported!';
 $_LANG['core']['action']['not_found_subid'] = 'Not found VPS ID';
 $_LANG['core']['action']['no_upgrades_available'] = 'There are currently no upgrades available for this package.';

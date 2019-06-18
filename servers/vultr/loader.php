@@ -4,7 +4,6 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 defined('VULTRDIR') or define('VULTRDIR', __DIR__ . DS);
 if (!function_exists('vultrClassLoader'))
 {
-
 	function vultrClassLoader($classname)
 	{
 		$extensions = array('.php', '.class.php', '.helper.php', '.controller.php', '.vendor.php');

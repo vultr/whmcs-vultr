@@ -126,7 +126,7 @@ class Vultr
 
 	public function createAccount()
 	{
-		return 'success'; //LangHelper::T('core.action.action_not_supported');
+		return 'success';
 	}
 
 	public function suspendAccount()
