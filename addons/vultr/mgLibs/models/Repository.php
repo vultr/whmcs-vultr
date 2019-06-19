@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Description of abstractModel
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 abstract class Repository

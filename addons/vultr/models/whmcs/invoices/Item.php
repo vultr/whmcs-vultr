@@ -1,37 +1,14 @@
 <?php
-
-/* * ********************************************************************
- * vultr product developed. (2015-12-09)
- * *
- *
- *  CREATED BY MODULESGARDEN       ->       http://modulesgarden.com
- *  CONTACT                        ->       contact@modulesgarden.com
- *
- *
- * This software is furnished under a license and may be used and copied
- * only  in  accordance  with  the  terms  of such  license and with the
- * inclusion of the above copyright notice.  This software  or any other
- * copies thereof may not be provided or otherwise made available to any
- * other person.  No title to and  ownership of the  software is  hereby
- * transferred.
- *
- *
- * ******************************************************************** */
-
 namespace MGModule\vultr\models\whmcs\invoices;
-
 use MGModule\vultr as main;
 
 /**
  * Description of Item
  *
- * @author Pawel Kopec <pawelk@modulesgarden.com>
  * @Table(name=tblinvoiceitems,preventUpdate,prefixed=false)
- *
  */
 class Item extends main\mgLibs\models\Orm
 {
-
 	/**
 	 * @Column()
 	 * @var int
@@ -88,13 +65,11 @@ class Item extends main\mgLibs\models\Orm
 	 */
 	protected $dueDate;
 
-
 	/**
 	 * @Column(name=paymentmethod )
 	 * @var int
 	 */
 	protected $paymentmethod;
-
 
 	public function getId()
 	{
@@ -104,6 +79,7 @@ class Item extends main\mgLibs\models\Orm
 	public function setId($id)
 	{
 		$this->id = $id;
+
 		return $this;
 	}
 
@@ -115,6 +91,7 @@ class Item extends main\mgLibs\models\Orm
 	public function setInvoiceId($invoiceId)
 	{
 		$this->invoiceId = $invoiceId;
+
 		return $this;
 	}
 
@@ -126,6 +103,7 @@ class Item extends main\mgLibs\models\Orm
 	public function setUserId($userId)
 	{
 		$this->userId = $userId;
+
 		return $this;
 	}
 
@@ -137,6 +115,7 @@ class Item extends main\mgLibs\models\Orm
 	public function setType($type)
 	{
 		$this->type = $type;
+
 		return $this;
 	}
 
@@ -148,6 +127,7 @@ class Item extends main\mgLibs\models\Orm
 	public function setRelId($relId)
 	{
 		$this->relId = $relId;
+
 		return $this;
 	}
 
@@ -165,6 +145,4 @@ class Item extends main\mgLibs\models\Orm
 	{
 		return $this->type = 'Hosting';
 	}
-
-
 }

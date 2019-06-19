@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Description of abstractController
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 abstract class AbstractController
@@ -27,7 +26,6 @@ abstract class AbstractController
 	 * Generate Token For Form
 	 *
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function genToken()
 	{
@@ -39,7 +37,6 @@ abstract class AbstractController
 	 *
 	 * @param string $token
 	 * @return boolean
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function checkToken($token = null)
 	{

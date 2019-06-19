@@ -1,13 +1,10 @@
 <?php
-
 namespace MGModule\vultr\models\whmcs\errors;
-
 use MGModule\vultr as main;
 
 /**
  * Register Error in WHMCS Module Log
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Register extends main\mgLibs\models\Orm
@@ -16,7 +13,6 @@ class Register extends main\mgLibs\models\Orm
 	 * Register Exception in WHMCS Module Log
 	 *
 	 * @param Exception $ex
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function register($ex)
 	{
@@ -29,10 +25,6 @@ class Register extends main\mgLibs\models\Orm
 
 		$debug = print_r($ex, true);
 
-		\logModuleCall("MGError", __NAMESPACE__, array(
-			'message' => $ex->getMessage()
-		, 'code' => $ex->getCode()
-		, 'token' => $token
-		), $debug, 0, 0);
+		\logModuleCall("MGError", __NAMESPACE__, array('message' => $ex->getMessage(), 'code' => $ex->getCode(), 'token' => $token), $debug, 0, 0);
 	}
 }

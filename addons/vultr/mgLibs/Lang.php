@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Simple class to translating languages
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Lang
@@ -44,7 +43,6 @@ class Lang
 	 * Get Avaiable Translations
 	 *
 	 * @return type
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function getAvaiable()
 	{
@@ -67,8 +65,6 @@ class Lang
 	 * Set Lang Context
 	 *
 	 * Given parameters are lang levels
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function setContext()
 	{
@@ -85,7 +81,6 @@ class Lang
 	 * @param type $dir
 	 * @param type $lang
 	 * @return \MGModule\vultr\Lang
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function getInstance($dir = null, $lang = null)
 	{
@@ -114,7 +109,6 @@ class Lang
 	 * Load Lang File
 	 *
 	 * @param string $lang Lang Name
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function loadLang($lang)
 	{
@@ -131,7 +125,6 @@ class Lang
 	 * Get Current Lang Name
 	 *
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function getLang()
 	{
@@ -169,8 +162,6 @@ class Lang
 	 * Add levels at stack upwards
 	 *
 	 * Given parameters are lang levels
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function addToContext()
 	{
@@ -184,7 +175,6 @@ class Lang
 	 * Stag Current levels stack
 	 *
 	 * @param string $stagName
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function stagCurrentContext($stagName)
 	{
@@ -195,7 +185,6 @@ class Lang
 	 * Restore Lang levels from stag
 	 *
 	 * @param string $stagName
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function unstagContext($stagName)
 	{
@@ -210,7 +199,6 @@ class Lang
 	 * Get Translated Lang
 	 *
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function T()
 	{
@@ -281,7 +269,6 @@ class Lang
 	 * Get Translated Absolute Lang
 	 *
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function absoluteT()
 	{
@@ -317,7 +304,6 @@ class Lang
 			}
 		}
 
-
 		if ($returnLangArray)
 		{
 			self::getInstance()->missingLangs['$' . "_LANG['" . implode("']['", $history) . "']"] = implode(" ",
@@ -335,5 +321,4 @@ class Lang
 	{
 
 	}
-
 }

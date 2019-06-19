@@ -6,12 +6,9 @@ use MGModule\vultr\helpers\ApiHelper;
 
 /**
  * Description of Repository
- *
- * @author inbs-dev
  */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
-
 	public function getModelClass()
 	{
 		return __NAMESPACE__ . '\iso';
@@ -40,16 +37,21 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 
 	public function getISOSettings()
 	{
-		$isoSettings = \WHMCS\Database\Capsule::table("tbladdonmodules")->select("tbladdonmodules.value")
-			->where("tbladdonmodules.module", "=", "vultr")->where("tbladdonmodules.setting", "=", "isoSettings")->first();
+		$isoSettings = \WHMCS\Database\Capsule::table("tbladdonmodules")
+			->select("tbladdonmodules.value")
+			->where("tbladdonmodules.module", "=", "vultr")
+			->where("tbladdonmodules.setting", "=", "isoSettings")
+			->first();
+
 		return unserialize($isoSettings->value);
 	}
 
 	public function saveIsoSettings($isoSettings)
 	{
-		\WHMCS\Database\Capsule::table("tbladdonmodules")->where("tbladdonmodules.module", "=", "vultr")
-			->where("tbladdonmodules.setting", "=", "isoSettings")->update(["tbladdonmodules.value" => serialize($isoSettings)]);
+		\WHMCS\Database\Capsule::table("tbladdonmodules")
+			->where("tbladdonmodules.module", "=", "vultr")
+			->where("tbladdonmodules.setting", "=", "isoSettings")
+			->update(["tbladdonmodules.value" => serialize($isoSettings)]);
 	}
-
 }
 

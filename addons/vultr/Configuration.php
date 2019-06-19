@@ -1,13 +1,11 @@
 <?php
 
 namespace MGModule\vultr;
-
 use MGModule\vultr as main;
 
 /**
  * Module Configuration
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings("unused")
  */
 class Configuration extends main\mgLibs\process\AbstractConfiguration
@@ -53,13 +51,13 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	 * Module version
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.7.0';
 
 	/**
 	 * Module author
 	 * @var string
 	 */
-	public $author = '<a href="http://www.modulesgarden.com" targer="_blank">ModulesGarden</a>';
+	public $author = '<a href="https://www.vultr.com" target="_blank">Vultr</a>';
 
 	/**
 	 * Table prefix. This prefix is used in database models. You have to change it!
@@ -67,21 +65,13 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	 */
 	public $tablePrefix = 'vultr_';
 	public $modelRegister = array(
-		'models\testGroup\testItem\TestItem'
-	, 'models\testGroup\simpleItem\SimpleItem'
-	, 'models\categories\Category'
-	, 'models\accessDetails\AccessDetail'
+		'models\testGroup\testItem\TestItem',
+		'models\testGroup\simpleItem\SimpleItem',
+		'models\categories\Category',
+		'models\accessDetails\AccessDetail'
 	);
 
-	function __construct()
-	{
-		/*
-		  models\whmcs\product\configOptions\Repository::setConfiguration(array(
-
-		  ));
-
-		  $product = new models\whmcs\product\product($id); */
-	}
+	function __construct(){}
 
 	/**
 	 * Addon module visible in module
@@ -90,30 +80,12 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	function getAddonMenu()
 	{
 		return array(
-			'productsCreator' => array
-			(
-				'icon' => 'fa fa-magic',
-			),
-			'products' => array
-			(
-				'icon' => 'fa fa-magic',
-			),
-			'dns' => array
-			(
-				'icon' => 'fa fa-globe',
-			),
-			'location' => array
-			(
-				'icon' => 'fa fa-map',
-			),
-			'snapshots' => array
-			(
-				'icon' => 'fa fa-server',
-			),
-			'ISO' => array
-			(
-				'icon' => 'fa fa-server',
-			),
+			'productsCreator' => array('icon' => 'fa fa-magic'),
+			'products'        => array('icon' => 'fa fa-magic'),
+			'dns'             => array('icon' => 'fa fa-globe'),
+			'location'        => array('icon' => 'fa fa-map'),
+			'snapshots'       => array('icon' => 'fa fa-server'),
+			'ISO'             => array('icon' => 'fa fa-server'),
 		);
 	}
 
@@ -121,24 +93,13 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	 * Addon module visible in client area
 	 * @return array
 	 */
-	function getClienMenu()
+	function getClientMenu()
 	{
 		return array(
-			'home' => array(
-				'icon' => 'glyphicon glyphicon-home'
-			),
-			'shared' => array
-			(
-				'icon' => 'fa fa-key'
-			),
-			'product' => array
-			(
-				'icon' => 'fa fa-key'
-			),
-			'categories' => array
-			(
-				'icon' => 'glyphicon glyphicon-th-list'
-			)
+			'home'       => array('icon' => 'glyphicon glyphicon-home'),
+			'shared'     => array('icon' => 'fa fa-key'),
+			'product'    => array('icon' => 'fa fa-key'),
+			'categories' => array('icon' => 'glyphicon glyphicon-th-list')
 		);
 	}
 
@@ -149,9 +110,7 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	function getServerMenu()
 	{
 		return array(
-			'configuration' => array(
-				'icon' => 'glyphicon glyphicon-cog'
-			)
+			'configuration' => array('icon' => 'glyphicon glyphicon-cog')
 		);
 	}
 
@@ -168,14 +127,14 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	public function getServerWHMCSConfig()
 	{
 		return array(
-			'text_name'
-		, 'text_name2'
-		, 'checkbox_name'
-		, 'onoff'
-		, 'pass'
-		, 'some_option'
-		, 'some_option2'
-		, 'radio_field'
+			'text_name',
+			'text_name2',
+			'checkbox_name',
+			'onoff',
+			'pass',
+			'some_option',
+			'some_option2',
+			'radio_field'
 		);
 	}
 
@@ -185,32 +144,30 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	 */
 	public function getAddonWHMCSConfig()
 	{
-		$script = <<<EOT
+		$script = '
         <script type="text/javascript">
             $(document).ready(function(){
                 //Find Vultr Module...
-                jQuery('#vultrconfig').find('input[name="msave_vultr"]').on('click', function(){
-                var apiKey = jQuery('#vultrconfig').find('input[name="fields[vultr][apiToken]"]').val();
-                    localStorage['module'] = 'vultr';
-                    localStorage['apiKey'] = apiKey;
-                
+                jQuery(\'#vultrconfig\').find(\'input[name="msave_vultr"]\').on(\'click\', function(){
+                var apiKey = jQuery(\'#vultrconfig\').find(\'input[name="fields[vultr][apiToken]"]\').val();
+                    localStorage[\'module\'] = \'vultr\';
+                    localStorage[\'apiKey\'] = apiKey;
                 });
             });
-        </script>
-EOT;
+        </script>';
 		return array(
 			'hooksEnabled' => array(
-				"FriendlyName" => "Hooks Enabled"
-			, "Type" => "yesno"
-			, "Size" => "25"
-			, "Description" => "Hooks in the module will be enabled"
-			, "Default" => "true"
+				"FriendlyName" => "Hooks Enabled",
+				"Type"         => "yesno",
+				"Size"         => "25",
+				"Description"  => "Hooks in the module will be enabled",
+				"Default"      => "true"
 			),
 			'apiToken' => array(
 				"FriendlyName" => "API Key",
-				"Description" => $script,
-				"Type" => "text"
-			),
+				"Description"  => $script,
+				"Type"         => "text"
+			)
 		);
 	}
 
@@ -218,7 +175,6 @@ EOT;
 	 * Run When Module Install
 	 *
 	 * @return array
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function activate()
 	{
@@ -227,28 +183,27 @@ EOT;
 	}
 
 	/**
-	 * Do something after module deactivate. You can status and description
+	 * Do something after module deactivate.
 	 * @return array
 	 */
 	function deactivate()
 	{
 		$addonConfig = new \MGModule\vultr\models\addonConfiguration\Repository();
-		$addonConfig->delteAddonfields();
+		$addonConfig->deleteAddonfields();
 
 		return array
 		(
-			'status' => 'error',
+			'status'      => 'error',
 			'description' => 'TEst test test'
 		);
 	}
 
 	/**
 	 * Do something after module upgrade
-	 * @param type $vars
+	 * @param $vars
 	 */
 	function upgrade($vars)
 	{
 		$version = $vars['version'];
 	}
-
 }

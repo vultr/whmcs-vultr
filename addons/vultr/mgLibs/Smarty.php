@@ -8,7 +8,6 @@ use MGModule\vultr as main;
 /**
  * Smarty Wrapper
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Smarty
@@ -26,7 +25,6 @@ class Smarty
 	 * Set Tempalte Dir
 	 *
 	 * @param string $dir
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function setTemplateDir($dir)
 	{
@@ -41,7 +39,6 @@ class Smarty
 	 * Get Single-top Instance
 	 *
 	 * @return smarty
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function I()
 	{
@@ -76,7 +73,6 @@ class Smarty
 	 * @return string
 	 * @throws exceptions\System
 	 * @global string $templates_compiledir
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function view($template, $vars = array(), $customDir = false)
 	{

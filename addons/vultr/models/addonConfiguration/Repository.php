@@ -4,12 +4,8 @@ namespace MGModule\vultr\models\addonConfiguration;
 
 use WHMCS\Database\Capsule as DB;
 
-/**
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
-
 	public function getModelClass()
 	{
 		return __NAMESPACE__ . '\addonConfiguration';
@@ -154,7 +150,7 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 		}
 	}
 
-	public function delteAddonfields()
+	public function deleteAddonfields()
 	{
 		$this->deleteNameServers();
 		$this->deleteLocation();
@@ -254,5 +250,4 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 			DB::schema()->drop('vultr_revdns');
 		}
 	}
-
 }

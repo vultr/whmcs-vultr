@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * Button Form Field
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class ButtonField extends AbstractField
 {

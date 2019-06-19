@@ -8,14 +8,10 @@ use MGModule\vultr as main;
 
 /**
  * Description of actions
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 $pathToVendor = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . DIRECTORY_SEPARATOR . "servers" . DIRECTORY_SEPARATOR .
 	"vultr" . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR;
 include_once $pathToVendor . "VultrAPI.php";
-
-//include_once $pathToVendor."PDOWrapper.php";
 
 class ProductsCreator extends main\mgLibs\process\AbstractController
 {
@@ -62,11 +58,6 @@ class ProductsCreator extends main\mgLibs\process\AbstractController
 
 	public function saveProduct($input = array())
 	{
-//        if (isset($input[C::API_PRODUCT_ID]) AND $input[C::API_PRODUCT_ID] == 0) {
-//            throw new Exception('api_product_not_chosen');
-//        }
-//        
-
 		$token = DB::table("tbladdonmodules")->select("tbladdonmodules.value")
 			->where("tbladdonmodules.module", "=", "vultr")
 			->where("tbladdonmodules.setting", "=", "apiToken")->get();

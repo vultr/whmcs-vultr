@@ -8,7 +8,6 @@ use MGModule\vultr as main;
  * Example Item Class
  *
  * @Table(name=simple_item)
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class SimpleItem extends main\mgLibs\models\Orm
 {

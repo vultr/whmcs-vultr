@@ -7,8 +7,6 @@ use MGModule\vultr as main;
 
 /**
  * Select Form Field
- *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class SelectField extends AbstractField

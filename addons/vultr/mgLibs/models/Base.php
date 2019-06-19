@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Description of abstractModel
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 abstract class Base
@@ -17,7 +16,6 @@ abstract class Base
 	 *
 	 * @param string $strTime
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function timeStamp($strTime = 'now')
 	{
@@ -29,7 +27,6 @@ abstract class Base
 	 *
 	 * @param string $property
 	 * @throws main\mgLibs\exceptions\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __get($property)
 	{
@@ -42,7 +39,6 @@ abstract class Base
 	 * @param string $property
 	 * @param string $value
 	 * @throws main\mgLibs\exceptions\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __set($property, $value)
 	{
@@ -55,7 +51,6 @@ abstract class Base
 	 * @param string $function
 	 * @param string $params
 	 * @throws main\mgLibs\exceptions\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __call($function, $params)
 	{
@@ -108,11 +103,10 @@ abstract class Base
 	}
 
 	/**
-	 * Encrypt String using Hash from configration
+	 * Encrypt String using Hash from configuration
 	 *
 	 * @param string $input
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function encrypt($input)
 	{
@@ -125,11 +119,10 @@ abstract class Base
 	}
 
 	/**
-	 * Decrypt String using Hash from configration
+	 * Decrypt String using Hash from configuration
 	 *
 	 * @param string $input
 	 * @return string
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function decrypt($input)
 	{

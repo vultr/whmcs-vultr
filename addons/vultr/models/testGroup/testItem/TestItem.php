@@ -1,7 +1,5 @@
 <?php
-
 namespace MGModule\vultr\models\testGroup\TestItem;
-
 use MGModule\vultr as main;
 use MGModule\vultr\mgLibs;
 use MGModule\vultr\models\testGroup\simpleItem\simpleItem;
@@ -10,18 +8,18 @@ use MGModule\vultr\models\testGroup\simpleItem\simpleItem;
  * Example Item Class
  *
  * @Table(name=test_item)
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class TestItem extends main\mgLibs\models\Orm
 {
-	static $avaibleOptionsA = array(
-		1 => 'Option1'
-	, 2 => 'Option2'
-	, 3 => 'Option3'
+	static $availableOptionsA = array(
+		1 => 'Option1',
+		2 => 'Option2',
+		3 => 'Option3'
 	);
 
-	static $avaibleOptionsB = array(1, 2, 3, 4);
-	static $avaibleOptionsC = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	static $availableOptionsB = array(1, 2, 3, 4);
+	static $availableOptionsC = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
 	/**
 	 * ID field
 	 *

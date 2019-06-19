@@ -5,12 +5,8 @@ namespace MGModule\vultr\models\location;
 use WHMCS\Database\Capsule as DB;
 use MGModule\vultr\helpers\ApiHelper;
 
-/**
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
-
 	public function getModelClass()
 	{
 		return __NAMESPACE__ . '\location';
@@ -34,6 +30,7 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 		{
 			$settingArray[$input] = "disable";
 		}
+
 		$this->saveLocationSettings($settingArray);
 	}
 

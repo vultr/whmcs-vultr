@@ -1,33 +1,28 @@
 <?php
 
 namespace MGModule\vultr\models\whmcs\product;
-
 use MGModule\vultr as main;
 
 /**
  * Description of product
  *
  * @Table(name=tblproducts,preventUpdate,prefixed=false)
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Product extends main\mgLibs\models\Orm
 {
 	/**
-	 *
 	 * @Column(int)
 	 * @var int
 	 */
 	public $id;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $type;
 
 	/**
-	 *
 	 * @Column(int)
 	 * @var int
 	 */
@@ -52,19 +47,16 @@ class Product extends main\mgLibs\models\Orm
 	public $serverGroupID;
 
 	/**
-	 *
 	 * @var main\models\service\server
 	 */
 	private $_server;
 
 	/**
-	 *
 	 * @var configuration
 	 */
 	private $_configuration;
 
 	/**
-	 *
 	 * @var main\models\whmcs\customFields\Repository
 	 */
 	private $_customFields;
@@ -74,7 +66,6 @@ class Product extends main\mgLibs\models\Orm
 	 *
 	 * @param int $id
 	 * @param array $params
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __construct($id = null, $params = array())
 	{
@@ -86,26 +77,18 @@ class Product extends main\mgLibs\models\Orm
 	 * Load Product
 	 *
 	 * @param array $params
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function load($params = array())
 	{
 		if (empty($params))
 		{
 			$fields = static::fieldDeclaration();
-
 			for ($i = 1; $i < 25; $i++)
 			{
 				$fields['configoption' . $i] = 'configoption' . $i;
 			}
 
-			$params = main\mgLibs\MySQL\Query::select(
-				$fields
-				, static::tableName()
-				, array(
-					'id' => $this->id
-				)
-			)->fetch();
+			$params = main\mgLibs\MySQL\Query::select($fields, static::tableName(), array('id' => $this->id))->fetch();
 		}
 
 		$this->fillProperties($params);
@@ -126,7 +109,6 @@ class Product extends main\mgLibs\models\Orm
 	 *
 	 * @param array $params
 	 * @return \MGModule\vultr\models\product\Configuration
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	protected function loadConfiguration($params = array())
 	{
@@ -137,7 +119,6 @@ class Product extends main\mgLibs\models\Orm
 	 * Get Server
 	 *
 	 * @return main\models\service\server
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function getServer()
 	{
@@ -161,20 +142,14 @@ class Product extends main\mgLibs\models\Orm
 			$this->load();
 		}
 
-		$server = main\mgLibs\MySQL\Query::query("
-            SELECT 
-                S.id
-            FROM
-                tblservers S
-            JOIN
-                tblservergroupsrel R
-                ON S.id = R.serverid 
-            WHERE
-                R.groupid = :groupID:
-                AND disabled = 0
-        ", array(
-			':groupID:' => $this->serverGroupID
-		))->fetchColumn();
+		$sql = '
+		SELECT S.id
+		FROM tblservers S
+		JOIN tblservergroupsrel R
+			ON S.id = R.serverid
+		WHERE R.groupid = :groupID:
+		AND disabled = 0';
+		$server = main\mgLibs\MySQL\Query::query($sql, array(':groupID:' => $this->serverGroupID))->fetchColumn();
 
 		return new main\models\whmcs\servers\server($server);
 	}
@@ -183,7 +158,6 @@ class Product extends main\mgLibs\models\Orm
 	 * Get Configuration
 	 *
 	 * @return configuration
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function configuration()
 	{
@@ -199,7 +173,6 @@ class Product extends main\mgLibs\models\Orm
 	 * Get Custom Fields
 	 *
 	 * @return main\models\whmcs\customFields\Repository
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function customFields()
 	{
@@ -209,11 +182,6 @@ class Product extends main\mgLibs\models\Orm
 		}
 
 		return $this->_customFields;
-	}
-
-	function configOptionsGroups()
-	{
-
 	}
 
 	function getId()
@@ -245,6 +213,4 @@ class Product extends main\mgLibs\models\Orm
 	{
 		return $this->serverGroupID;
 	}
-
-
 }

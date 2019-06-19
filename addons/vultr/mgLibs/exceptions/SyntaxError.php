@@ -4,8 +4,6 @@ namespace MGModule\vultr\mgLibs\exceptions;
 
 /**
  * Used in Error Handler
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class syntaxError extends System
 {

@@ -1,7 +1,6 @@
 <?php
 
 namespace MGModule\vultr;
-
 use MGModule\vultr as main;
 
 if (!defined('DS'))
@@ -12,10 +11,8 @@ if (!defined('DS'))
 /**
  * Module Class Loader
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
-
 if (!class_exists(__NAMESPACE__ . '\Loader'))
 {
 	class Loader
@@ -39,12 +36,12 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 				);
 
 				self::$myName = substr(__NAMESPACE__, 9);
-
 				foreach ($checkDirs as $dir)
 				{
 					if ($pos = strpos(__DIR__, $dir . self::$myName))
 					{
 						self::$whmcsDir = substr(__DIR__, 0, $pos);
+
 						break;
 					}
 				}
@@ -76,7 +73,6 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 		 * @return bool
 		 * @throws main\mgLibs\exceptions\base
 		 * @throws \Exception
-		 * @author Michal Czech <michael@modulesgarden.com>
 		 */
 		static function loader($className)
 		{
@@ -86,7 +82,6 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 			}
 
 			$className = substr($className, strlen(__NAMESPACE__));
-
 			$originClassName = $className;
 			$className = ltrim($className, '\\');
 			$fileName = '';
@@ -99,22 +94,14 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 			}
 
 			$fileName .= str_replace('_', DS, $className) . '.php';
-
 			$foundFile = false;
-
 			$error = array();
-
 			foreach (self::$avaiableDirs as $dir)
 			{
 				$tmp = $dir . $fileName;
-
 				if (file_exists($tmp))
 				{
-					if ($foundFile)
-					{
-						//todo THROW ERROR FOR DEVELOPER
-					}
-					else
+					if (!$foundFile)
 					{
 						$foundFile = $tmp;
 					}
@@ -128,7 +115,7 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 				if (!class_exists(__NAMESPACE__ . $originClassName) && !interface_exists(__NAMESPACE__ . $originClassName))
 				{
 					$error['message'] = 'Unable to find class:' . $originClassName . ' in file:' . $foundFile;
-					$error['code'] = main\mgLibs\exceptions\Codes::MISING_FILE_CLASS;
+					$error['code'] = main\mgLibs\exceptions\Codes::MISSING_FILE_CLASS;
 				}
 			}
 
@@ -160,7 +147,6 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 			}
 
 			$fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className);
-
 			foreach (self::$avaiableDirs as $dir)
 			{
 				$tmp = $dir . $fileName;
@@ -171,21 +157,17 @@ if (!class_exists(__NAMESPACE__ . '\Loader'))
 			}
 
 			$files = array();
-
 			if ($handle = opendir($foundFile))
 			{
 				while (false !== ($entry = readdir($handle)))
 				{
-					if (
-						$entry != "."
-						&& $entry != ".."
-						&& strpos($entry, '.php') === (strlen($entry) - 4)
-					)
+					if ($entry != "." && $entry != ".." && strpos($entry, '.php') === (strlen($entry) - 4))
 					{
 
 						$files[] = __NAMESPACE__ . '\\' . $originClassName . '\\' . substr($entry, 0, strlen($entry) - 4);
 					}
 				}
+
 				closedir($handle);
 			}
 

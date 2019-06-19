@@ -1,37 +1,14 @@
 <?php
-
-/* * ********************************************************************
- * vultr product developed. (2015-12-09)
- * *
- *
- *  CREATED BY MODULESGARDEN       ->       http://modulesgarden.com
- *  CONTACT                        ->       contact@modulesgarden.com
- *
- *
- * This software is furnished under a license and may be used and copied
- * only  in  accordance  with  the  terms  of such  license and with the
- * inclusion of the above copyright notice.  This software  or any other
- * copies thereof may not be provided or otherwise made available to any
- * other person.  No title to and  ownership of the  software is  hereby
- * transferred.
- *
- *
- * ******************************************************************** */
-
 namespace MGModule\vultr\models\whmcs\invoices;
-
 use MGModule\vultr as main;
 
 /**
  * Description of Item
  *
- * @author Pawel Kopec <pawelk@modulesgarden.com>
  * @Table(name=tblinvoices,preventUpdate,prefixed=false)
- *
  */
 class Invoice extends main\mgLibs\models\Orm
 {
-
 	/**
 	 * @Column()
 	 * @var int
@@ -76,20 +53,19 @@ class Invoice extends main\mgLibs\models\Orm
 
 	private $_client;
 
-
 	public function getId()
 	{
 		return $this->id;
 	}
 
 	/**
-	 *
 	 * @param int $id
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice
 	 */
 	public function setId($id)
 	{
 		$this->id = $id;
+
 		return $this;
 	}
 
@@ -99,13 +75,13 @@ class Invoice extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param int $invoiceNum
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice
 	 */
 	public function setInvoiceNum($invoiceNum)
 	{
 		$this->invoiceNum = $invoiceNum;
+
 		return $this;
 	}
 
@@ -115,13 +91,13 @@ class Invoice extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $date
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice
 	 */
 	public function setDate($date)
 	{
 		$this->date = $date;
+
 		return $this;
 	}
 
@@ -131,13 +107,13 @@ class Invoice extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $duedate
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice
 	 */
 	public function setDuedate($duedate)
 	{
 		$this->duedate = $duedate;
+
 		return $this;
 	}
 
@@ -147,13 +123,13 @@ class Invoice extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $datepaid
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice]
 	 */
 	public function setDatepaid($datepaid)
 	{
 		$this->datepaid = $datepaid;
+
 		return $this;
 	}
 
@@ -163,18 +139,17 @@ class Invoice extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $subtotal
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice
 	 */
 	public function setSubtotal($subtotal)
 	{
 		$this->subtotal = $subtotal;
+
 		return $this;
 	}
 
 	/**
-	 *
 	 * @return main\models\whmcs\clients\Client
 	 */
 	public function getClient()
@@ -183,6 +158,7 @@ class Invoice extends main\mgLibs\models\Orm
 		{
 			return $this->_client;
 		}
+
 		return $this->_client = new main\models\whmcs\clients\Client($this->getUserId());
 	}
 
@@ -192,15 +168,13 @@ class Invoice extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param int $userId
 	 * @return \MGModule\vultr\models\whmcs\invoices\Invoice
 	 */
 	public function setUserId($userId)
 	{
 		$this->userId = $userId;
+
 		return $this;
 	}
-
-
 }

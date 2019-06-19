@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Abstract Form Field
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 abstract class AbstractField

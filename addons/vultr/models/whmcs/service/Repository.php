@@ -4,8 +4,6 @@ namespace MGModule\vultr\models\whmcs\service;
 
 /**
  * Description of repository
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
@@ -15,7 +13,6 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 	}
 
 	/**
-	 *
 	 * @return service
 	 */
 	public function get()
@@ -24,30 +21,31 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 	}
 
 	/**
-	 *
 	 * @param int $clientId
 	 * @return \MGModule\vultr\models\whmcs\service\Repository
 	 */
 	public function onlyClient($clientId)
 	{
 		$this->_filters['userid'] = (int)$clientId;
+
 		return $this;
 	}
 
 	/**
-	 *
 	 * @param array $status
 	 * @return \MGModule\vultr\models\whmcs\service\Repository
 	 */
 	public function onlyStatus(array $status)
 	{
 		$this->_filters['domainstatus'] = $status;
+
 		return $this;
 	}
 
 	public function usernameNotNull()
 	{
 		$this->_filters[] = ' username != "" ';
+
 		return $this;
 	}
 }

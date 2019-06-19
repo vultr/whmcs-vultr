@@ -8,7 +8,6 @@ use MGModule\vultr as main;
 /**
  * Form Creator
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Creator

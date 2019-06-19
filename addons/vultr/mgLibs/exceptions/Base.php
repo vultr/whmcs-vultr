@@ -8,8 +8,6 @@ use MGModule\vultr as main;
  * Base Module Exception
  *
  * Use as base for other exceptions
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Base extends \Exception
 {

@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * Use for general module errors
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class validation extends System
 {

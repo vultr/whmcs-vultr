@@ -1,14 +1,11 @@
 <?php
-
 namespace MGModule\vultr\models\whmcs\customFields;
-
 use MGModule\vultr as main;
 
 /**
  * Product Custom Fields depends on WHMCS
  *
  * @Table(name=tblcustomfields,preventUpdate,prefixed=false)
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 {
@@ -17,20 +14,18 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 	 * @var int
 	 */
 	public $id;
+
 	/**
-	 *
 	 * @var string
 	 */
 	public $parentType;
 
 	/**
-	 *
 	 * @var int
 	 */
 	public $parentId;
 
 	/**
-	 *
 	 * @var int
 	 */
 	public $definition;
@@ -43,7 +38,6 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 	public $name;
 
 	/**
-	 *
 	 * @var string
 	 */
 	public $friendlyName;
@@ -55,7 +49,6 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 	public $fieldtype = 'text';
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
@@ -109,7 +102,6 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 	 * @param int $productID
 	 * @param int $id
 	 * @param array $data
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __construct($id = null, $parentType = null, $parentID = null, $data = array())
 	{
@@ -120,17 +112,12 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 		if ($this->id && empty($data))
 		{
 			$conditions = array(
-				'id' => $this->id
-			, 'reldid' => $this->parentId
-			, 'type' => $this->parentType
+				'id'     => $this->id,
+				'reldid' => $this->parentId,
+				'type'   => $this->parentType
 			);
 
-			$data = main\mgLibs\MySQL\Query::select(
-				self::$fieldDeclaration
-				, self::tableName()
-				, $conditions
-			)->fetch();
-
+			$data = main\mgLibs\MySQL\Query::select(self::$fieldDeclaration, self::tableName(), $conditions)->fetch();
 			if (empty($data))
 			{
 				throw new main\mgLibs\exceptions\System('Unable to find custom field:' . http_build_query($conditions));
@@ -143,7 +130,6 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 			{
 				$tmp = explode('|', $data['fieldnameFull']);
 				$data['name'] = $data['fieldnameFull'] = $tmp[0];
-
 				if (!empty($tmp[1]))
 				{
 					$data['friendlyName'] = $tmp[1];
@@ -161,24 +147,21 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 
 	/**
 	 * Save Field
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function save()
 	{
-
 		$data = array(
-			'type' => $this->parentType
-		, 'relid' => $this->productID
-		, 'fieldtype' => $this->fieldtype
-		, 'description' => $this->description
-		, 'fieldoptions' => implode(',', $this->fieldoptions)
-		, 'regexpr' => $this->regexpr
-		, 'adminonly' => $this->adminonly
-		, 'required' => $this->required
-		, 'showorder' => $this->showorder
-		, 'showinvoice' => $this->showinvoice
-		, 'sortorder' => $this->sortorder
+			'type' => $this->parentType,
+			'relid' => $this->productID,
+			'fieldtype' => $this->fieldtype,
+			'description' => $this->description,
+			'fieldoptions' => implode(',', $this->fieldoptions),
+			'regexpr' => $this->regexpr,
+			'adminonly' => $this->adminonly,
+			'required' => $this->required,
+			'showorder' => $this->showorder,
+			'showinvoice' => $this->showinvoice,
+			'sortorder' => $this->sortorder
 		);
 
 		if (empty($this->friendlyName))
@@ -192,21 +175,11 @@ class CustomField extends \MGModule\vultr\mgLibs\models\Orm
 
 		if ($this->id)
 		{
-			main\mgLibs\MySQL\Query::update(
-				self::tableName()
-				, $data
-				, array(
-					'id' => $this->id
-				)
-			);
+			main\mgLibs\MySQL\Query::update(self::tableName(), $data, array('id' => $this->id));
 		}
 		else
 		{
-			$this->id = main\mgLibs\MySQL\Query::insert(
-				self::tableName()
-				, $data
-			);
+			$this->id = main\mgLibs\MySQL\Query::insert(self::tableName(), $data);
 		}
 	}
-
 }

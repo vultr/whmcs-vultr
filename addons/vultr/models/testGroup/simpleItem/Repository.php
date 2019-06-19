@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * Description of repository
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {

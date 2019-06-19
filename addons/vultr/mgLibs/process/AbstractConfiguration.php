@@ -20,7 +20,7 @@ abstract class AbstractConfiguration
 
 	public $version = false;
 
-	public $author = '<a href="http://www.modulesgarden.com" targer="_blank">ModulesGarden</a>';
+	public $author = '<a href="https://www.vultr.com" target="_blank">Vultr</a>';
 
 	public $tablePrefix = false;
 

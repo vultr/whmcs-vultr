@@ -5,7 +5,6 @@ if (!defined('DS'))
 	define('DS', DIRECTORY_SEPARATOR);
 }
 
-
 function vultr_config()
 {
 	require_once 'Loader.php';
@@ -40,7 +39,6 @@ function vultr_output($params)
 	new \MGModule\vultr\Loader();
 
 	MGModule\vultr\Addon::I(FALSE, $params);
-
 	if (!empty($_REQUEST['json']))
 	{
 		ob_clean();
@@ -64,7 +62,6 @@ function vultr_clientarea()
 {
 	require_once 'Loader.php';
 	new \MGModule\vultr\Loader();
-
 
 	if (!empty($_REQUEST['json']))
 	{

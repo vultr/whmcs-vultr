@@ -1,16 +1,10 @@
 <?php
-
 namespace MGModule\vultr\models\snapshots;
-
 use WHMCS\Database\Capsule as DB;
 use MGModule\vultr\helpers\ApiHelper;
 
-/**
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
-
 	public function getModelClass()
 	{
 		return __NAMESPACE__ . '\snapshots';
@@ -24,10 +18,10 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 		{
 			if (array_key_exists($value->snapshotid, $snapshotList))
 			{
-				$snapshotList[$value->snapshotid]['client'] = [
+				$snapshotList[$value->snapshotid]['client'] = array(
 					'clientid' => $value->clientid,
 					'clientname' => $value->firstname . " " . $value->lastname,
-				];
+				);
 			}
 		}
 		return $snapshotList;
@@ -37,14 +31,13 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 	{
 		return DB::table('vultr_snapshots as snapshots')
 			->select('client.id as clientid', 'client.firstname as firstname', 'client.lastname as lastname', 'snapshots.SNAPSHOTID as snapshotid', 'snapshots.SUBID as subid')
-			->join('tblclients as client', 'snapshots.client_id', '=', 'client.id')->get();
+			->join('tblclients as client', 'snapshots.client_id', '=', 'client.id')
+			->get();
 	}
 
 	public function changeSnapshotsSettings($id)
 	{
-
 		$settingArray = $this->getAllowSnapshots();
-
 		if (array_key_exists($id, $settingArray))
 		{
 			unset($settingArray[$id]);

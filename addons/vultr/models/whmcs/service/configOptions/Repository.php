@@ -7,24 +7,13 @@ use MGModule\vultr as main;
 /**
  * Description of repository
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Repository
 {
 	private $serviceID;
-	/**
-	 *
-	 * @var configOption[]
-	 */
 	private $_configOptions = array();
 
-	/**
-	 * Mozna by bylo dodac wersje z wczytywanie po samym productid
-	 *
-	 * @param type $accountID
-	 * @author Michal Czech <michael@modulesgarden.com>
-	 */
 	function __construct($serviceID, array $data = array())
 	{
 		$this->serviceID = $serviceID;
@@ -47,48 +36,25 @@ class Repository
 
 	function load()
 	{
-		$query = "
-            SELECT
-                V.id
-                ,V.optionid
-                ,V.qty
-                ,O.optionname
-                ,O.optiontype
-                ,S.id as suboptionid
-                ,S.optionname as suboptionname
-            FROM
-                tblhostingconfigoptions V
-            JOIN
-                tblproductconfigoptions O
-                ON
-                    V.configid = O.id
-            JOIN
-                tblproductconfiglinks L
-                ON
-                    L.gid = O.gid
-            JOIN
-                tblhosting H
-                ON
-                    H.packageid = L.pid
-                    AND H.id = V.relid
-            LEFT JOIN
-                tblproductconfigoptionssub S
-                ON
-                    S.configid = O.id
-            WHERE
-                H.id = :service_id:
-        ";
+		$query = '
+		SELECT V.id, V.optionid, V.qty, O.optionname, O.optiontype, S.id as suboptionid, S.optionname as suboptionname
+		FROM tblhostingconfigoptions V
+        JOIN tblproductconfigoptions O
+			ON V.configid = O.id
+		JOIN tblproductconfiglinks L
+			ON L.gid = O.gid
+		JOIN tblhosting H
+			ON H.packageid = L.pid
+			AND H.id = V.relid
+		LEFT JOIN tblproductconfigoptionssub S
+			ON S.configid = O.id
+		WHERE H.id = :service_id:';
 
-		$result = \MGModule\vultr\mgLibs\MySQL\Query::query($query, array(
-			'service_id' => $this->serviceID
-		));
-
+		$result = \MGModule\vultr\mgLibs\MySQL\Query::query($query, array('service_id' => $this->serviceID));
 		while ($row = $result->fetch())
 		{
 			$tmp = explode('|', $row['optionname']);
-
 			$name = $friendlyName = $tmp[0];
-
 			if (isset($tmp[1]))
 			{
 				$friendlyName = $tmp[1];
@@ -103,11 +69,8 @@ class Repository
 			$field->id = $row['id'];
 			$field->name = $name;
 			$field->frendlyName = $friendlyName;
-
 			$tmp = explode('|', $row['suboptionname']);
-
 			$value = $valueLabel = $tmp[0];
-
 			if (isset($tmp[1]))
 			{
 				$valueLabel = $tmp[1];
@@ -159,8 +122,6 @@ class Repository
 
 	/**
 	 * Update Custom Fields
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function update()
 	{
@@ -175,20 +136,15 @@ class Repository
 				case 1:
 				case 2:
 					$cols['optionid'] = $field->optionsIDs[$field->value];
-					break;
+				break;
+
 				case 3:
 				case 4:
 					$cols['qty'] = $field->value;
-					break;
+				break;
 			}
 
-			main\mgLibs\MySQL\Query::update(
-				'tblhostingconfigoptions'
-				, $cols
-				, array(
-					'id' => $field->id
-				)
-			);
+			main\mgLibs\MySQL\Query::update('tblhostingconfigoptions', $cols, array('id' => $field->id));
 		}
 	}
 }

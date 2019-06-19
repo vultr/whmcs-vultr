@@ -4,8 +4,6 @@ namespace MGModule\vultr\models\whmcs\product;
 
 /**
  * Description of repository
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Products extends \MGModule\vultr\mgLibs\models\Repository
 {

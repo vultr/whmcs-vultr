@@ -4,10 +4,6 @@ namespace MGModule\vultr\controllers\addon\admin;
 
 use MGModule\vultr as main;
 
-/**
- *
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Location extends main\mgLibs\process\AbstractController
 {
 
