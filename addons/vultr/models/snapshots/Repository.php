@@ -2,8 +2,8 @@
 
 namespace MGModule\vultr\models\snapshots;
 
-use WHMCS\Database\Capsule as DB;
 use MGModule\vultr\helpers\ApiHelper;
+use WHMCS\Database\Capsule as DB;
 
 /**
  * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>

@@ -2,7 +2,6 @@
 
 namespace MGModule\vultr\models\testGroup\TestItem;
 
-use MGModule\vultr as main;
 use MGModule\vultr\mgLibs;
 use MGModule\vultr\models\testGroup\simpleItem;
 

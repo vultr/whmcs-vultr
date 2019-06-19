@@ -20,8 +20,6 @@
 
 namespace MGModule\vultr\models\whmcs\currencies;
 
-use MGModule\vultr as main;
-
 /**
  * Description of Repository
  *

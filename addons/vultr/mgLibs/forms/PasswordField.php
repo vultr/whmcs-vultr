@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\mgLibs\forms;
 
-use MGModule\vultr as main;
-
 /**
  * Password Form Field
  *

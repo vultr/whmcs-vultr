@@ -1,7 +1,7 @@
 <?php
 
-use \MGModule\vultr as main;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use MGModule\vultr as main;
 
 //require_once(dirname(dirname(__DIR__))."/servers/vultr/loader.php");
 require_once(dirname(dirname(__DIR__)) . "/servers/vultr/helper/vultr.helper.php");

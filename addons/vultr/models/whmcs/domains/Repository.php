@@ -20,8 +20,6 @@
 
 namespace MGModule\vultr\models\whmcs\domains;
 
-use MGModule\vultr as main;
-
 /**
  * Description of Repository
  *

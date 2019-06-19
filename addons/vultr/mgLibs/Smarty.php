@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\mgLibs;
 
-use MGModule\vultr as main;
-
 
 /**
  * Smarty Wrapper

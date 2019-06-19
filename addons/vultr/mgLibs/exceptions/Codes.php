@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\mgLibs\exceptions;
 
-use MGModule\vultr as main;
-
 /**
  * Exception Codes
  *

@@ -2,9 +2,8 @@
 
 namespace MGModule\vultr\models\customWHMCS\product;
 
-use MGModule\vultr as main;
-use WHMCS\Database\Capsule as DB;
 use MGModule\vultr\helpers\ProductsHelper;
+use WHMCS\Database\Capsule as DB;
 
 /**
  * Description of repository

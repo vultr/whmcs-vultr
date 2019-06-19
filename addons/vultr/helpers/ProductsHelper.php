@@ -4,8 +4,6 @@ namespace MGModule\vultr\helpers;
 
 use WHMCS\Database\Capsule as DB;
 
-use MGModule\vultr\helpers\ApiHelper;
-
 /**
  * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
  */
