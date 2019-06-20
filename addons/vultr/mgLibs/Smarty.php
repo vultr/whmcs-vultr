@@ -20,7 +20,7 @@ class Smarty
 	}
 
 	/**
-	 * Set Tempalte Dir
+	 * Set Template Dir
 	 *
 	 * @param string $dir
 	 */
