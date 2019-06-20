@@ -2,8 +2,8 @@
 
 namespace MGModule\vultr\controllers\addon\admin;
 
-use WHMCS\Database\Capsule as DB;
 use MGModule\vultr as main;
+use WHMCS\Database\Capsule as DB;
 
 
 /**

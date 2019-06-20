@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\mgLibs\process;
 
-use MGModule\vultr as main;
-
 abstract class AbstractConfiguration
 {
 	public $debug = false;

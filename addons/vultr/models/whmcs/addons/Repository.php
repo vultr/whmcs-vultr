@@ -1,6 +1,5 @@
 <?php
 namespace MGModule\vultr\models\whmcs\addons;
-use MGModule\vultr as main;
 
 /**
  * Description of Repository

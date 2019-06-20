@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\mgLibs\MySQL;
 
-use MGModule\vultr as main;
-
 
 /**
  * MySQL Results Class

@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\models\testGroup\simpleItem;
 
-use MGModule\vultr as main;
-
 /**
  * Description of repository
  */

@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\models\customWHMCS\product;
 
-use MGModule\vultr as main;
-
 /**
  * @Table(name=custom_configuration)
  */
