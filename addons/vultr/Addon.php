@@ -1,13 +1,11 @@
 <?php
 
 namespace MGModule\vultr;
-
 use MGModule\vultr as main;
 
 /**
  * Description of Addon
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Addon extends main\mgLibs\process\AbstractMainDriver
@@ -62,11 +60,11 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 	{
 		return array
 		(
-			'name' => self::I()->configuration()->name
-		, 'description' => self::I()->configuration()->description
-		, 'version' => self::I()->configuration()->version
-		, 'author' => self::I()->configuration()->author
-		, 'fields' => self::I()->configuration()->getAddonWHMCSConfig()
+			'name'        => self::I()->configuration()->name,
+			'description' => self::I()->configuration()->description,
+			'version'     => self::I()->configuration()->version,
+			'author'      => self::I()->configuration()->author,
+			'fields'      => self::I()->configuration()->getAddonWHMCSConfig()
 		);
 	}
 
@@ -83,8 +81,8 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 		catch (\Exception $ex)
 		{
 			return array(
-				'status' => 'error'
-			, 'description' => $ex->getMessage()
+				'status'      => 'error',
+				'description' => $ex->getMessage()
 			);
 		}
 	}
@@ -99,12 +97,12 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 		try
 		{
 			self::I()->configuration()->upgrade($vars);
-
 		}
 		catch (\Exception $ex)
 		{
 			self::vultrDump($ex);
 			models\whmcs\errors\Register::register($ex);
+
 			return array("error" => $ex->getMessage());
 		}
 	}
@@ -119,8 +117,8 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			$page = empty($input['mg-page']) ? 'home' : $input['mg-page'];
 			$page = ucfirst($page);
 			$action = empty($input['mg-action']) ? 'index' : $input['mg-action'];
-
 			list($content) = self::I()->runControler($page, $action, $input, 'CustomHTML');
+
 			return $content;
 		}
 		catch (\Exception $ex)
@@ -134,9 +132,7 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 				$message .= mgLibs\Lang::absoluteT('token') . $ex->getToken();
 			}
 
-			return mgLibs\Smarty::I()->view('fatal', array(
-				'message' => $message
-			));
+			return mgLibs\Smarty::I()->view('fatal', array('message' => $message));
 		}
 	}
 
@@ -155,7 +151,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			$menu = array();
 			foreach (self::I()->configuration()->getAddonMenu() as $catName => $category)
 			{
-
 				// display the page or not
 				if (strpos($catName, "documentation") === false)
 				{
@@ -165,9 +160,7 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 					{
 						continue;
 					}
-
 				}
-
 
 				if (isset($category['submenu']))
 				{
@@ -181,10 +174,8 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 				}
 
 				$category['url'] = self::getUrl($catName);
-
 				$menu[$catName] = $category;
 			}
-
 
 			if (empty($input['mg-page']))
 			{
@@ -194,16 +185,16 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			if ($input['mg-page'])
 			{
 				$breadcrumb[0] = array(
-					'name' => $input['mg-page']
-				, 'url' => $menu[$input['mg-page']]['url']
-				, 'icon' => $menu[$input['mg-page']]['icon']
+					'name' => $input['mg-page'],
+					'url'  => $menu[$input['mg-page']]['url'],
+					'icon' => $menu[$input['mg-page']]['icon']
 				);
 				if ($input['mg-action'])
 				{
 					$breadcrumb[1] = array(
-						'name' => $input['mg-action']
-					, 'url' => $menu[$input['mg-page']]['submenu'][$input['mg-action']]['url']
-					, 'icon' => $menu[$input['mg-page']]['submenu'][$input['mg-action']]['icon']
+						'name' => $input['mg-action'],
+						'url'  => $menu[$input['mg-page']]['submenu'][$input['mg-action']]['url'],
+						'icon' => $menu[$input['mg-page']]['submenu'][$input['mg-action']]['icon']
 					);
 				}
 
@@ -214,20 +205,19 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			$action = empty($input['mg-action']) ? 'index' : $input['mg-action'];
 			$page = ucfirst($page);
 			$vars = array(
-				'assetsURL' => self::I()->getAssetsURL()
-			, 'mainURL' => self::I()->getUrl()
-			, 'mainName' => self::I()->configuration()->name
-			, 'menu' => $menu
-			, 'breadcrumbs' => $breadcrumb
-			, 'JSONCurrentUrl' => self::I()->genJSONUrl($page)
-			, 'currentPageName' => $page
-			, 'Addon' => self::I()
-			, 'isWHMCS6' => version_compare($GLOBALS['CONFIG']['Version'], '6.0.0', '>=')
+				'assetsURL'       => self::I()->getAssetsURL(),
+				'mainURL'         => self::I()->getUrl(),
+				'mainName'        => self::I()->configuration()->name,
+				'menu'            => $menu,
+				'breadcrumbs'     => $breadcrumb,
+				'JSONCurrentUrl'  => self::I()->genJSONUrl($page),
+				'currentPageName' => $page,
+				'Addon'           => self::I(),
+				'isWHMCS6'        => version_compare($GLOBALS['CONFIG']['Version'], '6.0.0', '>=')
 			);
 
 			try
 			{
-
 				list($content, $success, $error) = self::I()->runControler($page, $action, $input, 'HTML');
 				$vars['content'] = $content;
 				$vars['success'] = $success;
@@ -245,12 +235,10 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			}
 
 			mgLibs\Smarty::I()->setTemplateDir(self::I()->getModuleTemplatesDir());
-
 			$html = mgLibs\Smarty::I()->view('main', $vars);
-
 			if (self::I()->isDebug())
 			{
-				$tmp = '<div style="color: #a94442;background-color: #f2dede;border-color: #dca7a7;font-size:20px;padding:10px;"><strong>Module is under development Mode!!!!!!!!!!!!!!!</strong></div>';
+				$tmp = '<div style="color: #a94442;background-color: #f2dede;border-color: #dca7a7;font-size:20px;padding:10px;"><strong>Module is in development mode</strong></div>';
 
 				if ($langs = mgLibs\Lang::getMissingLangs())
 				{
@@ -285,9 +273,8 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			}
 
 			return mgLibs\Smarty::I()->view('fatal', array(
-				'message' => $message
-			, 'assetsURL' => self::I()->getAssetsURL()
-
+				'message'   => $message,
+				'assetsURL' => self::I()->getAssetsURL()
 			));
 		}
 	}
@@ -322,9 +309,8 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 
 	public static function getHTMLClientAreaPage($input)
 	{
-
 		$menu = array();
-		foreach (self::I()->configuration()->getClienMenu() as $catName => $category)
+		foreach (self::I()->configuration()->getClientMenu() as $catName => $category)
 		{
 			// display the page or not
 			if (strpos($catName, "documentation") === false)
@@ -335,7 +321,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 				{
 					continue;
 				}
-
 			}
 			if (isset($category['submenu']))
 			{
@@ -349,7 +334,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			}
 
 			$category['url'] = self::getUrl($catName);
-
 			$menu[$catName] = $category;
 		}
 
@@ -360,17 +344,15 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 
 
 		$output = array(
-			'pagetitle' => self::I()->configuration()->clientareaName,
+			'pagetitle'    => self::I()->configuration()->clientareaName,
 			'templatefile' => self::I()->getModuleTemplatesDir(true) . '/main',
 			'requirelogin' => isset($_SESSION['uid']) ? false : true,
 		);
 
 		$breadcrumb = array(self::I()->getUrl() => self::I()->configuration()->clientareaName);
-
 		try
 		{
 			self::I()->setMainLangContext();
-
 			$page = ucfirst($input['mg-page']);
 			if (!empty($input['mg-page']))
 			{
@@ -379,25 +361,23 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			}
 			$action = empty($input['mg-action']) ? 'index' : $input['mg-action'];
 			$vars = array(
-				'assetsURL' => self::I()->getAssetsURL()
-			, 'mainURL' => self::I()->getUrl()
-			, 'mainName' => self::I()->configuration()->clientareaName
-			, 'JSONCurrentUrl' => self::I()->genJSONUrl($page)
-			, 'currentPageName' => strtolower($page)
-			, 'menu' => $menu
-			, 'breadcrumbs' => $breadcrumb
-			, 'isWHMCS6' => version_compare($GLOBALS['CONFIG']['Version'], '6.0.0', '>=')
+				'assetsURL'       => self::I()->getAssetsURL(),
+				'mainURL'         => self::I()->getUrl(),
+				'mainName'        => self::I()->configuration()->clientareaName,
+				'JSONCurrentUrl'  => self::I()->genJSONUrl($page),
+				'currentPageName' => strtolower($page),
+				'menu'            => $menu,
+				'breadcrumbs'     => $breadcrumb,
+				'isWHMCS6'        => version_compare($GLOBALS['CONFIG']['Version'], '6.0.0', '>=')
 			);
 
 			try
 			{
 				$vars['MGLANG'] = mgLibs\Lang::getInstance();
 				list($content, $success, $error) = self::I()->runControler($page, $action, $input, 'HTML');
-
 				if (self::I()->isDebug())
 				{
-					$html = '<div style="color: #a94442;background-color: #f2dede;border-color: #dca7a7;font-size:20px;padding:10px;"><strong>Module is under development Mode!!!!!!!!!!!!!!!</strong></div>';
-
+					$html = '<div style="color: #a94442;background-color: #f2dede;border-color: #dca7a7;font-size:20px;padding:10px;"><strong>Module is in development mode</strong></div>';
 					if ($langs = mgLibs\Lang::getMissingLangs())
 					{
 						$html .= '<pre>';
@@ -411,11 +391,9 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 					$content = $html . $content;
 				}
 
-
 				$vars['content'] = $content;
 				$vars['success'] = $success;
 				$vars['error'] = $error;
-
 			}
 			catch (\Exception $ex)
 			{
@@ -439,7 +417,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			}
 		}
 
-
 		$output['breadcrumb'] = $breadcrumb;
 		$output['vars'] = $vars;
 
@@ -449,7 +426,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 	static function getJSONAdminPage($input)
 	{
 		$content = array();
-
 		$page = 'home';
 		if (!empty($input['mg-page']))
 		{
@@ -461,9 +437,7 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 		{
 			self::I()->isAdmin(true);
 			self::I()->setMainLangContext();
-
 			list($result, $success, $error) = self::I()->runControler($page, $action, $input, 'JSON');
-
 			if ($error)
 			{
 				$content['error'] = $error;
@@ -509,21 +483,18 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 	public static function getJSONClientAreaPage($input)
 	{
 		$content = array();
-
 		$page = 'home';
 		if (!empty($input['mg-page']))
 		{
 			$page = $input['mg-page'];
 		}
+
 		$page = ucfirst($page);
 		$action = empty($input['mg-action']) ? 'index' : $input['mg-action'];
-
 		try
 		{
 			self::I()->setMainLangContext();
-
 			list($result, $success, $error) = self::I()->runControler($page, $action, $input, 'JSON');
-
 			if ($error)
 			{
 				$content['error'] = $error;
@@ -549,7 +520,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			}
 
 			$content['data'] = $result;
-
 		}
 		catch (\Exception $ex)
 		{
@@ -572,7 +542,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 		{
 			self::I()->isAdmin(true);
 			self::I()->setMainLangContext();
-
 			self::I()->runControler('Cron', 'index', $input, 'CRON');
 		}
 		catch (\Exception $ex)
@@ -584,10 +553,7 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 
 	static function localAPI($action, $arguments)
 	{
-		$output = array(
-			'action' => $action
-		);
-
+		$output = array('action' => $action);
 		try
 		{
 			self::I()->isAdmin(true);
@@ -601,8 +567,8 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 			self::vultrDump($ex);
 			main\mgLibs\error\Register::register($ex);
 			$output['error'] = array(
-				'message' => $ex->getMessage()
-			, 'code' => $ex->getCode()
+				'message' => $ex->getMessage(),
+				'code'    => $ex->getCode()
 			);
 		}
 
@@ -611,22 +577,10 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 
 	/**
 	 * Load Addon WHMCS Configuration
-	 *
-	 *
 	 */
 	function loadAddonConfiguration()
 	{
-		$result = mgLibs\MySQL\Query::select(
-			array(
-				'setting'
-			, 'value'
-			)
-			, 'tbladdonmodules'
-			, array(
-				'module' => $this->configuration()->systemName
-			)
-		);
-
+		$result = mgLibs\MySQL\Query::select(array('setting', 'value'), 'tbladdonmodules', array('module' => $this->configuration()->systemName));
 		while ($row = $result->fetch())
 		{
 			$this->configuration()->{$row['setting']} = $row['value'];
@@ -655,9 +609,7 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 	{
 
 		$dir = ($relative) ? '' : (__DIR__ . DS);
-
 		$dir .= 'templates' . DS;
-
 		if (self::I()->isAdmin())
 		{
 			return $dir . 'admin';
@@ -665,7 +617,6 @@ class Addon extends main\mgLibs\process\AbstractMainDriver
 		else
 		{
 			$template = $GLOBALS['CONFIG']['Template'];
-
 			if (file_exists(__DIR__ . DS . 'templates' . DS . 'clientarea' . DS . $template))
 			{
 				return $dir . 'clientarea' . DS . $template;

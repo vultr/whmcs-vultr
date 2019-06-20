@@ -1,20 +1,15 @@
 <?php
 
 namespace MGModule\vultr\models\whmcs\product;
-
 use MGModule\vultr as main;
 
 /**
  * Description of configuration
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Configuration
 {
-	/**
-	 * @var array
-	 */
 	private static $_configurationArray;
 	private $_productID;
 	private $_configuration;
@@ -36,9 +31,7 @@ class Configuration
 				$fields['configoption' . $i] = 'configoption' . $i;
 			}
 
-			$params = main\mgLibs\MySQL\Query::select($fields, 'tblproducts', array(
-				'id' => $productID
-			))->fetch();
+			$params = main\mgLibs\MySQL\Query::select($fields, 'tblproducts', array('id' => $productID))->fetch();
 		}
 
 		if (empty(self::$_configurationArray))
@@ -80,7 +73,6 @@ class Configuration
 
 	function setConfigurationArray(array $configurationArray = array())
 	{
-
 		if (empty($configurationArray))
 		{
 			$configurationArray = self::$_configurationArray;
@@ -117,7 +109,6 @@ class Configuration
 	function save()
 	{
 		$params = array();
-
 		if (self::$_configurationArray)
 		{
 			$i = 1;
@@ -136,8 +127,6 @@ class Configuration
 			}
 		}
 
-		main\mgLibs\MySQL\Query::update('tblproducts', $params, array(
-			'id' => $this->_productID
-		));
+		main\mgLibs\MySQL\Query::update('tblproducts', $params, array('id' => $this->_productID));
 	}
 }

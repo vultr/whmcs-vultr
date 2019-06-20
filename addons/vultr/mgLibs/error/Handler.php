@@ -6,26 +6,16 @@ use MGModule\vultr as main;
 
 /**
  * Error Handler
- *
- * @todo DON'T USE IN PRODUCTION MODULES
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Handler
 {
 	const EXCEPTION_HANDLER = "handleException";
 	const ERROR_HANDLER = "handleError";
 	const SHUTDOWN_HANDLER = "handleShutdown";
-	/**
-	 * @todo SECURITY DANGER
-	 * set FALSE for production modules
-	 */
 	const VERBOSE = false;
 
 	/**
 	 * Register Error Functions
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public function register()
 	{

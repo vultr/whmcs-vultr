@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * CheckBox Form Field
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class CheckboxField extends AbstractField

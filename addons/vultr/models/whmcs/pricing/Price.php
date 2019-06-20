@@ -1,31 +1,10 @@
 <?php
-
-/* * ********************************************************************
- * vultr product developed. (2015-11-23)
- * *
- *
- *  CREATED BY MODULESGARDEN       ->       http://modulesgarden.com
- *  CONTACT                        ->       contact@modulesgarden.com
- *
- *
- * This software is furnished under a license and may be used and copied
- * only  in  accordance  with  the  terms  of such  license and with the
- * inclusion of the above copyright notice.  This software  or any other
- * copies thereof may not be provided or otherwise made available to any
- * other person.  No title to and  ownership of the  software is  hereby
- * transferred.
- *
- *
- * ******************************************************************** */
-
 namespace MGModule\vultr\models\whmcs\pricing;
-
 use MGModule\vultr as main;
 
 /**
  * Description of Pricing
  *
- * @author Pawel Kopec <pawelk@modulesgarden.com>
  * @Table(name=tblpricing,preventUpdate,prefixed=false)
  * @SuppressWarnings(PHPMD)
  */
@@ -140,7 +119,6 @@ class Price extends main\mgLibs\models\Orm
 
 	private $_currency;
 
-
 	public function getId()
 	{
 		return $this->id;
@@ -162,18 +140,16 @@ class Price extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @return main\models\whmcs\currencies\Currency
 	 */
 	public function getCurrency()
 	{
-
 		if (!empty($this->_currency))
 		{
 			return $this->_currency;
 		}
-		return $this->_currency = new main\models\whmcs\currencies\Currency($this->getCurrencyId());
 
+		return $this->_currency = new main\models\whmcs\currencies\Currency($this->getCurrencyId());
 	}
 
 	public function getCurrencyId()
@@ -183,65 +159,81 @@ class Price extends main\mgLibs\models\Orm
 
 	public function getPrice($billingCycle)
 	{
-
 		switch ($billingCycle)
 		{
-
 			case BillingCycle::FREE :
 				return 0;
-				break;
+			break;
+
 			case BillingCycle::ONE_TIME :
 			case BillingCycle::MONTHLY :
 				return $this->getMonthly();
-				break;
+			break;
+
 			case BillingCycle::QUARTERLY :
 				return $this->getQuarterly();
-				break;
+			break;
+
 			case BillingCycle::SEMI_ANNUALLY :
 				return $this->getSemiAnnually();
-				break;
+			break;
+
 			case BillingCycle::ANNUALLY :
 				return $this->getAnnually();
-				break;
+			break;
+
 			case BillingCycle::BIENNIALLY :
 				return $this->getBiennially();
-				break;
+			break;
+
 			case BillingCycle::TRIENNIALLY :
 				return $this->getTriennially();
-				break;
+			break;
+
 			//Domains
 			case BillingCycle::YEAR :
 				return $this->getMonthlySetupFee();
-				break;
+			break;
+
 			case BillingCycle::YEARS_2 :
 				return $this->getQuarterlySetupFee();
-				break;
+			break;
+
 			case BillingCycle::YEARS_3 :
 				return $this->getSemiAnnuallySetupFee();
-				break;
+			break;
+
 			case BillingCycle::YEARS_4 :
 				return $this->getAnnuallySetupFee();
-				break;
+			break;
+
 			case BillingCycle::YEARS_5 :
 				return $this->getBienniallySetupFee();
-				break;
+			break;
+
 			case BillingCycle::YEARS_6 :
 				return $this->getMonthly();
-				break;
+			break;
+
 			case BillingCycle::YEARS_7 :
 				return $this->getQuarterly();
-				break;
+			break;
+
 			case BillingCycle::YEARS_8 :
 				return $this->getSemiAnnually();
-				break;
+			break;
+
 			case BillingCycle::YEARS_9 :
 				return $this->getAnnually();
-				break;
+			break;
+
 			case BillingCycle::YEARS_10 :
 				return $this->getBiennially();
-				break;
+			break;
+
 			default :
 				throw new main\mgLibs\exceptions\System('Invalid billing cycle: ' . $billingCycle);
+			break;
 		}
 	}
 
@@ -299,6 +291,4 @@ class Price extends main\mgLibs\models\Orm
 	{
 		return $this->bienniallySetupFee;
 	}
-
-
 }

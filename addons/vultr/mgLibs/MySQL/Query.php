@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * MySQL Query Class
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Query
@@ -41,8 +40,6 @@ class Query
 
 	/**
 	 * Use Current Default MySQL Connection for queries
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function useCurrentConnection()
 	{
@@ -65,13 +62,12 @@ class Query
 	 * @param string $file
 	 * @return boolean
 	 * @throws main\exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function connectFromFile($file)
 	{
 		if (!file_exists($file))
 		{
-			throw new main\mgLibs\exceptions\System('DB Connection File does not exits', main\mgLibs\exceptions\Codes::MYSQL_MISING_CONFIG_FILE);
+			throw new main\mgLibs\exceptions\System('DB Connection File does not exits', main\mgLibs\exceptions\Codes::MYSQL_MISSING_CONFIG_FILE);
 		}
 
 		self::$_instance = new self();
@@ -86,7 +82,7 @@ class Query
 				{
 					if (!extension_loaded('PDO'))
 					{
-						throw new main\mgLibs\exceptions\System('Missing PDO Extension', main\mgLibs\exceptions\Codes::MYSQL_MISING_PDO_EXTENSION);
+						throw new main\mgLibs\exceptions\System('Missing PDO Extension', main\mgLibs\exceptions\Codes::MYSQL_MISSING_PDO_EXTENSION);
 					}
 
 					try
@@ -124,8 +120,6 @@ class Query
 
 	/**
 	 * Disconnect all mysql connection
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function dropAllConnection()
 	{
@@ -146,7 +140,6 @@ class Query
 	 * @param string $connectionName
 	 * @return main\mgLibs\MySQL\Query
 	 * @throws main\exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public static function I()
 	{
@@ -158,7 +151,7 @@ class Query
 	}
 
 	/**
-	 * Disconnect specifi MySQL socket
+	 * Disconnect specific MySQL socket
 	 *
 	 * @param string $connectionName
 	 */
@@ -182,7 +175,6 @@ class Query
 	 * @param string $connectionName
 	 * @return int id of new record
 	 * @throws \exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function insert($table, array $data, $connectionName = 'default')
 	{
@@ -223,7 +215,7 @@ class Query
 	{
 		if (!isset(self::$_instance->connection[$connectionName]))
 		{
-			throw new main\mgLibs\exceptions\System("Connection " . $connectionName . ' not exits', main\mgLibs\exceptions\Codes::MYSQL_MISING_CONNECTION);
+			throw new main\mgLibs\exceptions\System("Connection " . $connectionName . ' not exits', main\mgLibs\exceptions\Codes::MYSQL_MISSING_CONNECTION);
 		}
 
 		$newParams = array();
@@ -326,7 +318,6 @@ class Query
 	 * @param string $connectionName
 	 * @return int id of new record
 	 * @throws \exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function insertOnDuplicateUpdate($table, array $data, array $update, $connectionName = 'default')
 	{
@@ -380,7 +371,6 @@ class Query
 	 * @param array $conditionValues
 	 * @return result
 	 * @throws \exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function update($table, array $data, array $condition)
 	{
@@ -416,7 +406,6 @@ class Query
 	 * @param type $condition
 	 * @param type $values
 	 * @return type
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function parseConditions($condition, &$values, $prefix = null, &$i = 0)
 	{
@@ -489,7 +478,6 @@ class Query
 	 * @param array $conditionValues
 	 * @return result
 	 * @throws \exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function delete($table, array $condition)
 	{
@@ -516,7 +504,6 @@ class Query
 	 * @param int $offset
 	 * @return result
 	 * @throws \exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function select(array $cols, $table, array $condition = array(), array $orderBy = array(), $limit = null, $offset = 0, $connectionName = 'default')
 	{
@@ -621,7 +608,6 @@ class Query
 	 * @param int $offset
 	 * @return result
 	 * @throws \exception\System
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	static function count($colsName, $table, array $condition = array(), array $orderBy = array(), $limit = null, $offset = 0, $connectionName = 'default')
 	{

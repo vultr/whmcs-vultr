@@ -8,7 +8,6 @@ use MGModule\vultr as main;
 /**
  * Server Model
  * @Table(name=tblservers,preventUpdate,prefixed=false)
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Server extends main\mgLibs\models\Orm
 {
@@ -31,21 +30,18 @@ class Server extends main\mgLibs\models\Orm
 	public $ip;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $username;
 
 	/**
-	 *
 	 * @Column(as=passwordEncrypted)
 	 * @var string
 	 */
 	public $password;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
@@ -68,20 +64,12 @@ class Server extends main\mgLibs\models\Orm
 	 *
 	 * @param int $id
 	 * @param array $data
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __construct($id = false, $data = array())
 	{
 		if ($id !== false && empty($data))
 		{
-			$data = main\mgLibs\MySQL\Query::select(
-				self::fieldDeclaration()
-				, self::tableName()
-				, array(
-					'id' => $id
-				)
-			)->fetch();
-
+			$data = main\mgLibs\MySQL\Query::select(self::fieldDeclaration(), self::tableName(), array('id' => $id))->fetch();
 			if (empty($data))
 			{
 				throw new main\mgLibs\exceptions\System('Unable to find Item with ID:' . $id);
@@ -98,7 +86,6 @@ class Server extends main\mgLibs\models\Orm
 			$this->fillProperties($data);
 		}
 	}
-
 
 	function save()
 	{

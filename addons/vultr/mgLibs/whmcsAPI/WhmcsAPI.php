@@ -25,13 +25,7 @@ class WhmcsAPI
 
 		if (empty($username))
 		{
-			$data = main\mgLibs\MySQL\Query::select(
-				array('username')
-				, 'tbladmins'
-				, array()
-				, array()
-				, 1
-			)->fetch();
+			$data = main\mgLibs\MySQL\Query::select(array('username'), 'tbladmins', array(), array(), 1)->fetch();
 			$username = $data['username'];
 		}
 
@@ -41,13 +35,7 @@ class WhmcsAPI
 	static function getAdminDetails($adminId)
 	{
 
-		$data = main\mgLibs\MySQL\Query::select(
-			array('username')
-			, 'tbladmins'
-			, array("id" => $adminId)
-			, array()
-			, 1
-		)->fetch();
+		$data = main\mgLibs\MySQL\Query::select(array('username'), 'tbladmins', array("id" => $adminId), array(), 1)->fetch();
 		$username = $data['username'];
 
 		$result = localAPI("getadmindetails", array(), $username);

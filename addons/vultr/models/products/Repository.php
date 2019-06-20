@@ -4,9 +4,6 @@ namespace MGModule\vultr\models\products;
 
 use WHMCS\Database\Capsule as DB;
 
-/**
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
 
@@ -34,7 +31,6 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 
 	public function getProducts()
 	{
-
 		return $this->productsObject->get();
 	}
 
@@ -60,7 +56,6 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 
 	public function removeProduct($productId)
 	{
-		//rozbite, bo najprawdopodbniej dojdą jeszcze configoptions
 		$this->deletePrice($productId);
 		$deleteInfo = $this->deleteProduct($productId);
 		if ($deleteInfo == 1)
@@ -69,7 +64,7 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 		}
 		else
 		{
-			return $deleInfo;
+			return $deleteInfo;
 		}
 	}
 
@@ -85,5 +80,4 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 	{
 		return DB::table("tblproducts")->where('id', '=', $productId)->delete();
 	}
-
 }

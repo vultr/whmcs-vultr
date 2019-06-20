@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Description of tableContructor
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class TableContructor

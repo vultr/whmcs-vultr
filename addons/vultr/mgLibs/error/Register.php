@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Description of error\register
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Register
@@ -18,7 +17,6 @@ class Register
 	{
 		self::$_errorRegister = $class;
 	}
-
 
 	static function register($ex)
 	{
@@ -32,7 +30,7 @@ class Register
 		}
 		else
 		{
-			$token = 'Unknow Token';
+			$token = 'Unknown Token';
 
 			if (method_exists($ex, 'getToken'))
 			{

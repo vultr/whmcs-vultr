@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * Password Form Field
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class PasswordField extends AbstractField
 {

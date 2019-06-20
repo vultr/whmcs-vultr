@@ -4,9 +4,6 @@ namespace MGModule\vultr\models\dns;
 
 use WHMCS\Database\Capsule as DB;
 
-/**
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {
 

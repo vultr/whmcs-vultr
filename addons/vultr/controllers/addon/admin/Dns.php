@@ -2,14 +2,8 @@
 
 namespace MGModule\vultr\controllers\addon\admin;
 
-//use MGModule\vultr\helpers\PathHelper;
-
 use MGModule\vultr as main;
 
-/**
- *
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
- */
 class Dns extends main\mgLibs\process\AbstractController
 {
 

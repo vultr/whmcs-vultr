@@ -7,8 +7,6 @@ use MGModule\vultr as main;
 
 /**
  * MySQL Results Class
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Result
 {
@@ -29,7 +27,6 @@ class Result
 	 *
 	 * @param PDOStatement $result
 	 * @param int $id
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __construct($result, $id = null)
 	{
@@ -47,7 +44,6 @@ class Result
 	 * Fetch All Records
 	 *
 	 * @return array
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function fetchAll()
 	{
@@ -70,7 +66,6 @@ class Result
 	 * Fetch one record
 	 *
 	 * @return array
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function fetch()
 	{
@@ -89,7 +84,6 @@ class Result
 	 *
 	 * @param string $name
 	 * @return array
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function fetchColumn($name = null)
 	{
@@ -123,11 +117,9 @@ class Result
 	 * Get ID Last Inserted Record
 	 *
 	 * @return int
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function getID()
 	{
 		return $this->id;
 	}
-
 }

@@ -1,13 +1,9 @@
 <?php
-
 namespace MGModule\vultr\models\whmcs\customFields;
-
 use MGModule\vultr as main;
 
 /**
  * Product Custom Fields Colletion
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Repository
 {
@@ -20,20 +16,12 @@ class Repository
 	 * Load Product Custom Fields
 	 *
 	 * @param int $productID
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __construct($type, $relationID)
 	{
 		$this->type = $type;
 		$this->relationID = $relationID;
-		$result = main\mgLibs\MySQL\Query::select(
-			customField::fieldDeclaration()
-			, customField::tableName()
-			, array(
-				'relid' => $this->relationID
-			, 'type' => $this->type
-			)
-		);
+		$result = main\mgLibs\MySQL\Query::select(customField::fieldDeclaration(), customField::tableName(), array('relid' => $this->relationID, 'type' => $this->type));
 
 		while ($row = $result->fetch())
 		{
@@ -51,7 +39,6 @@ class Repository
 	 *
 	 * @param bool $onlyRequired
 	 * @return array
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function checkFields(array $configuration = array())
 	{
@@ -61,7 +48,6 @@ class Repository
 		}
 
 		$missingFields = array();
-
 		foreach ($configuration as $fieldDeclaration)
 		{
 			$found = false;
@@ -70,6 +56,7 @@ class Repository
 				if ($fieldDeclaration->name === $field->name)
 				{
 					$found = true;
+
 					break;
 				}
 			}
@@ -86,7 +73,7 @@ class Repository
 	/**
 	 * Generate Custom Fields Depends on declaration in Module Configuration
 	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
+	 * @param array $configuration
 	 */
 	function generateFromConfiguration(array $configuration = array())
 	{
@@ -103,6 +90,7 @@ class Repository
 				if ($fieldDeclaration->name === $field->name)
 				{
 					$found = true;
+
 					break;
 				}
 			}
@@ -116,7 +104,6 @@ class Repository
 	}
 
 	/**
-	 *
 	 * @return customField[]
 	 */
 	function get()

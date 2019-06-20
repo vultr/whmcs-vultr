@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * Description of Products
- *
- * @author Mateusz Pawłowski <mateusz.pa@modulesgarden.com>
  */
 class Products extends main\mgLibs\process\AbstractController
 {

@@ -1,6 +1,5 @@
 <?php
 
-//Mateusz
 //DNS
 $_LANG['addonAA']['pagesLabels']['label']['dns'] = 'DNS';
 $_LANG['addonAA']['dns']['vanityDNS'] = 'Specify Vanity DNS';
@@ -216,7 +215,7 @@ $_LANG['addonAA']['testPageSimple']['item']['id']['label'] = 'ID';
 $_LANG['addonAA']['testPageSimple']['item']['actions']['label'] = 'Actions';
 
 $_LANG['addonAA']['testPageSimple']['table']['name'] = 'Simple Item List';
-$_LANG['addonAA']['testPageSimple']['messages']['saveSuccess'] = 'Item Added Successfull';
+$_LANG['addonAA']['testPageSimple']['messages']['saveSuccess'] = 'Item Added Successfully';
 
 
 $_LANG['addonAA']['testPageSimple']['modal']['editLabel'] = 'Edit Item';

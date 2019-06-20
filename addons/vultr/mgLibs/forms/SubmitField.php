@@ -7,8 +7,6 @@ use MGModule\vultr as main;
 
 /**
  * Submit Form Button
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class SubmitField extends AbstractField
 {

@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * MySQL Exception
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Exception extends main\mgLibs\exceptions\System
 {

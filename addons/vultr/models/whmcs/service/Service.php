@@ -1,13 +1,11 @@
 <?php
 
 namespace MGModule\vultr\models\whmcs\service;
-
 use MGModule\vultr as main;
 
 /**
  * Description of account
  * @Table(name=tblhosting,preventUpdate,prefixed=false)
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class service extends main\mgLibs\models\Orm
@@ -24,93 +22,94 @@ class service extends main\mgLibs\models\Orm
 	 * @var int
 	 */
 	public $clientID = 0;
+
 	/**
 	 * @Column(name=dedicatedip,as=dedicatedip)
 	 * @var string
 	 */
 	public $dedicatedIP = null;
+
 	/**
 	 * @Column(name=assignedips,as=assingedips)
 	 * @var array
 	 */
 	public $IPList = array();
+
 	/**
-	 *
 	 * @Column(name=server,as=serverid)
 	 * @var int
 	 */
 	public $serverID;
+
 	/**
-	 *
 	 * @Column(name=packageid,as=pid)
 	 * @var int
 	 */
 	public $productID;
+
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $domain;
+
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $username;
+
 	/**
-	 *
 	 * @Column(as=passwordEncrypted)
 	 * @var string
 	 */
+
 	public $password;
 	/**
-	 *
 	 * @Column(name=nextduedate=nextDueDate)
 	 * @var string
 	 */
 	public $nextDueDate;
+
 	/**
-	 *
 	 * @Column(name=orderid)
 	 * @var int
 	 */
 	protected $_orderid;
+
 	/**
-	 *
 	 * @Column(name=domainstatus,as=_domainstatus)
 	 * @var string
 	 */
 	protected $_status;
+
 	/**
-	 *
 	 * @Column(name=billingcycle,as=_billingcycle)
 	 * @var string
 	 */
 	protected $_billingcycle;
+
 	/**
-	 *
 	 * @var client
 	 */
 	private $_client;
+
 	/**
-	 *
 	 * @var server
 	 */
 	private $_server;
+
 	/**
-	 *
 	 * @var main\models\whmcs\product\product
 	 */
 	private $_product;
+
 	/**
-	 *
 	 * @var main\models\whmcs\service\customFields\repository
 	 */
 	private $_customFields;
 
 	/**
-	 *
 	 * @var main\models\whmcs\service\configOption\repository
 	 */
 	private $_configOptions;
@@ -121,7 +120,6 @@ class service extends main\mgLibs\models\Orm
 	 * @param int $id
 	 * @param array $data
 	 * @throws main\mgLibs\exceptions\systemLoad
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function __construct($id = null, $data = array())
 	{
@@ -134,7 +132,6 @@ class service extends main\mgLibs\models\Orm
 	 *
 	 * @param array $data
 	 * @throws main\mgLibs\exceptions\system
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function load(array $data = array())
 	{
@@ -145,14 +142,7 @@ class service extends main\mgLibs\models\Orm
 
 		if ($this->id !== null && empty($data))
 		{
-			$data = main\mgLibs\MySQL\query::select(
-				static::fieldDeclaration()
-				, static::tableName()
-				, array(
-					'id' => $this->id
-				)
-			)->fetch();
-
+			$data = main\mgLibs\MySQL\query::select(static::fieldDeclaration(), static::tableName(), array('id' => $this->id))->fetch();
 			if (empty($data))
 			{
 				throw new main\mgLibs\exceptions\system('Unable to find ' . get_class($this) . ' with ID:' . $this->id);
@@ -168,6 +158,7 @@ class service extends main\mgLibs\models\Orm
 		{
 			$this->dedicatedIP = $this->IPList[] = $data['dedicatedip'];
 		}
+
 		if (!empty($data['assingedips']))
 		{
 			foreach (explode("\n", $data['assingedips']) as $ip)
@@ -195,16 +186,15 @@ class service extends main\mgLibs\models\Orm
 			$this->password = $data['password'];
 		}
 
-
 		if (!empty($data['server']))
 		{
 			$this->_server = $this->loadServer($data['serverid'], array(
-				'hostname' => $data['serverhostname']
-			, 'username' => $data['serverusername']
-			, 'password' => $data['serverpassword']
-			, 'accesshash' => $data['serveraccesshash']
-			, 'secure' => $data['serversecure']
-			, 'ip' => $data['serverip']
+				'hostname' => $data['serverhostname'],
+				'username' => $data['serverusername'],
+				'password' => $data['serverpassword'],
+				'accesshash' => $data['serveraccesshash'],
+				'secure' => $data['serversecure'],
+				'ip' => $data['serverip']
 			));
 		}
 
@@ -236,7 +226,6 @@ class service extends main\mgLibs\models\Orm
 	 * @param int $id
 	 * @param array $data
 	 * @return main\models\whmcs\servers\server
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	protected function loadServer($id, $data = array())
 	{
@@ -247,7 +236,6 @@ class service extends main\mgLibs\models\Orm
 	 * Get Server Connected With Service
 	 *
 	 * @return main\models\whmcs\servers\server
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public function server()
 	{
@@ -255,6 +243,7 @@ class service extends main\mgLibs\models\Orm
 		{
 			$this->_server = $this->loadServer($this->serverID);
 		}
+
 		return $this->_server;
 	}
 
@@ -262,7 +251,6 @@ class service extends main\mgLibs\models\Orm
 	 * Get Client Connected with Service
 	 *
 	 * @return main\models\whmcs\clients\client
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function client()
 	{
@@ -278,9 +266,8 @@ class service extends main\mgLibs\models\Orm
 	 * Load Client
 	 * Function allows to easy overwrite product object
 	 *
-	 * @param type $data
+	 * @param array $data
 	 * @return main\models\whmcs\service\client
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	protected function loadClient($data = array())
 	{
@@ -288,16 +275,13 @@ class service extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 * Get Merged Configs from product configuration & custom fields & confi optins
+	 * Get Merged Configs from product configuration & custom fields & config options
 	 *
 	 * @return \stdClass
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function mergedConfig()
 	{
-
 		$obj = new \stdClass();
-
 		foreach ($this->product()->configuration as $name => $value)
 		{
 			if (!empty($value))
@@ -329,7 +313,6 @@ class service extends main\mgLibs\models\Orm
 	 * Get Product Service
 	 *
 	 * @return main\models\whmcs\product\product
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	public function product()
 	{
@@ -337,16 +320,16 @@ class service extends main\mgLibs\models\Orm
 		{
 			$this->_product = $this->loadProduct();
 		}
+
 		return $this->_product;
 	}
 
 	/**
 	 * Load Product
-	 * Function allows to easy overwrite product object
+	 * Function allows to easily overwrite product object
 	 *
 	 * @param array $data
 	 * @return main\models\whmcs\product\product
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	protected function loadProduct($data = array())
 	{
@@ -357,7 +340,6 @@ class service extends main\mgLibs\models\Orm
 	 * Get Custom Fields
 	 *
 	 * @return customFields\repository
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function customFields()
 	{
@@ -373,7 +355,6 @@ class service extends main\mgLibs\models\Orm
 	 * Get Config Options
 	 *
 	 * @return configOptions
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function configOptions()
 	{
@@ -388,7 +369,7 @@ class service extends main\mgLibs\models\Orm
 	/**
 	 * Save Account Settings
 	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
+	 * @param array $cols
 	 */
 	function save($cols = array())
 	{
@@ -441,6 +422,7 @@ class service extends main\mgLibs\models\Orm
 		{
 			$this->load();
 		}
+
 		return $this->_status;
 	}
 
@@ -450,11 +432,11 @@ class service extends main\mgLibs\models\Orm
 		{
 			$this->load();
 		}
+
 		return $this->_orderid;
 	}
 
 	/**
-	 *
 	 * @return \MGModule\proxmoxAddon\models\recovery\RecoveryVM
 	 */
 	function getRecoveryVM($vserverID = '0')
@@ -465,15 +447,12 @@ class service extends main\mgLibs\models\Orm
 			$where['vserver_id'] = $vserverID;
 		}
 
-		$data = main\mgLibs\MySQL\query::select(
-			main\models\recovery\RecoveryVM::fieldDeclaration()
-			, main\models\recovery\RecoveryVM::tableName()
-			, $where
-		)->fetch();
+		$data = main\mgLibs\MySQL\query::select(main\models\recovery\RecoveryVM::fieldDeclaration(), main\models\recovery\RecoveryVM::tableName(), $where)->fetch();
 		if (!empty($data['id']))
 		{
 			return new main\models\recovery\RecoveryVM ($data['id'], $data);
 		}
+
 		$obj = new main\models\recovery\RecoveryVM ();
 		$obj->setServiceID($this->id);
 		$obj->setServerID($this->serverID);
@@ -484,6 +463,5 @@ class service extends main\mgLibs\models\Orm
 		}
 
 		return $obj;
-
 	}
 }

@@ -6,8 +6,6 @@ use MGModule\vultr as main;
 
 /**
  * Description of actions
- *
- * @author Michal Czech <michael@modulesgarden.com>
  */
 class Home extends main\mgLibs\process\AbstractController
 {

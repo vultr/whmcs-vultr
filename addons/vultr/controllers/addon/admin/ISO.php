@@ -10,8 +10,6 @@ namespace MGModule\vultr\controllers\addon\admin;
 
 /**
  * Description of ISO
- *
- * @author inbs-dev
  */
 class ISO
 {

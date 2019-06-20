@@ -7,7 +7,6 @@ use MGModule\vultr as main;
 /**
  * Description of ORMHelper
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Orm extends Base
@@ -85,7 +84,6 @@ class Orm extends Base
 	 * Fill Current Model Properties
 	 *
 	 * @param array $data
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function fillProperties($data)
 	{
@@ -114,7 +112,7 @@ class Orm extends Base
 		{
 			if (!isset($used[$property]) && !isset($configs['notRequired']))
 			{
-				throw new main\mgLibs\exceptions\System('Missing object property: ' . $property, main\mgLibs\exceptions\Codes::MISING_OBJECT_PROPERTY);
+				throw new main\mgLibs\exceptions\System('Missing object property: ' . $property, main\mgLibs\exceptions\Codes::MISSING_OBJECT_PROPERTY);
 			}
 		}
 	}
@@ -359,7 +357,7 @@ class Orm extends Base
 				$this->$method($v);
 				continue;
 			}
-			throw new main\mgLibs\exceptions\System(sprintf('Object property "%s" does not exist ', $k), main\mgLibs\exceptions\Codes::MISING_OBJECT_PROPERTY);
+			throw new main\mgLibs\exceptions\System(sprintf('Object property "%s" does not exist ', $k), main\mgLibs\exceptions\Codes::MISSING_OBJECT_PROPERTY);
 		}
 	}
 

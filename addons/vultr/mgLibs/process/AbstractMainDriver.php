@@ -8,7 +8,6 @@ use MGModule\vultr\mgLibs;
 /**
  * Main Abstract Controller
  *
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 abstract class AbstractMainDriver

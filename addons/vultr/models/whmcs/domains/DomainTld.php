@@ -1,31 +1,10 @@
 <?php
-
-/* * ********************************************************************
- * vultr product developed. (2015-11-23)
- * *
- *
- *  CREATED BY MODULESGARDEN       ->       http://modulesgarden.com
- *  CONTACT                        ->       contact@modulesgarden.com
- *
- *
- * This software is furnished under a license and may be used and copied
- * only  in  accordance  with  the  terms  of such  license and with the
- * inclusion of the above copyright notice.  This software  or any other
- * copies thereof may not be provided or otherwise made available to any
- * other person.  No title to and  ownership of the  software is  hereby
- * transferred.
- *
- *
- * ******************************************************************** */
-
 namespace MGModule\vultr\models\whmcs\domains;
-
 use MGModule\vultr as main;
 
 /**
  * Description of DomainPrice
  *
- * @author Pawel Kopec <pawelk@modulesgarden.com>
  * @Table(name=tbldomainpricing,preventUpdate,prefixed=false)
  */
 class DomainTld extends main\mgLibs\models\Orm
@@ -111,6 +90,7 @@ class DomainTld extends main\mgLibs\models\Orm
 
 	/**
 	 * Get Pricing
+	 *
 	 * @return main\models\whmcs\pricing\Price[]
 	 */
 	public function getDomainRegisterPricing()
@@ -120,35 +100,32 @@ class DomainTld extends main\mgLibs\models\Orm
 			return $this->_domainRegisterPricing;
 		}
 
-		$repositor = new main\models\whmcs\pricing\Repository();
-		$repositor->onlyDomainRegister();
-		$repositor->withRelation($this->id);
-		$repositor->withDomainCycle();
+		$repository = new main\models\whmcs\pricing\Repository();
+		$repository->onlyDomainRegister();
+		$repository->withRelation($this->id);
+		$repository->withDomainCycle();
 		$this->_domainRegisterPricing = array();
-		foreach ($repositor->get() as $price)
+		foreach ($repository->get() as $price)
 		{
 			$this->_domainRegisterPricing[] = $price;
 		}
-		unset($repositor);
+
+		unset($repository);
 		return $this->_domainRegisterPricing;
 	}
 
-
 	public function getPrice($currencyId, $billingCycle)
 	{
-
-
-		$repositor = new main\models\whmcs\pricing\Repository();
-		$repositor->onlyDomainRegister();
-		$repositor->withRelation($this->id);
-		$repositor->withDomainCycle();
-		$repositor->onlyCurrency($currencyId);
-		foreach ($repositor->get() as $price)
+		$repository = new main\models\whmcs\pricing\Repository();
+		$repository->onlyDomainRegister();
+		$repository->withRelation($this->id);
+		$repository->withDomainCycle();
+		$repository->onlyCurrency($currencyId);
+		foreach ($repository->get() as $price)
 		{
 			return $price->getPrice($billingCycle);
 		}
 
 		return null;
 	}
-
 }

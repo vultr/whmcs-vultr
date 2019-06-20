@@ -1,121 +1,102 @@
 <?php
-
 namespace MGModule\vultr\models\whmcs\clients;
-
 use MGModule\vultr as main;
 
 /**
  * Client Model
  *
  * @Table(name=tblclients,preventUpdate,prefixed=false)
- * @author Michal Czech <michael@modulesgarden.com>
  * @SuppressWarnings(PHPMD)
  */
 class Client extends main\mgLibs\models\Orm
 {
 	/**
-	 *
 	 * @Column(id)
 	 * @var int
 	 */
 	public $id;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $firstname;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $lastname;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $email;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $companyname;
 
 	/**
-	 *
 	 * @Column()
 	 * @var string
 	 */
 	public $status;
 
 	/**
-	 *
 	 * @Column(name=currency,as=currencyId)
 	 * @var string
 	 */
 	protected $currencyId;
 
 	/**
-	 *
 	 * @Column(name=address1)
 	 * @var string
 	 */
 	protected $address1;
 
 	/**
-	 *
 	 * @Column(name=address2)
 	 * @var string
 	 */
 	protected $address2;
 
 	/**
-	 *
 	 * @Column(name=city)
 	 * @var string
 	 */
 	protected $city;
 
 	/**
-	 *
 	 * @Column(name=state)
 	 * @var string
 	 */
 	protected $state;
 
 	/**
-	 *
 	 * @Column(name=postcode)
 	 * @var string
 	 */
 	protected $postcode;
 
 	/**
-	 *
 	 * @Column(name=country)
 	 * @var string
 	 */
 	protected $country;
 
 	/**
-	 *
 	 * @Column(name=phonenumber)
 	 * @var string
 	 */
 	protected $phonenumber;
 
-
 	private $_customFields;
 
 	private $_currency;
-
 
 	function getFullName()
 	{
@@ -131,7 +112,6 @@ class Client extends main\mgLibs\models\Orm
 	 * Get Custom Fields
 	 *
 	 * @return customFields
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function customFields()
 	{
@@ -144,7 +124,6 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @return main\models\whmcs\currencies\Currency
 	 */
 	public function getCurrency()
@@ -163,13 +142,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param int $currencyId
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setCurrencyId($currencyId)
 	{
 		$this->currencyId = $currencyId;
+
 		return $this;
 	}
 
@@ -179,13 +158,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $address1
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setAddress1($address1)
 	{
 		$this->address1 = $address1;
+
 		return $this;
 	}
 
@@ -195,13 +174,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $address2
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setAddress2($address2)
 	{
 		$this->address2 = $address2;
+
 		return $this;
 	}
 
@@ -211,13 +190,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $city
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setCity($city)
 	{
 		$this->city = $city;
+
 		return $this;
 	}
 
@@ -227,13 +206,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $state
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setState($state)
 	{
 		$this->state = $state;
+
 		return $this;
 	}
 
@@ -243,13 +222,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $postcode
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setPostcode($postcode)
 	{
 		$this->postcode = $postcode;
+
 		return $this;
 	}
 
@@ -259,13 +238,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $country
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setCountry($country)
 	{
 		$this->country = $country;
+
 		return $this;
 	}
 
@@ -275,13 +254,13 @@ class Client extends main\mgLibs\models\Orm
 	}
 
 	/**
-	 *
 	 * @param string $phonenumber
 	 * @return \MGModule\QuickBooksDesktop\models\whmcs\clients\Client
 	 */
 	public function setPhonenumber($phonenumber)
 	{
 		$this->phonenumber = $phonenumber;
+
 		return $this;
 	}
 
@@ -299,6 +278,4 @@ class Client extends main\mgLibs\models\Orm
 	{
 		return $this->lastname;
 	}
-
-
 }

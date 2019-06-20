@@ -5,9 +5,7 @@ namespace MGModule\vultr\models\whmcs\product\configOptions;
 use MGModule\vultr as main;
 
 /**
- * Product Custom Fields Colletion
- *
- * @author Michal Czech <michael@modulesgarden.com>
+ * Product Custom Fields Collection
  */
 class Repository
 {
@@ -44,23 +42,14 @@ class Repository
 	 * Load Product Custom Fields
 	 *
 	 * @param int $productID
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function get()
 	{
-		$sql = "
-            SELECT
-                id
-                ,name
-                ,description
-                ,pid 
-            FROM
-                tblproductconfiggroups G
-            LEFT JOIN
-                tblproductconfiglinks L
-                ON
-                    L.gid = G.id
-        ";
+		$sql = '
+		SELECT id, name, description, pid 
+		FROM tblproductconfiggroups G
+		LEFT JOIN tblproductconfiglinks L
+			ON L.gid = G.id';
 
 		$condition = array();
 
@@ -101,7 +90,6 @@ class Repository
 	 *
 	 * @param bool $onlyRequired
 	 * @return array
-	 * @author Michal Czech <michael@modulesgarden.com>
 	 */
 	function checkFields(array $configuration = array())
 	{
@@ -111,7 +99,6 @@ class Repository
 		}
 
 		$missingFields = array();
-
 		foreach ($configuration as $fieldDeclaration)
 		{
 			$found = false;
@@ -120,6 +107,7 @@ class Repository
 				if ($fieldDeclaration->name === $field->name)
 				{
 					$found = true;
+
 					break;
 				}
 			}
@@ -136,8 +124,7 @@ class Repository
 
 	/**
 	 * Generate Custom Fields Depends on declaration in Module Configuration
-	 *
-	 * @author Michal Czech <michael@modulesgarden.com>
+	 * @param array $configuration
 	 */
 	function generateFromConfiguration(array $configuration = array())
 	{
@@ -156,14 +143,6 @@ class Repository
 					$found = true;
 					break;
 				}
-			}
-
-			if (!$found)
-			{
-				//$fieldDeclaration->a;
-
-				//$field->save();
-				//$this->_groups[] = $field;
 			}
 		}
 	}
