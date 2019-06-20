@@ -2,8 +2,6 @@
 
 The Vultr platform offers a powerful, feature-rich API that allows users to control every aspect of their account. The Vultr WHMCS Module provides hosting providers with a fully automated solution that allows them to offer reliable Cloud Servers on the Vultr Platform to their customers.
 
-***
-
 ## System Requirements
 - WHMCS version 7.2.x or newer
 - PHP version 7.1.x or newer
