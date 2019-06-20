@@ -2,9 +2,8 @@
 
 namespace MGModule\vultr\models\customWHMCS\product;
 
-use MGModule\vultr as main;
-use WHMCS\Database\Capsule as DB;
 use MGModule\vultr\helpers\ProductsHelper;
+use WHMCS\Database\Capsule as DB;
 
 /**
  * Description of repository
@@ -18,15 +17,12 @@ class Repository extends \MGModule\vultr\mgLibs\models\Repository
 
 	public function saveSingleProduct($data)
 	{
-		$productID = DB::table('tblproducts')->insertGetId($data);
-
-		return $productID;
+		return DB::table('tblproducts')->insertGetId($data);
 	}
 
 	public function insertPricing($data)
 	{
-		DB::table('tblpricing')->insertGetId($data);
-		return $insertResult;
+		return DB::table('tblpricing')->insertGetId($data);
 	}
 
 	public function createProductConfigurableOptions($productId)

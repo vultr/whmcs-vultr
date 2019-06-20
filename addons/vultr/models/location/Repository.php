@@ -2,8 +2,8 @@
 
 namespace MGModule\vultr\models\location;
 
-use WHMCS\Database\Capsule as DB;
 use MGModule\vultr\helpers\ApiHelper;
+use WHMCS\Database\Capsule as DB;
 
 class Repository extends \MGModule\vultr\mgLibs\models\Repository
 {

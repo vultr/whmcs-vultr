@@ -2,8 +2,6 @@
 
 namespace MGModule\vultr\models\whmcs\service\configOptions;
 
-use MGModule\vultr as main;
-
 class ConfigOption
 {
 	public $id;
