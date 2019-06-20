@@ -853,7 +853,7 @@ if (!class_exists('VultrAPI'))
 			}
 
 			$_defaults = array(
-				CURLOPT_USERAGENT => sprintf('%s v%s (%s)', $this->agent, $this->version, 'https://github.com/usefulz/vultr-api-client'),
+				CURLOPT_USERAGENT => sprintf('%s v%s (%s) - WHMCS Module', $this->agent, $this->version, 'https://github.com/usefulz/vultr-api-client'),
 				CURLOPT_HEADER => 0,
 				CURLOPT_VERBOSE => 0,
 				CURLOPT_SSL_VERIFYPEER => 0,
