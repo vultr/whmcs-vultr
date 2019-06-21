@@ -41,13 +41,13 @@ class Repository
 		FROM tblcustomfieldsvalues V
 		JOIN tblcustomfields C
 			ON C.id = V.fieldid
-			AND C.type = \'product\'
-		JOIN tblhosting H
-			ON V.relid = H.id
-			And C.relid = H.packageid
-		WHERE H.id = :account_id:';
+			AND C.type = \'product\' 
+		JOIN tblhosting H 
+			ON V.relid = H.id 
+			And C.relid = H.packageid 
+		WHERE H.id = :account_id';
 
-		$result = \MGModule\vultr\mgLibs\MySQL\Query::query($query, array(':account_id:' => $this->serviceID));
+		$result = \MGModule\vultr\mgLibs\MySQL\Query::query($query, array('account_id' => $this->serviceID));
 
 		while ($row = $result->fetch())
 		{
