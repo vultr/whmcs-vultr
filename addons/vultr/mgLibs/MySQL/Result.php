@@ -9,13 +9,6 @@ namespace MGModule\vultr\mgLibs\MySQL;
 class Result
 {
 	/**
-	 * Use PDO for Connection
-	 *
-	 * @var boolean
-	 */
-	static private $usePDO = false;
-	/**
-	 *
 	 * @var PDOStatement
 	 */
 	private $result;
@@ -28,12 +21,6 @@ class Result
 	 */
 	function __construct($result, $id = null)
 	{
-
-		if (is_a($result, 'PDOStatement'))
-		{
-			self::$usePDO = true;
-		}
-
 		$this->result = $result;
 		$this->id = $id;
 	}
@@ -45,19 +32,7 @@ class Result
 	 */
 	function fetchAll()
 	{
-		if (self::$usePDO)
-		{
-			return $this->result->fetchAll(\PDO::FETCH_ASSOC);
-		}
-		else
-		{
-			$result = array();
-			while ($row = $this->fetch())
-			{
-				$result[] = $row;
-			}
-			return $result;
-		}
+		return $this->result->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
 	/**
@@ -67,14 +42,7 @@ class Result
 	 */
 	function fetch()
 	{
-		if (self::$usePDO)
-		{
-			return $this->result->fetch(\PDO::FETCH_ASSOC);
-		}
-		else
-		{
-			return mysql_fetch_assoc($this->result);
-		}
+		return $this->result->fetch(\PDO::FETCH_ASSOC);
 	}
 
 	/**
@@ -85,21 +53,7 @@ class Result
 	 */
 	function fetchColumn($name = null)
 	{
-		if (self::$usePDO)
-		{
-			$data = $this->result->fetch(\PDO::FETCH_BOTH);
-		}
-		else
-		{
-			if ($name)
-			{
-				$data = mysql_fetch_assoc($this->result);
-			}
-			else
-			{
-				$data = mysql_fetch_array($this->result);
-			}
-		}
+		$data = $this->result->fetch(\PDO::FETCH_BOTH);
 
 		if ($name)
 		{
