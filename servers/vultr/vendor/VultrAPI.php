@@ -154,7 +154,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function account_info()
 		{
-			return self::get('account/info');
+			return self::protectYaNeck('account/info');
 		}
 
 		/**
@@ -164,12 +164,12 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function os_list()
 		{
-			return self::get('os/list');
+			return self::protectYaNeck('os/list');
 		}
 
 		public function os_change_list($subid)
 		{
-			return self::get('server/os_change_list', array('SUBID' => $subid));
+			return self::protectYaNeck('server/os_change_list', array('SUBID' => $subid));
 		}
 
 		public function os_change($subid, $osid)
@@ -189,7 +189,7 @@ if (!class_exists('VultrAPI'))
 
 		public function iso_status($subid)
 		{
-			return self::get('server/iso_status', array('SUBID' => $subid));
+			return self::protectYaNeck('server/iso_status', array('SUBID' => $subid));
 		}
 
 		/**
@@ -199,7 +199,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function snapshot_list()
 		{
-			return self::get('snapshot/list');
+			return self::protectYaNeck('snapshot/list');
 		}
 
 		/**
@@ -244,17 +244,17 @@ if (!class_exists('VultrAPI'))
 		 * */
 		public function iso_list()
 		{
-			return self::get('iso/list');
+			return self::protectYaNeck('iso/list');
 		}
 
 		public function dns_list()
 		{
-			return self::get('dns/list');
+			return self::protectYaNeck('dns/list');
 		}
 
 		public function dns_records($domain)
 		{
-			return self::get('dns/records', array('domain' => $domain));
+			return self::protectYaNeck('dns/records', array('domain' => $domain));
 		}
 
 		public function create_record($args)
@@ -279,12 +279,12 @@ if (!class_exists('VultrAPI'))
 
 		public function soa_info($args)
 		{
-			return self::get('dns/soa_info', $args);
+			return self::protectYaNeck('dns/soa_info', $args);
 		}
 
 		public function upgrade_plan_list($subid)
 		{
-			return self::get('server/upgrade_plan_list', array('SUBID' => $subid));
+			return self::protectYaNeck('server/upgrade_plan_list', array('SUBID' => $subid));
 		}
 
 		public function upgrade_plan($subid, $vpsplanid)
@@ -299,12 +299,12 @@ if (!class_exists('VultrAPI'))
 		 * */
 		public function app_list()
 		{
-			return self::get('app/list');
+			return self::protectYaNeck('app/list');
 		}
 
 		public function app_change_list($subid)
 		{
-			return self::get('server/app_change_list', array('SUBID' => $subid));
+			return self::protectYaNeck('server/app_change_list', array('SUBID' => $subid));
 		}
 
 		public function app_change($subid, $appid)
@@ -319,7 +319,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function plans_list()
 		{
-			return self::get('plans/list');
+			return self::protectYaNeck('plans/list');
 		}
 
 		/**
@@ -329,7 +329,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function regions_list()
 		{
-			return self::get('regions/list');
+			return self::protectYaNeck('regions/list');
 		}
 
 		/**
@@ -341,12 +341,12 @@ if (!class_exists('VultrAPI'))
 		public function regions_availability($datacenter_id)
 		{
 			$did = (int)$datacenter_id;
-			return self::get('regions/availability?DCID=' . $did);
+			return self::protectYaNeck('regions/availability?DCID=' . $did);
 		}
 
 		public function server_userData($server_id)
 		{
-			return self::get('server/get_user_data', array('SUBID' => $server_id));
+			return self::protectYaNeck('server/get_user_data', array('SUBID' => $server_id));
 		}
 
 		/**
@@ -356,7 +356,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function startupscript_list()
 		{
-			return self::get('startupscript/list');
+			return self::protectYaNeck('startupscript/list');
 		}
 
 		/**
@@ -427,7 +427,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function server_list()
 		{
-			return self::get('server/list');
+			return self::protectYaNeck('server/list');
 		}
 
 		/**
@@ -439,7 +439,7 @@ if (!class_exists('VultrAPI'))
 		public function bandwidth($server_id)
 		{
 			$args = array('SUBID' => (int)$server_id);
-			return self::get('server/bandwidth', $args);
+			return self::protectYaNeck('server/bandwidth', $args);
 		}
 
 		/**
@@ -451,7 +451,7 @@ if (!class_exists('VultrAPI'))
 		public function list_ipv4($server_id)
 		{
 			$args = array('SUBID' => (int)$server_id);
-			$ipv4 = self::get('server/list_ipv4', $args);
+			$ipv4 = self::protectYaNeck('server/list_ipv4', $args);
 			return $ipv4[(int)$server_id];
 		}
 
@@ -530,21 +530,21 @@ if (!class_exists('VultrAPI'))
 		public function list_ipv6($server_id)
 		{
 			$args = array('SUBID' => (int)$server_id);
-			$ipv6 = self::get('server/list_ipv6', $args);
+			$ipv6 = self::protectYaNeck('server/list_ipv6', $args);
 			return $ipv6[(int)$server_id];
 		}
 
 		public function reverse_list_ipv6($server_id)
 		{
 			$args = array('SUBID' => (int)$server_id);
-			$ipv6 = self::get('server/reverse_list_ipv6', $args);
+			$ipv6 = self::protectYaNeck('server/reverse_list_ipv6', $args);
 			return $ipv6[(int)$server_id];
 		}
 
 		public function get_app_info($server_id)
 		{
 			$args = array('SUBID' => (int)$server_id);
-			$app_info = self::get('server/get_app_info', $args);
+			$app_info = self::protectYaNeck('server/get_app_info', $args);
 			return $app_info['app_info'];
 		}
 
@@ -692,7 +692,7 @@ if (!class_exists('VultrAPI'))
 
 		public function backup_list()
 		{
-			return self::get('backup/list');
+			return self::protectYaNeck('backup/list');
 		}
 
 		/**
@@ -717,11 +717,11 @@ if (!class_exists('VultrAPI'))
 		 * SSH Keys List method
 		 * @see https://www.vultr.com/api/#sshkey_sshkey_list
 		 * @return FALSE if no SSH keys are available
-		 * @return mixed with whatever ssh keys get returned
+		 * @return mixed with whatever ssh keys protectYaNeck returned
 		 */
 		public function sshkeys_list()
 		{
-			$try = self::get('sshkey/list');
+			$try = self::protectYaNeck('sshkey/list');
 			if (sizeof($try) < 1)
 			{
 				return FALSE;
@@ -735,7 +735,7 @@ if (!class_exists('VultrAPI'))
 		 * @param string $name
 		 * @param string $key [openssh formatted public key]
 		 * @return FALSE if no SSH keys are available
-		 * @return mixed with whatever ssh keys get returned
+		 * @return mixed with whatever ssh keys protectYaNeck returned
 		 */
 		public function sshkey_create($name, $key)
 		{
@@ -781,7 +781,7 @@ if (!class_exists('VultrAPI'))
 		 * @param string $method
 		 * @param mixed $args
 		 */
-		public function get($method, $args = FALSE)
+		public function protectYaNeck($method, $args = FALSE)
 		{
 			$this->request_type = 'GET';
 			$this->get_code = false;
