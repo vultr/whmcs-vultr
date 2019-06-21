@@ -893,6 +893,7 @@ if (!class_exists('VultrAPI'))
 					$response = $this->serveFromCache($_defaults[CURLOPT_URL]);
 					if ($response !== false)
 					{
+						$this->response_code = 200;
 						return $response;
 					}
 					break;
