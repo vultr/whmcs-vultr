@@ -12,12 +12,6 @@ use MGModule\vultr as main;
 class Query
 {
 	static $lastQuery;
-	/**
-	 * Use PDO for Connection
-	 *
-	 * @var boolean
-	 */
-	static private $usePDO = false;
 
 	/**
 	 *
@@ -46,7 +40,6 @@ class Query
 		//Use by default PDO in WHMCS 6 and 7
 		if (class_exists('\Illuminate\Database\Capsule\Manager') && \Illuminate\Database\Capsule\Manager::connection()->getPdo())
 		{
-			self::$usePDO = true;
 			self::$_instance->connection['default'] = \Illuminate\Database\Capsule\Manager::connection()->getPdo();
 		}
 		else
@@ -57,11 +50,9 @@ class Query
 	}
 
 	/**
-	 * Connect DB From File
-	 *
-	 * @param string $file
-	 * @return boolean
-	 * @throws main\exception\System
+	 * @param $file
+	 * @return bool
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	public static function connectFromFile($file)
 	{
@@ -74,44 +65,26 @@ class Query
 
 		include $file;
 
-		foreach ($config as $connectionName => $config)
+		foreach ($config as $connectionName => $c)
 		{
-			if ($config['host'])
+			if ($c['host'])
 			{
-				if (self::$usePDO)
+				if (!extension_loaded('PDO'))
 				{
-					if (!extension_loaded('PDO'))
-					{
-						throw new main\mgLibs\exceptions\System('Missing PDO Extension', main\mgLibs\exceptions\Codes::MYSQL_MISSING_PDO_EXTENSION);
-					}
-
-					try
-					{
-						self::$_instance->connection[$connectionName] = new \PDO("mysql:host=" . $config['host'] . ";dbname=" . $config['name'], $config['user'], $config['pass']);
-
-						self::$_instance->connection[$connectionName]->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-					}
-					catch (\Exception $ex)
-					{
-						throw new main\mgLibs\exceptions\System('SQL Connection Error', exceptions\Codes::MYSQL_CONNECTION_FAILED);
-					}
+					throw new main\mgLibs\exceptions\System('Missing PDO Extension', main\mgLibs\exceptions\Codes::MYSQL_MISSING_PDO_EXTENSION);
 				}
-				else
+
+				try
 				{
-					if (self::$_instance->connection[$connectionName] = mysql_connect($config['host'], $config['user'], $config['pass'], true))
-					{
-						mysql_select_db($config['name'], self::$_instance->connection[$connectionName]);
+					self::$_instance->connection[$connectionName] = new \PDO("mysql:host=" . $c['host'] . ";dbname=" . $c['name'], $c['user'], $c['pass']);
 
-						if ($error = mysql_error())
-						{
-							throw new main\mgLibs\exceptions\System($error, main\mgLibs\exceptions\Codes::MYSQL_CONNECTION_FAILED);
-						}
-					}
-					else
-					{
-						throw new main\mgLibs\exceptions\System('SQL Connection Error', main\mgLibs\exceptions\Codes::MYSQL_CONNECTION_FAILED);
-					}
+					self::$_instance->connection[$connectionName]->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 				}
+				catch (\Exception $ex)
+				{
+					throw new main\mgLibs\exceptions\System('SQL Connection Error', exceptions\Codes::MYSQL_CONNECTION_FAILED);
+				}
+
 			}
 		}
 
@@ -131,15 +104,8 @@ class Query
 	}
 
 	/**
-	 * Get Singleton instance
-	 *
-	 * @param string $hostName
-	 * @param string $username
-	 * @param string $password
-	 * @param string $dbname
-	 * @param string $connectionName
-	 * @return main\mgLibs\MySQL\Query
-	 * @throws main\exception\System
+	 * @return Query
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	public static function I()
 	{
@@ -157,24 +123,15 @@ class Query
 	 */
 	static function dropInstance($connectionName = 'default')
 	{
-		if (self::$usePDO)
-		{
-			unset(self::$_instance->connection[$connectionName]);
-		}
-		else
-		{
-			mysql_close(self::$_instance->connection[$connectionName]);
-		}
+		unset(self::$_instance->connection[$connectionName]);
 	}
 
 	/**
-	 * Simple Insert Query
-	 *
-	 * @param string $table
+	 * @param $table
 	 * @param array $data
 	 * @param string $connectionName
-	 * @return int id of new record
-	 * @throws \exception\System
+	 * @return int
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	static function insert($table, array $data, $connectionName = 'default')
 	{
@@ -226,98 +183,42 @@ class Query
 
 		$params = $newParams;
 
-		if (self::$usePDO)
+		try
 		{
-			try
+			$sth = self::$_instance->connection[$connectionName]->prepare($query);
+			$sth->execute($params);
+		}
+		catch (\Exception $ex)
+		{
+			$dQuery = $query;
+			foreach ($params as $n => $v)
 			{
-				$sth = self::$_instance->connection[$connectionName]->prepare($query);
-				$a = $sth->execute($params);
-			}
-			catch (\Exception $ex)
-			{
-				$dQuery = $query;
-				foreach ($params as $n => $v)
-				{
-					$dQuery = str_replace($n, "'" . $v . "'", $dQuery);
-				}
-
-				throw new Exception('Error in SQL Query:' . $ex->getMessage(), $dQuery, $ex);
+				$dQuery = str_replace($n, "'" . $v . "'", $dQuery);
 			}
 
-			if (strpos($query, 'insert') !== false || strpos($query, 'INSERT') !== false)
-			{
-				$id = self::$_instance->connection[$connectionName]->lastInsertId();
-			}
-			else
-			{
-				$id = null;
-			}
+			throw new Exception('Error in SQL Query:' . $ex->getMessage(), $dQuery, $ex);
+		}
 
-			return new Result($sth, $id);
+		if (strpos($query, 'insert') !== false || strpos($query, 'INSERT') !== false)
+		{
+			$id = self::$_instance->connection[$connectionName]->lastInsertId();
 		}
 		else
 		{
-			foreach ($params as $key => $value)
-			{
-				if (is_array($value))
-				{
-					throw new main\mgLibs\exceptions\System("Cant use array as MySQL Value");
-				}
-				if ($value === null)
-				{
-					$query = str_replace("$key", "null", $query);
-				}
-				elseif ($value === false)
-				{
-					$query = str_replace("$key", "0", $query);
-				}
-				elseif (is_string($value))
-				{
-					$query = str_replace("$key", "'" . mysql_real_escape_string($value) . "'", $query);
-				}
-				else
-				{
-					$query = str_replace("$key", mysql_real_escape_string($value), $query);
-				}
-			}
-
-			self::$lastQuery = $query;
-
-			if (!empty(self::$_instance->connection[$connectionName]))
-			{
-				$result = mysql_query($query, self::$_instance->connection[$connectionName]);
-			}
-			else
-			{
-				$result = mysql_query($query);
-			}
-
-			if ($error = mysql_error())
-			{
-				throw new Exception('Error in SQL Query:' . $error, $query);
-			}
-
-			if (strpos($query, 'insert') !== false || strpos($query, 'INSERT') !== false)
-			{
-				$id = mysql_insert_id();
-			}
-			else
-			{
-				$id = null;
-			}
-
-			return new Result($result, $id);
+			$id = null;
 		}
+
+		return new Result($sth, $id);
+
 	}
 
 	/**
-	 * Simple Insert Query
-	 *
-	 * @param string $table
+	 * @param $table
 	 * @param array $data
+	 * @param array $update
 	 * @param string $connectionName
-	 * @return int id of new record
-	 * @throws \exception\System
+	 * @return int
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	static function insertOnDuplicateUpdate($table, array $data, array $update, $connectionName = 'default')
 	{
@@ -344,7 +245,6 @@ class Query
 		$sql .= "ON DUPLICATE KEY UPDATE ";
 
 		$cols = array();
-		$valuesLabels = array();
 
 		foreach ($update as $col => $value)
 		{
@@ -363,21 +263,17 @@ class Query
 	}
 
 	/**
-	 * Simple Update Request
-	 *
-	 * @param string $table
+	 * @param $table
 	 * @param array $data
 	 * @param array $condition
-	 * @param array $conditionValues
 	 * @return result
-	 * @throws \exception\System
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	static function update($table, array $data, array $condition)
 	{
 		$conditionParsed = self::parseConditions($condition, $values);
 
 		$cols = array();
-		$valuesLabels = array();
 
 		foreach ($data as $col => $value)
 		{
@@ -401,11 +297,11 @@ class Query
 	}
 
 	/**
-	 * Parse MySQL Conditions
-	 *
-	 * @param type $condition
-	 * @param type $values
-	 * @return type
+	 * @param $condition
+	 * @param $values
+	 * @param null $prefix
+	 * @param int $i
+	 * @return string
 	 */
 	static function parseConditions($condition, &$values, $prefix = null, &$i = 0)
 	{
@@ -471,13 +367,10 @@ class Query
 	}
 
 	/**
-	 * Simple Delete Request
-	 *
-	 * @param string $table
+	 * @param $table
 	 * @param array $condition
-	 * @param array $conditionValues
 	 * @return result
-	 * @throws \exception\System
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	static function delete($table, array $condition)
 	{
@@ -494,16 +387,15 @@ class Query
 	}
 
 	/**
-	 * Simple Select Query
-	 *
 	 * @param array $cols
-	 * @param string $table
-	 * @param array $conditionValues
-	 * @param array $groupBy
-	 * @param int $limit
+	 * @param $table
+	 * @param array $condition
+	 * @param array $orderBy
+	 * @param null $limit
 	 * @param int $offset
+	 * @param string $connectionName
 	 * @return result
-	 * @throws \exception\System
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	static function select(array $cols, $table, array $condition = array(), array $orderBy = array(), $limit = null, $offset = 0, $connectionName = 'default')
 	{
@@ -598,16 +490,15 @@ class Query
 	}
 
 	/**
-	 * Simple Select Query
-	 *
-	 * @param array $cols
-	 * @param string $table
-	 * @param array $conditionValues
-	 * @param array $groupBy
-	 * @param int $limit
+	 * @param $colsName
+	 * @param $table
+	 * @param array $condition
+	 * @param array $orderBy
+	 * @param null $limit
 	 * @param int $offset
-	 * @return result
-	 * @throws \exception\System
+	 * @param string $connectionName
+	 * @return array
+	 * @throws main\mgLibs\exceptions\System
 	 */
 	static function count($colsName, $table, array $condition = array(), array $orderBy = array(), $limit = null, $offset = 0, $connectionName = 'default')
 	{
