@@ -9,7 +9,7 @@ $_LANG['addonAA']['dns']['changeNameServer'] = 'Change Name Servers';
 $_LANG['addonAA']['dns']['DNSInfo'] = 'Set Info';
 
 $_LANG['addonAA']['dns']['messages'][''] = '';
-$_LANG['addonAA']['dns']['messages']['NameServersChange'] = 'Name servers has been changed';
+$_LANG['addonAA']['dns']['messages']['NameServersChange'] = 'Name servers updated';
 
 
 //Location
@@ -27,7 +27,7 @@ $_LANG['addonAA']['products']['plan'] = 'Plan';
 $_LANG['addonAA']['products']['paytype'] = 'Paytype';
 $_LANG['addonAA']['products']['modal']['removeProduct'] = 'Remove Product';
 $_LANG['addonAA']['products']['modal']['close'] = 'Close';
-$_LANG['addonAA']['products']['modal']['removeInfo'] = 'Are you sure to remove product?';
+$_LANG['addonAA']['products']['modal']['removeInfo'] = 'Are you sure you want to remove this product?';
 $_LANG['addonAA']['products']['modal']['remove'] = 'Remove';
 $_LANG['addonAA']['products']['modal']['editProduct'] = 'Edit Product';
 $_LANG['addonAA']['products']['productName'] = "Product Name";
@@ -191,13 +191,13 @@ $_LANG['addonAA']['testPage']['actionButtons']['delete'] = 'Delete';
 
 $_LANG['addonAA']['testPage']['modal']['editLabel'] = 'Edit Item:';
 
-$_LANG['addonAA']['testPage']['modal']['deleteLabel'] = 'Delte Item: ';
+$_LANG['addonAA']['testPage']['modal']['deleteLabel'] = 'Delete Item: ';
 $_LANG['addonAA']['testPage']['modal']['delete'] = 'Delete';
 $_LANG['addonAA']['testPage']['modal']['close'] = 'Close';
 $_LANG['addonAA']['testPage']['modal']['deleteDescription'] = 'This action cannot be undone';
 
-$_LANG['addonAA']['testPage']['messages']['saveSuccess'] = 'Item Successfull Saved';
-$_LANG['addonAA']['testPage']['messages']['deleteSuccess'] = 'Item %s Successfull deleted';
+$_LANG['addonAA']['testPage']['messages']['saveSuccess'] = 'Item saved';
+$_LANG['addonAA']['testPage']['messages']['deleteSuccess'] = 'Item %s deleted';
 $_LANG['addonAA']['testPage']['messages']['deleteSuccess2'] = 'Item %s deleted';
 
 $_LANG['addonAA']['testPage']['messages']['validateError'] = 'Form Contains Errors, Please Check Fields Errors';
@@ -467,7 +467,7 @@ $_LANG['addonCA']['home']['Add New Own Password'] = 'Add New Own Password';
 $_LANG['addonCA']['home']['modal']['Add'] = 'Add';
 $_LANG['addonCA']['home']['modal']['close'] = 'Close';
 $_LANG['addonCA']['home']['New Password has been added'] = 'New Password has been added';
-$_LANG['addonCA']['home']['actionButtons']['Login In'] = 'Login In';
+$_LANG['addonCA']['home']['actionButtons']['Login In'] = 'Login';
 $_LANG['addonCA']['home']['actionButtons']['details'] = 'Details';
 $_LANG['addonCA']['home']['actionButtons']['edit'] = 'Edit';
 $_LANG['addonCA']['home']['actionButtons']['delete'] = 'Delete';
@@ -491,7 +491,7 @@ $_LANG['addonCA']['shared']['Shared By'] = 'Shared By';
 $_LANG['addonCA']['shared']['Category'] = 'Category';
 $_LANG['addonCA']['shared']['Actions'] = 'Actions';
 $_LANG['addonCA']['shared']['Add New'] = 'Add New';
-$_LANG['addonCA']['shared']['actionButtons']['Login In'] = 'Login In';
+$_LANG['addonCA']['shared']['actionButtons']['Login In'] = 'Login';
 $_LANG['addonCA']['shared']['actionButtons']['details'] = 'Details';
 $_LANG['addonCA']['shared']['actionButtons']['edit'] = 'Edit';
 $_LANG['addonCA']['shared']['actionButtons']['delete'] = 'Delete';
