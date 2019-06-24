@@ -71,7 +71,7 @@ class LangHelper
 		}
 		elseif (isset($_SESSION['uid']))
 		{
-			$q = PDOWrapper::query("SELECT language FROM tblclients WHERE id = " . $_SESSION['uid']);
+			$q = PDOWrapper::query("SELECT language FROM tblclients WHERE id = :uid", array('uid'=>$_SESSION['uid']));
 			$row = PDOWrapper::fetch_assoc($q);
 			if ($row['language'])
 			{
