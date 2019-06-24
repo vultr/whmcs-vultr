@@ -40,7 +40,7 @@ $_LANG['dns']['create']['vm_not_found'] = 'Please create VM first!';
 $_LANG['dns']['create']['connection_error'] = 'Connection error!';
 $_LANG['dns']['create']['add_domain'] = 'Domain has been successfully added';
 $_LANG['dns']['delete']['delete_success'] = 'Domain has been successfully removed!';
-$_LANG['dns']['delete']['delete_error'] = 'Error when delete domain! Please try again';
+$_LANG['dns']['delete']['delete_error'] = 'Error deleting domain! Please try again.';
 $_LANG['dns']['manage']['panel_title'] = 'DNS Manager';
 $_LANG['dns']['manage']['delete'] = 'Delete';
 $_LANG['dns']['manage']['type'] = 'Type';
@@ -246,11 +246,11 @@ $_LANG['snapshots']['add']['description'] = 'Description';
 $_LANG['snapshots']['add']['create'] = 'Create snapshot';
 $_LANG['snapshots']['add']['snapshot_limit'] = 'You have reached snapshots limit!';
 $_LANG['snapshots']['add']['created'] = 'Snapshot has been successfully created';
-$_LANG['snapshots']['add']['delete_error'] = 'Error when create snapshot! Please try again';
+$_LANG['snapshots']['add']['delete_error'] = 'Error creating snapshot! Please try again';
 $_LANG['snapshots']['delete']['success'] = 'Snapshot has been successfully deleted!';
-$_LANG['snapshots']['delete']['error'] = 'Error when deleted snapshot! Please try again';
-$_LANG['snapshots']['restore']['success'] = 'Restoring snapshot has been started. It can take a while.';
-$_LANG['snapshots']['restore']['error'] = 'Error when restored snapshot! Please try again';
+$_LANG['snapshots']['delete']['error'] = 'Error deleting snapshot! Please try again';
+$_LANG['snapshots']['restore']['success'] = 'Restoring snapshot... this may take a while.';
+$_LANG['snapshots']['restore']['error'] = 'Error restoring snapshot! Please try again';
 
 /**
  * OS Change
@@ -265,8 +265,8 @@ $_LANG['oschange']['index']['confirm_app'] = 'Are you sure you want to change th
 $_LANG['oschange']['index']['current'] = 'Current OS is ';
 $_LANG['oschange']['index']['success'] = 'OS successfully changed!';
 $_LANG['oschange']['index']['success_app'] = 'Application successfully changed!';
-$_LANG['oschange']['index']['no_available_oses'] = 'There are no OS available to change!';
-$_LANG['oschange']['index']['no_available_app'] = 'There are no application available to change!';
+$_LANG['oschange']['index']['no_available_oses'] = 'There are no operating systems available to change to!';
+$_LANG['oschange']['index']['no_available_app'] = 'There are no applications available to change to!';
 $_LANG['oschange']['index']['vm_not_found'] = 'VM not found!';
 $_LANG['oschange']['index']['back'] = 'Back';
 
@@ -277,7 +277,7 @@ $_LANG['isochange']['index']['panel_title'] = 'Change ISO';
 $_LANG['isochange']['index']['label'] = 'Select New ISO File';
 $_LANG['isochange']['index']['current'] = 'Current ISO is ';
 $_LANG['isochange']['index']['success'] = 'ISO successfully changed!';
-$_LANG['isochange']['index']['no_available_isos'] = 'There are no ISO file available to change!';
+$_LANG['isochange']['index']['no_available_isos'] = 'There are no ISO files available to change to!';
 
 /**
  * Others

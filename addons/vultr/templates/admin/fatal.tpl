@@ -1,5 +1,5 @@
 <div data-ng-app="appCRM" class="mg-wrapper body" data-target=".body" data-spy="scroll" data-twttr-rendered="true">
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=all" rel="stylesheet"
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=all" rel="stylesheet"
 		  type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="{$assetsURL}/css/font-awesome.css"/>
 	<link rel="stylesheet" type="text/css" href="{$assetsURL}/css/simple-line-icons.css" rel="stylesheet">

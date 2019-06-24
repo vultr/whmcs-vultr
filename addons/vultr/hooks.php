@@ -35,79 +35,8 @@ function vultrCronJob()
 		main\Addon::vultrDump($ex);
 	}
 }
-
 add_hook("AdminAreaPage", 1, "vultrCronJob");
-function saveAddonConfig($vars)
-{
-	if ($vars['filename'] == "configaddonmods" && $_REQUEST['saved'] == "true")
-	{
-		if ($_POST['moduleName'] && $_POST['apiKey'])
-		{
-			require_once 'Loader.php';
-			new main\Loader();
 
-			try
-			{
-				$api = main\helpers\ApiHelper::getAPI($_POST['apiKey']);
-				if ($api->response_code == 200)
-				{
-					$response = ['success' => 'true'];
-				}
-				else
-				{
-					$response = ['success' => 'Please check your API key.'];
-				}
-			}
-			catch (Exception $ex)
-			{
-				$response = ['success' => $ex->getMessage()];
-			}
-			echo json_encode($response);
-
-			die();
-		}
-		else
-		{
-			return <<<HTML
-            <script type="text/javascript">
-             jQuery( document ).ready(function(){
-                var moduleName = localStorage.getItem('module');
-                var apiKey = localStorage.getItem('apiKey');
-                 serviceUrl = "configaddonmods.php?saved=true";
-
-                 if(moduleName == 'vultr'){
-                     var data = {
-                         moduleName: moduleName,
-                         apiKey: apiKey,
-                     }
-                     jQuery.ajax({
-                             type: "POST",
-                             url: serviceUrl,
-                             data: data,
-                             beforeSend: function () {
-                                 localStorage.removeItem('module');
-                                 jQuery('html, body').animate({scrollTop:$('#contentarea').position().top}, 'slow');
-                                 jQuery('#contentarea').find('.infobox').html('<strong><span class="title">Changes Saved Successfully!</span></strong><br>Checking API Connection. Loading <i class="fa fa-spinner fa-spin"></i>');  
-                             },
-                             success: function (ret) {
-                                var data = JSON.parse(ret);
-                                if(data.success == 'true'){
-                                    jQuery('#contentarea').find('.infobox').html('<strong><span class="title">Changes Saved Successfully!</span></strong><br><font color="green"><b>Connection Success.</b></font>'); 
-                                }
-                                else{
-                                    jQuery('#contentarea').find('.infobox').html('<strong><span class="title">Changes Saved Successfully!</span></strong><br><font color="red"><b>Connection Failed: '+ data.success +'</b></font'); 
-                                }
-                             }
-                      })
-                 }
-             });
-            </script>
-HTML;
-		}
-	}
-}
-
-add_hook("AdminAreaFooterOutput", 1, "saveAddonConfig");
 function getConfigOptionId($optionname)
 {
 	$optionId = \WHMCS\Database\Capsule::table("tblproducts")

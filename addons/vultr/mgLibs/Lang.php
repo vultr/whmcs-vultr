@@ -134,7 +134,7 @@ class Lang
 		}
 		elseif (isset($_SESSION['uid']))
 		{
-			$row = MySQL\Query::query("SELECT language FROM tblclients WHERE id = " . $_SESSION['uid'])->fetch();
+			$row = MySQL\Query::query("SELECT language FROM tblclients WHERE id = :uid", array('uid'=>$_SESSION['uid']))->fetch();
 			if ($row['language'])
 			{
 				$language = $row['language'];

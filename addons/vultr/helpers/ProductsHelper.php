@@ -17,7 +17,7 @@ class ProductsHelper
 		}
 		else
 		{
-			return array('status' => FALSE, 'message' => 'connectiong problem');
+			return array('status' => FALSE, 'message' => 'connection problem');
 		}
 	}
 
