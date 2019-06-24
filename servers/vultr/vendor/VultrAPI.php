@@ -883,7 +883,7 @@ if (!class_exists('VultrAPI'))
 					if ($args !== FALSE)
 					{
 						$get_data = http_build_query($args);
-						$_defaults[CURLOPT_URL] = $url . '&' . $get_data;
+						$_defaults[CURLOPT_URL] = $url . '?' . $get_data;
 					}
 					else
 					{
