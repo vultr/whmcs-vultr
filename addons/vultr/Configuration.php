@@ -144,17 +144,6 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	 */
 	public function getAddonWHMCSConfig()
 	{
-		$script = '
-        <script type="text/javascript">
-            $(document).ready(function(){
-                //Find Vultr Module...
-                jQuery(\'#vultrconfig\').find(\'input[name="msave_vultr"]\').on(\'click\', function(){
-                var apiKey = jQuery(\'#vultrconfig\').find(\'input[name="fields[vultr][apiToken]"]\').val();
-                    localStorage[\'module\'] = \'vultr\';
-                    localStorage[\'apiKey\'] = apiKey;
-                });
-            });
-        </script>';
 		return array(
 			'hooksEnabled' => array(
 				"FriendlyName" => "Hooks Enabled",
@@ -165,7 +154,7 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 			),
 			'apiToken' => array(
 				"FriendlyName" => "API Key",
-				"Description"  => $script,
+				"Description"  => "Your Vultr API Key",
 				"Type"         => "text"
 			)
 		);
