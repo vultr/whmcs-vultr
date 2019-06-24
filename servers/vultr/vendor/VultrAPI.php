@@ -841,11 +841,6 @@ if (!class_exists('VultrAPI'))
 
 			$url = $this->endpoint . $method;
 			$apiRequired = false;
-			if (in_array($methodArray[0], $apiRequiredArray))
-			{
-				$url = $this->endpoint . $method . '?api_key=' . $this->api_token;
-				$apiRequired = true;
-			}
 
 			if ($this->debug)
 			{
@@ -866,6 +861,12 @@ if (!class_exists('VultrAPI'))
 				CURLOPT_TIMEOUT => 30,
 				CURLOPT_HTTPHEADER => array('Accept: application/json')
 			);
+
+			if (in_array($methodArray[0], $apiRequiredArray))
+			{
+				array_push($_defaults[CURLOPT_HTTPHEADER], "API-Key: $this->api_token");
+				$apiRequired = true;
+			}
 
 			$cacheable = false;
 			switch ($this->request_type)
