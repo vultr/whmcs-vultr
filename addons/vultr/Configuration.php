@@ -81,11 +81,11 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
 	{
 		return array(
 			'productsCreator' => array('icon' => 'fa fa-magic'),
-			'products'        => array('icon' => 'fa fa-magic'),
+			'products'        => array('icon' => 'fa fa-shopping-cart'),
 			'dns'             => array('icon' => 'fa fa-globe'),
-			'location'        => array('icon' => 'fa fa-map'),
-			'snapshots'       => array('icon' => 'fa fa-server'),
-			'ISO'             => array('icon' => 'fa fa-server'),
+			'location'        => array('icon' => 'fa fa-map-marker'),
+			'snapshots'       => array('icon' => 'fa fa-camera'),
+			'ISO'             => array('icon' => 'fa fa-file'),
 		);
 	}
 
