@@ -250,7 +250,7 @@
 												<input type="hidden" value="{$ip.ip}" name="vultrIP">
 												<input value="{$ip.reverse}" name="vultrREVDNS"
 													   style="margin-bottom: 5px;"/>
-												<button class="btn btn-primary" type="submit">Update</button>
+												<button class="btn btn-primary" type="submit">{$_LANG.main.index.update}</button>
 												<button class="btn"
 														onclick="$('form#rev_{$ip.ip|replace:'.':'_'}').addClass('hide');
 																$('span#rev_{$ip.ip|replace:'.':'_'}').removeClass('hide');
@@ -260,7 +260,7 @@
 											</form>
 											<span class="change_rev" id="rev_{$ip.ip|replace:'.':'_'}">
                                                 {$ip.reverse}
-                                                <button class="btn btn-default" type="button">Change</button>
+                                                <button class="btn btn-default" type="button">{$_LANG.main.index.change}</button>
                                             </span>
 										{/if}
 									</td>
