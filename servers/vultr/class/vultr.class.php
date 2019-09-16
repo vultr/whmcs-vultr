@@ -301,11 +301,11 @@ class Vultr
 				}
 			}
 		}
-		if ($this->params['configoptions']['application'] != '0' && $this->params['configoptions']['os_type'] != '186')
+		if ($this->params['configoptions']['application'] != '0' && $this->params['configoptions']['application'] != null && $this->params['configoptions']['os_type'] != '186')
 		{
 			VultrHelper::changeOSTypeToApp($this->params['serviceid']);
 		}
-		if ($this->params['configoptions']['application'] == '0' && $this->params['configoptions']['os_type'] == '186')
+		if (($this->params['configoptions']['application'] == '0' || $this->params['configoptions']['application'] == null) && $this->params['configoptions']['os_type'] == '186')
 		{
 			VultrHelper::changeOSTypeToNoApp($this->params['serviceid']);
 		}
