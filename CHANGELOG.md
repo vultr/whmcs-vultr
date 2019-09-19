@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.0.4 (2019-09-19)
+### Bug
+* Fixes UI Issue where OS would reset upon save [#36](https://github.com/vultr/whmcs-vultr/pull/36)
+
 ## v2.0.3 (2019-09-10)
 ### Enhancement
 * Add lang support for update & change buttons [#33](https://github.com/vultr/whmcs-vultr/pull/33)
