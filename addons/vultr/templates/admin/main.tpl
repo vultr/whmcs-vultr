@@ -175,7 +175,7 @@
 					</div>
 
 					<div class="modulename-logo">
-						<a href="http://www.modulesgarden.com" target="_blank"><img
+						<a href="https://www.vultr.com" target="_blank"><img
 									src="{$assetsURL}/img/logo_vultr.png" alt="logo" class="logo-default"></a>
 					</div>
 				</div>
