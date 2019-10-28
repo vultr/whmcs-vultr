@@ -10,8 +10,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">{$MGLANG->T('ns1')}</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="ns1"
-									   value="{(!empty($nameServer['ns1']))? {$nameServer['ns1']}: ''}"/>
+								<input type="text" class="form-control" name="ns1" value="{(!empty($nameServer['ns1']))? {$nameServer['ns1']}: ''}"/>
 							</div>
 						</div>
 						<div class="form-group">

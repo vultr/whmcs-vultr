@@ -24,7 +24,6 @@
 					</button>
 				</div>
 			{/if}
-			{*Modal mg-modal-new-entity*}
 			<form data-toggle="validator" role="form" id="mg-form-add-new">
 				<div class="modal fade bs-example-modal-lg" id="mg-modal-add-new" tabindex="-1" role="dialog"
 					 aria-labelledby="myModalLabel" aria-hidden="true">
@@ -70,7 +69,6 @@
 					</div>
 				</div>
 			</form>
-			{*Modal mg-modal-edit*}
 			<form data-toggle="validator" role="form" id="mg-form-entity-edit">
 				<div class="modal fade bs-example-modal-lg" id="mg-modal-edit-entity" data-modal-load="detail"
 					 tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -117,7 +115,6 @@
 					</div>
 				</div>
 			</form>
-			{*Modal mg-modal-delete-account*}
 			<div class="modal fade bs-example-modal-lg" id="mg-modal-delete-entity" tabindex="-1" role="dialog"
 				 aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -165,7 +162,6 @@
 					</div>
 				</div>
 			</div>
-			{*mg-modal-details*}
 			<div class="modal fade bs-example-modal-lg" id="mg-modal-details" data-modal-load="note" tabindex="-1"
 				 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
