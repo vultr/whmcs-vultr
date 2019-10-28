@@ -166,11 +166,7 @@
 										</a>
 									</li>
 								{/if}
-							{/foreach}{*
-                            <li class="droddown dropdown-separator">
-                                <span class="separator"></span>
-                            </li>
-                            <li><a href="#" class="full-screen-module-toogle"><i class="icon-size-fullscreen"></i>&nbsp;</a></li> *}
+							{/foreach}
 						</ul>
 					</div>
 
