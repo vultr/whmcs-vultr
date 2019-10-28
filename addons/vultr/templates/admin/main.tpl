@@ -176,7 +176,7 @@
 
 					<div class="modulename-logo">
 						<a href="https://www.vultr.com" target="_blank"><img
-									src="{$assetsURL}/img/logo_vultrondark.png" alt="logo" class="logo-default"></a>
+									src="{$assetsURL}/img/logo_vultrondark.svg" alt="logo" class="logo-default"></a>
 					</div>
 				</div>
 			</div>
