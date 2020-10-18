@@ -1,6 +1,6 @@
 # Vultr WHMCS Module
 
-## Note: This module is community driven as is it is not actively maintianed anymore. Pull requests that are submitted will be merged in.
+## Note: This module is community driven as it is not actively maintianed anymore. Pull requests that are submitted will be merged in.
 The Vultr platform offers a powerful, feature-rich API that allows users to control every aspect of their account. The Vultr WHMCS Module provides hosting providers with a fully automated solution that allows them to offer reliable Cloud Servers on the Vultr Platform to their customers.
 
 ## System Requirements
