@@ -1,6 +1,6 @@
-# WHMCS Module for Vultr
+# WHMCS Module
 
-**Note**: *Please read this document in full before you install the Vultr WHMCS Module.*
+**Note**: *Please read this document in full before you install the WHMCS Module.*
 
 ## Module Information
 
@@ -11,7 +11,7 @@
 
 ## Introduction
 
-The Vultr platform offers a powerful, feature-rich API that allows users to control every aspect of their account. The Vultr WHMCS Module provides hosting providers with a fully automated solution that allows them to offer reliable Cloud Servers on the Vultr Platform to their customers.
+The Vultr platform offers a powerful, feature-rich API that allows users to control every aspect of their account. The WHMCS Module for Vultr provides hosting providers with a fully automated solution that allows them to offer reliable Cloud Servers on the Vultr Platform to their customers.
 
 _Note: The current version of the module is a complete rewrite of the original module, but is compatible with existing Vultr-based products in WHMCS._
 
@@ -48,7 +48,7 @@ Below are the list of options the module does **not** include by design.
 
 ## Scope
 
-This document will cover the process of installing and configuring the Vultr WHMCS Module.
+This document will cover the process of installing and configuring the WHMCS Module for Vultr.
 
 ## Module Features
 
@@ -78,7 +78,7 @@ This document will cover the process of installing and configuring the Vultr WHM
 
 ## Installation
 
-The first step is to [Download the Vultr WHMCS Module here](https://github.com/vultr/whmcs-vultr/releases)
+The first step is to [Download the WHMCS Module here](https://github.com/vultr/whmcs-vultr/releases)
 
 ### New Installation
 
@@ -131,7 +131,7 @@ This section is quite useful for when you want to quickly find a Vultr Product i
 
 ### DNS
 
-The Vultr WHMCS Module supports Vanity Nameservers (custom ns1 and ns2.domain.com). Setting up Vanity Nameservers requires a first step, which is to create the custom name servers with your domain registrar and point them to the IPs `ns1.vultr.com` and `ns2.vultr.com` resolves to. One done, please follow the steps below:
+The WHMCS Module supports Vanity Nameservers (custom ns1 and ns2.domain.com). Setting up Vanity Nameservers requires a first step, which is to create the custom name servers with your domain registrar and point them to the IPs `ns1.vultr.com` and `ns2.vultr.com` resolves to. One done, please follow the steps below:
 
 1. Login to your WHMCS Admin Panel.
 2. Go on `Addons -> Vultr Module`.
@@ -155,7 +155,7 @@ To select which locations to enable for your customers, please follow the steps 
 
 ### Snapshots
 
-The Vultr WHMCS Module allows you to make one or more of the snapshots on your account `Public` - meaning you would allow your customers to deploy new Virtual Machines from these Snapshots if they choose to do so. All the snapshots on your account are set to `Disabled` **by default** in the module, and you would need to enable them.
+The WHMCS Module allows you to make one or more of the snapshots on your account `Public` - meaning you would allow your customers to deploy new Virtual Machines from these Snapshots if they choose to do so. All the snapshots on your account are set to `Disabled` **by default** in the module, and you would need to enable them.
 
 In order to select which Snapshots to make public for your customers, please follow the steps below:
 

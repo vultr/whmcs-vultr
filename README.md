@@ -1,6 +1,6 @@
-# Vultr WHMCS Module
+# WHMCS Module
 
-_**Note: This module is community driven. It is no longer actively maintained. Pull requests are accepted.**_
+## Note: This module is community driven, it is no longer actively maintained.
 
 ## System Requirements
 
