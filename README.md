@@ -16,4 +16,4 @@ _**Note: This module is community driven. It is no longer actively maintained. P
 
 ## Installation & Configuration
 
-See the [WHMCS Module documentation](https://github.com/dfinster/whmcs-vultr/blob/update-docs/docs/index.md).
+See the [WHMCS Module documentation](https://github.com/vultr/whmcs-vultr/blob/update-docs/docs/index.md).
