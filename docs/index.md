@@ -19,7 +19,7 @@ _Note: The current version of the module is a complete rewrite of the original m
 
 * WHMCS version 7.2.x or newer
 * PHP version 7.1.x or newer
-* MySQL **5.6**, MariaDB **5.6**, MariaDB **10.0**, or MariaDB **10.1**.
+* MySQL **5.6**, MariaDB **5.6**, MariaDB **10.0**, or MariaDB **10.1**.
 * ionCube Loader.
 
 ## Prerequisites
@@ -29,7 +29,7 @@ _Note: The current version of the module is a complete rewrite of the original m
 
 ## Notes
 
-* You **must** allow your WHMCS Server’s IPv4 and IPv6 Addresses for API Access
+* You **must** allow your WHMCS Server's IPv4 and IPv6 Addresses for API Access
   * If your server has multiple IPv4 Addresses, you can allow them individually or allow the entire subnet.
   * If your server has an IPv6 Address, it is best to allow the entire /64 Subnet
 * WHMCS Version 6 is **not** supported due to reaching End-of-life.
@@ -48,7 +48,7 @@ Below are the list of options the module does **not** include by design.
 
 ## Scope
 
-This document will cover the process of installing and configuring the official Vultr WHMCS Module. Modules downloaded from third-party websites are not supported by Vultr.
+This document will cover the process of installing and configuring the Vultr WHMCS Module.
 
 ## Module Features
 
@@ -70,11 +70,11 @@ This document will cover the process of installing and configuring the official 
 
 ## Creating an API Key
 
-1. Login to the Vultr Client Area.
-2. Click Account.
-3. Click API.
-4. Click Enable API.
-5. Allow the IP Addresses of your WHMCS Server under Access Control.
+1. Login to the Vultr Client Area.
+2. Click Account.
+3. Click API.
+4. Click Enable API.
+5. Allow the IP Addresses of your WHMCS Server under Access Control.
 
 ## Installation
 
@@ -120,7 +120,7 @@ This section of the documentation will showcase all the available configuration 
 
 This section will allow you to create a Vultr-based product in WHMCS. There are two modes, `Single Product Creator` and `Multiple Product Creator`.
 
-The `Single Product Creator` mode will allow you to create a product based on the available Vultr packages, select a Product Group, and pricing for the product you’re adding. Pricing for Configurable Options such as Snapshots, Windows, cPanel Apps etc… must be manually added to the product’s Configurable Options.
+The `Single Product Creator` mode will allow you to create a product based on the available Vultr packages, select a Product Group, and pricing for the product you're adding. Pricing for Configurable Options such as Snapshots, Windows, cPanel Apps, etc., must be manually added to the product's Configurable Options.
 
 The `Multi Product Creator` will bulk-create Vultr-based VPS Packages in your WHMCS, but you will have to manually setup the pricing for each package as well as pricing for the Configurable Options, similar to the `Single Product Creator` mode.
 
@@ -137,25 +137,25 @@ The Vultr WHMCS Module supports Vanity Nameservers (custom ns1 and ns2.domain.co
 2. Go on `Addons -> Vultr Module`.
 3. Click on `DNS`.
 4. Add the values for `Nameserver 1` and `Nameserver 2` and click `Save Changes`.
-5. You’re done.
+5. You're done.
 
-_Please note that Vanity Nameservers are applied to newly added DNS Zones/Domains. Existing ones will have to be modified in <https://my.vultr.com> manaually._
+_Please note that Vanity Nameservers are applied to newly added DNS Zones/Domains. Existing ones will have to be modified in <https://my.vultr.com> manually._
 
 ### Server Location
 
 You have the option to enable and disable certain Cloud Locations, thus allowing your customers to deploy virtual machines only in the locations you choose. Please keep in mind that selecting the Cloud Location during the order process is **not possible** since locations are loaded dynamically depending on where the selected package is available at the time of deployment.
 
-In order to select which locations to enable for your customers, please follow the steps below:
+To select which locations to enable for your customers, please follow the steps below:
 
 1. Login to your WHMCS Admin Panel.
 2. Go on `Addons -> Vultr Module`.
 3. Click on `Server Location`.
 4. Click the `Enabled` button to disable the locations you wish to disable (clicking the button when it says `Disabled` will re-enable the location).
-5. You’re done.
+5. You're done.
 
 ### Snapshots
 
-The Vultr WHMCS Module allows you to make one or more of the snapshots on your account `Public` - meaning you would allow your customers to deploy new Virtual Machines from these Snapshots if they choose to do so. All the snapshots on your account are set to `Disabled` **by default** in the module and you would need to enable them.
+The Vultr WHMCS Module allows you to make one or more of the snapshots on your account `Public` - meaning you would allow your customers to deploy new Virtual Machines from these Snapshots if they choose to do so. All the snapshots on your account are set to `Disabled` **by default** in the module, and you would need to enable them.
 
 In order to select which Snapshots to make public for your customers, please follow the steps below:
 
@@ -163,19 +163,19 @@ In order to select which Snapshots to make public for your customers, please fol
 2. Go on `Addons -> Vultr Module`.
 3. Click on `Snapshots`.
 4. Click the `Disabled` button to enabled the Snapshots you wish to make public (clicking the button when it says `Enabled` will re-enable the Snapshot).
-5. You’re done.
+5. You're done.
 
 ### ISO
 
-Similar to the Snapshot Feature, you can make one or more of the custom uploaded ISO’s on your account `Public` - meaning you would allow your customers to deploy new Virtual Machines from these ISOs if they choose to do so. All the ISOs on your account are set to `Disabled` **by default** in the module and you would need to enable them.
+Similar to the Snapshot Feature, you can make one or more of the custom uploaded ISO's on your account `Public` - meaning you would allow your customers to deploy new Virtual Machines from these ISOs if they choose to do so. All the ISOs on your account are set to `Disabled` **by default** in the module, and you would need to enable them.
 
-In order to select which Snapshots to make public for your customers, please follow the steps below:
+To select which Snapshots to make public for your customers, please follow the steps below:
 
 1. Login to your WHMCS Admin Panel.
 2. Go on `Addons -> Vultr Module`.
 3. Click on `ISO`.
 4. Click the `Disabled` button to enabled the ISOs you wish to make public (clicking the button when it says `Enabled` will re-enable the ISO).
-5. You’re done.
+5. You're done.
 
 ## Ordering Process
 
@@ -190,7 +190,7 @@ The client will be placing an order for a Virtual Machine. They will be asked to
 * Root Password
 * NS1 & NS2
 
-This is the standard WHMCS Order Form and Vultr does not have any control over. You are welcome to change your WHMCS Order Form template to hide any of these options. Please keep in mind that the selected root password in the order for will _not_ be used since Vultr’s API will generate a random secure password for each VM. Additionally, if a client deploys from a Snapshot, they would need to know the root password for the Snapshot beforehand, otherwise they won’t be able to log in.
+This is the standard WHMCS Order Form and Vultr does not have any control over. You are welcome to change your WHMCS Order Form template to hide any of these options. Please keep in mind that the selected root password in the order for will _not_ be used since Vultr's API will generate a random secure password for each VM. Additionally, if a client deploys from a Snapshot, they would need to know the root password for the Snapshot beforehand, otherwise they won't be able to log in.
 
 Additionally, the client will be asked to select whether or not to enable Auto Backups, Snapshot limit, and the OS Type.
 
