@@ -16,4 +16,4 @@
 
 ## Installation & Configuration
 
-See the [WHMCS Module documentation](https://github.com/vultr/whmcs-vultr/blob/update-docs/docs/index.md).
+See the [WHMCS Module documentation](https://github.com/vultr/whmcs-vultr/blob/master/docs/index.md).
