@@ -100,7 +100,7 @@ if (!class_exists('VultrHelper'))
 		public static function addCustomFields($productID)
 		{
 			$result = Capsule::table('tblcustomfields')->where('type', 'product')->where('relid', $productID)->where('fieldname', 'subid|Virtual machine ID')->get();
-			if (!$result)
+			if (count($result) < 1)
 			{
 				Capsule::table('tblcustomfields')->insert(array('type' => 'product', 'relid' => $productID, 'fieldname' => 'subid|Virtual machine ID', 'fieldtype' => 'text', 'adminonly' => 'on'));
 			}
@@ -131,7 +131,7 @@ if (!class_exists('VultrHelper'))
 		public static function customFields($productID)
 		{
 			$result = Capsule::table('tblcustomfields')->where('fieldname', 'subid|Virtual machine ID')->where('type', 'product')->where('relid', $productID)->select('id')->get();
-			if (!$result)
+			if (count($result) < 1)
 			{
 				Capsule::table('tblcustomfields')->insert(array('type' => 'product', 'relid' => $productID, 'fieldname' => 'subid|Virtual machine ID', 'fieldtype' => 'text', 'adminonly' => 'on'));
 				return array('status' => true, 'reload' => true, 'message' => LangHelper::T('core.hook.custom_field_success'));
@@ -164,7 +164,7 @@ if (!class_exists('VultrHelper'))
 
 			$checkIsset = Capsule::table('tblproductconfiglinks')->where('pid', $productID)->get();
 
-			if ($checkIsset)
+			if (count($checkIsset) > 0)
 			{
 				return array('status' => false, 'message' => 'Product configurable options already exist!');
 			}
