@@ -179,17 +179,17 @@ if (!class_exists('VultrAPI'))
 
 		public function attach_iso($subid, $isoid)
 		{
-			return self::code('instances/{instance-id}/iso/attach', array('SUBID' => $subid, 'ISOID' => $isoid));
+			return self::code('instances/{$subid}/iso/attach', array('iso_id' => $isoid));
 		}
 
 		public function detach_iso($subid)
 		{
-			return self::code('server/iso_detach', array('SUBID' => $subid));
+			return self::code('instances/{$subid}/iso/detach');
 		}
 
 		public function iso_status($subid)
 		{
-			return self::get('server/iso_status', array('SUBID' => $subid));
+			return self::get('instances/{$subid}/iso', array('SUBID' => $subid));
 		}
 
 		/**
@@ -199,7 +199,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function snapshot_list()
 		{
-			return self::get('snapshot/list');
+			return self::get('snapshots');
 		}
 
 		/**
@@ -210,8 +210,8 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function snapshot_destroy($snapshot_id)
 		{
-			$args = array('SNAPSHOTID' => $snapshot_id);
-			return self::code('snapshot/destroy', $args);
+			//$args = array('SNAPSHOTID' => $snapshot_id);
+			return self::code('snapshots/{$snapshot-id}');
 		}
 
 		/**
@@ -221,20 +221,20 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function snapshot_create($server_id, $description)
 		{
-			$args = array('SUBID' => $server_id, 'description' => $description);
-			return self::post('snapshot/create', $args);
+			$args = array('instance_id' => $server_id, 'description' => $description);
+			return self::post('snapshots', $args);
 		}
 
 		public function domain_create($domain, $serverIP)
 		{
-			$args = array('domain' => $domain, 'serverip' => $serverIP);
-			return self::code('dns/create_domain', $args);
+			$args = array('domain' => $domain, 'ip' => $serverIP);
+			return self::code('domains', $args);
 		}
 
 		public function domain_delete($domain)
 		{
-			$args = array('domain' => $domain);
-			return self::code('dns/delete_domain', $args);
+			//$args = array('domain' => $domain);
+			return self::code('domains/{$domain}');
 		}
 
 		/**
@@ -244,52 +244,52 @@ if (!class_exists('VultrAPI'))
 		 * */
 		public function iso_list()
 		{
-			return self::get('iso/list');
+			return self::get('iso');
 		}
 
 		public function dns_list()
 		{
-			return self::get('dns/list');
+			return self::get('domains');
 		}
 
 		public function dns_records($domain)
 		{
-			return self::get('dns/records', array('domain' => $domain));
+			return self::get("domains/{$domain}/records");
 		}
 
-		public function create_record($args)
+		public function create_record($domain, $args)
 		{
-			return self::code('dns/create_record', $args);
+			return self::code("domains/{$domain}/records", $args);
 		}
 
-		public function delete_record($args)
+		public function delete_record($domain, $recordids)
 		{
-			return self::code('dns/delete_record', $args);
+			return self::code("domains/{$domain}/records{$recordid}");
 		}
 
-		public function update_record($args)
+		public function update_record($domain, $args)
 		{
-			return self::code('dns/update_record', $args);
+			return self::code("domains/{$domain}/records{$recordid}", $args);
 		}
 
-		public function soa_update($args)
+		public function soa_update($domain, $args)
 		{
-			return self::code('dns/soa_update', $args);
+			return self::code("domains/{$domain}/soa", $args);
 		}
 
-		public function soa_info($args)
+		public function soa_info($domain, $args)
 		{
-			return self::get('dns/soa_info', $args);
+			return self::get("domains/{$domain}/soa", $args);
 		}
 
 		public function upgrade_plan_list($subid)
 		{
-			return self::get('server/upgrade_plan_list', array('SUBID' => $subid));
+			return self::get("instances/{$subid}/upgrades" . '?type=plans');
 		}
 
 		public function upgrade_plan($subid, $vpsplanid)
 		{
-			return self::code('server/upgrade_plan', array('SUBID' => $subid, 'VPSPLANID' => $vpsplanid));
+			return self::code("instances/{$subid}", array('plan' => $vpsplanid));
 		}
 
 		/**
@@ -299,17 +299,17 @@ if (!class_exists('VultrAPI'))
 		 * */
 		public function app_list()
 		{
-			return self::get('app/list');
+			return self::get('applications');
 		}
 
 		public function app_change_list($subid)
 		{
-			return self::get('server/app_change_list', array('SUBID' => $subid));
+			return self::get("instances/{$subid}/upgrades" . '?type=applications');
 		}
 
 		public function app_change($subid, $appid)
 		{
-			return self::code('server/app_change', array('SUBID' => $subid, 'APPID' => $appid));
+			return self::code("instances/{$subid}", array('app_id' => $appid));
 		}
 
 		/**
@@ -319,7 +319,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function plans_list()
 		{
-			return self::get('plans/list');
+			return self::get('plans');
 		}
 
 		/**
@@ -329,7 +329,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function regions_list()
 		{
-			return self::get('regions/list');
+			return self::get('regions');
 		}
 
 		/**
@@ -341,13 +341,14 @@ if (!class_exists('VultrAPI'))
 		public function regions_availability($datacenter_id)
 		{
 			$did = (int)$datacenter_id;
-			return self::get('regions/availability?DCID=' . $did);
+			return self::get("regions/{$datacenter_id}/availability");
 		}
 
+		// https://www.vultr.com/api/#operation/get-instance-userdata
 		public function server_userData($server_id)
-		{
-			return self::get('server/get_user_data', array('SUBID' => $server_id));
-		}
+		 {
+		 	return self::get("instances/{$server_id}/user-data");
+		 }
 
 		/**
 		 * List startup scripts
@@ -356,7 +357,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function startupscript_list()
 		{
-			return self::get('startupscript/list');
+			return self::get('startup-scripts');
 		}
 
 		/**
@@ -366,14 +367,14 @@ if (!class_exists('VultrAPI'))
 		 * @param string $script script contents
 		 * @return int HTTP response code
 		 * */
-		public function startupscript_update($script_id, $name, $script)
+		public function startupscript_update($script_id, $name, $script, $script_type='default')
 		{
 			$args = array(
-				'SCRIPTID' => $script_id,
+				'type' => $script_type,
 				'name' => $name,
 				'script' => $script
 			);
-			return self::code('startupscript/update', $args);
+			return self::code("startup-scripts/{$script_id}", $args);
 		}
 
 		/**
@@ -384,8 +385,8 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function startupscript_destroy($script_id)
 		{
-			$args = array('SCRIPTID' => $script_id);
-			return self::code('startupscript/destroy', $args);
+			//$args = array('SCRIPTID' => $script_id);
+			return self::code("startup-scripts/{$script_id}");
 		}
 
 		/**
@@ -402,7 +403,7 @@ if (!class_exists('VultrAPI'))
 				'script' => $script_contents,
 				'type' => $script_type
 			);
-			$script = self::post('startupscript/create', $args);
+			$script = self::post('startup-scripts', $args);
 			return $script['SCRIPTID'];
 		}
 
@@ -427,37 +428,37 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function server_list()
 		{
-			return self::get('server/list');
+			return self::get('instances');
 		}
 
 		/**
 		 * Display server bandwidth
-		 * @see https://www.vultr.com/api/#server_bandwidth
+		 * @see https://www.vultr.com/api/#operation/get-instance-bandwidth
 		 * @param int $server_id
 		 * @return mixed Bandwidth history
 		 */
 		public function bandwidth($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			return self::get('server/bandwidth', $args);
+			//$args = array('SUBID' => (int)$server_id);
+			return self::get("instances/{$server_id}/bandwidth");
 		}
 
 		/**
 		 * List IPv4 Addresses allocated to specified server
-		 * @see https://www.vultr.com/api/#server_list_ipv4
+		 * @see https://www.vultr.com/api/#operation/get-instance-ipv4
 		 * @param int $server_id
 		 * @return mixed IPv4 address list
 		 */
 		public function list_ipv4($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			$ipv4 = self::get('server/list_ipv4', $args);
+			//$args = array('SUBID' => (int)$server_id);
+			$ipv4 = self::get("instances/{$server_id}/ipv4");
 			return $ipv4[(int)$server_id];
 		}
 
 		/**
 		 * Create IPv4 address
-		 * @see https://www.vultr.com/api/#server_create_ipv4
+		 * @see https://www.vultr.com/api/#operation/create-instance-ipv4
 		 * @param int $server_id
 		 * @param string Reboot server after adding IP: <yes|no>, default: yes
 		 * @return int HTTP response code
@@ -465,31 +466,27 @@ if (!class_exists('VultrAPI'))
 		public function ipv4_create($server_id, $reboot = 'yes')
 		{
 			$args = array(
-				'SUBID' => $server_id,
 				'reboot' => ($reboot == 'yes' ? 'yes' : 'no')
 			);
-			return self::code('server/create_ipv4', $args);
+			return self::code("instances/{$server_id}/ipv4", $args);
 		}
 
 		/**
 		 * Destroy IPv4 Address
-		 * @see https://www.vultr.com/api/#server_destroy_ipv4
+		 * @see https://www.vultr.com/api/#operation/delete-instance-ipv4
 		 * @param int $server_ID
 		 * @param string $ip IPv4 address
 		 * @return int HTTP response code
 		 * */
 		public function destroy_ipv4($server_id, $ip4)
 		{
-			$args = array(
-				'SUBID' => $server_id,
-				'ip' => $ip4
-			);
-			return self::code('server/destroy_ipv4', $args);
+
+			return self::code("instances/{$server_id}/ipv4/{$ip4}");
 		}
 
 		/**
 		 * Set Reverse DNS for IPv4 address
-		 * @see https://www.vultr.com/api/#server_reverse_set_ipv4
+		 * @see https://www.vultr.com/api/#operation/create-instance-reverse-ipv4
 		 * @param string $ip
 		 * @param string $rdns
 		 * @return int HTTP response code
@@ -497,17 +494,17 @@ if (!class_exists('VultrAPI'))
 		public function reverse_set_ipv4($ip, $rdns, $id)
 		{
 			$args = array(
-				'SUBID' => $id,
+				//'SUBID' => $id,
 				'ip' => $ip,
-				'entry' => $rdns
+				'reverse' => $rdns
 
 			);
-			return self::code('server/reverse_set_ipv4', $args);
+			return self::code("instances/{$id}/ipv4/reverse", $args);
 		}
 
 		/**
 		 * Set Default Reverse DNS for IPv4 address
-		 * @see https://www.vultr.com/api/#server_reverse_default_ipv4
+		 * @see https://www.vultr.com/api/#operation/create-instance-reverse-ipv4
 		 * @param string $server_id
 		 * @param string $ip
 		 * @return int HTTP response code
@@ -515,29 +512,29 @@ if (!class_exists('VultrAPI'))
 		public function reverse_default_ipv4($server_id, $ip)
 		{
 			$args = array(
-				'SUBID' => (int)$server_id,
+				//'reverse' => (int)$server_id,
 				'ip' => $ip
 			);
-			return self::code('server/reverse_default_ipv4', $args);
+			return self::code("instances/{$server_id}/reverse/default", $args);
 		}
 
 		/**
 		 * List IPv6 addresses for specified server
-		 * @see https://www.vultr.com/api/#server_list_ipv6
+		 * @see https://www.vultr.com/api/#operation/get-instance-ipv6
 		 * @param int $server_id
 		 * @return mixed IPv6 allocation info
 		 */
 		public function list_ipv6($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			$ipv6 = self::get('server/list_ipv6', $args);
+			//$args = array('SUBID' => (int)$server_id);
+			$ipv6 = self::get("instances/{$server_id}/ipv6");
 			return $ipv6[(int)$server_id];
 		}
 
 		public function reverse_list_ipv6($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			$ipv6 = self::get('server/reverse_list_ipv6', $args);
+			
+			$ipv6 = self::get("instances/{$server_id}/ipv6/reverse");
 			return $ipv6[(int)$server_id];
 		}
 
@@ -551,7 +548,7 @@ if (!class_exists('VultrAPI'))
 
 		/**
 		 * Set Reverse DNS for IPv6 address
-		 * @see https://www.vultr.com/api/#server_reverse_set_ipv6
+		 * @see https://www.vultr.com/api/#operation/create-instance-reverse-ipv6
 		 * @param int $server_id
 		 * @param string $ip
 		 * @param string $rdns
@@ -560,92 +557,87 @@ if (!class_exists('VultrAPI'))
 		public function reverse_set_ipv6($server_id, $ip, $rdns)
 		{
 			$args = array(
-				'SUBID' => (int)$server_id,
 				'ip' => $ip,
-				'entry' => $rdns
+				'reverse' => $rdns
 			);
-			return self::code('server/reverse_set_ipv6', $args);
+			return self::code('instances/{$server_id}/ipv6/reverse', $args);
 		}
 
 		/**
 		 * Delete IPv6 Reverse DNS
-		 * @see https://www.vultr.com/api/#server_reverse_delete_ipv6
+		 * @see https://www.vultr.com/api/#operation/delete-instance-reverse-ipv6
 		 * @param int $server_id
 		 * @param string $ip6 IPv6 address
 		 * @return int HTTP response code
 		 * */
 		public function reverse_delete_ipv6($server_id, $ip6)
 		{
-			$args = array(
-				'SUBID' => $server_id,
-				'ip' => $ip6
-			);
-			return self::code('server/reverse_delete_ipv6', $args);
+
+			return self::code("instances/{$server_id}/ipv6/reverse/{$ip6}");
 		}
 
 		/**
 		 * Reboot server
-		 * @see https://www.vultr.com/api/#server_reboot
+		 * @see https://www.vultr.com/api/#operation/reboot-instance
 		 * @param int $server_id
 		 * @return int HTTP response code
 		 */
 		public function reboot($server_id)
 		{
-			$args = array('SUBID' => $server_id);
-			return self::code('server/reboot', $args);
+			return self::code("instances/{$server_id}/reboot");
 		}
 
 		/**
 		 * Halt server
-		 * @see https://www.vultr.com/api/#server_halt
+		 * @see https://www.vultr.com/api/#operation/halt-instances
 		 * @param int $server_id
 		 * @return int HTTP response code
 		 */
 		public function halt($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			return self::code('server/halt', $args);
+			$args = array('instance_ids' => array((int)$server_id));
+			return self::code('instances/halt', $args);
 		}
 
 		/**
 		 * Start server
-		 * @see https://www.vultr.com/api/#server_start
+		 * @see https://www.vultr.com/api/#operation/start-instances
 		 * @param int $server_id
 		 * @return int HTTP response code
 		 */
 		public function start($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			return self::code('server/start', $args);
+			$args = array('instance_ids' => array((int)$server_id));
+			return self::code('instances/start', $args);
 		}
 
 		/**
 		 * Destroy server
-		 * @see https://www.vultr.com/api/#server_destroy
+		 * @see https://www.vultr.com/api/#operation/delete-instance
 		 * @param int $server_id
 		 * @return int HTTP response code
 		 */
 		public function destroy($server_id)
 		{
-			$args = array('SUBID' => (int)$server_id);
-			return self::code('server/destroy', $args);
+			//$args = array('SUBID' => (int)$server_id);
+			return self::code("instances/{$server_id}", $args);
 		}
 
 		/**
 		 * Reinstall OS on an instance
-		 * @see https://www.vultr.com/api/#server_reinstall
+		 * @see https://www.vultr.com/api/#operation/reinstall-instance
 		 * @param int $server_id
 		 * @return int HTTP response code
 		 */
-		public function reinstall($server_id)
+		public function reinstall($server_id, $hostname='')
 		{
-			$args = array('SUBID' => (int)$server_id);
-			return self::code('server/reinstall', $args);
+			$args = array('hostname' => $hostname);
+			return self::code("instances/{$server_id}/reinstall", $args);
 		}
 
 		/**
 		 * Set server label
-		 * @see https://www.vultr.com/api/#server_label_set
+		 * @see https://www.vultr.com/api/#operation/update-instance
 		 * @param int $server_id
 		 * @param string $label
 		 * @return int HTTP response code
@@ -653,15 +645,15 @@ if (!class_exists('VultrAPI'))
 		public function label_set($server_id, $label)
 		{
 			$args = array(
-				'SUBID' => (int)$server_id,
+				//'SUBID' => (int)$server_id,
 				'label' => $label
 			);
-			return self::code('server/label_set', $args);
+			return self::code("instances/{$server_id}", $args);
 		}
 
 		/**
 		 * Restore Server Snapshot
-		 * @see https://www.vultr.com/api/#server_restore_snapshot
+		 * @see https://www.vultr.com/api/#operation/restore-instance
 		 * @param int $server_id
 		 * @param string $snapshot_id Hexadecimal string with Restore ID
 		 * @return int HTTP response code
@@ -669,10 +661,10 @@ if (!class_exists('VultrAPI'))
 		public function restore_snapshot($server_id, $snapshot_id)
 		{
 			$args = array(
-				'SUBID' => (int)$server_id,
-				'SNAPSHOTID' => preg_replace('/[^a-f0-9]/', '', $snapshot_id)
+				//'backup_id' => (int)$server_id,
+				'snapshot_id' => preg_replace('/[^a-f0-9]/', '', $snapshot_id)
 			);
-			return self::code('server/restore_snapshot', $args);
+			return self::code("instances/{$server_id}/restore", $args);
 		}
 
 		/**
@@ -684,18 +676,20 @@ if (!class_exists('VultrAPI'))
 		public function restore_backup($server_id, $backup_id)
 		{
 			$args = array(
-				'SUBID' => $server_id,
-				'BACKUPID' => $backup_id
+				//'SUBID' => $server_id,
+				'backup_id' => $backup_id
 			);
-			return self::code('server/restore_backup', $args);
+			return self::code("instances/{$server_id}/restore", $args);
 		}
 
 		public function backup_list()
 		{
-			return self::get('backup/list');
+			return self::get('backups');
 		}
 
 		/**
+		 * Server Create
+		 * @see https://www.vultr.com/api/#operation/create-instance
 		 * @param $config
 		 * @return bool|int|mixed|string
 		 */
@@ -710,7 +704,7 @@ if (!class_exists('VultrAPI'))
 				return FALSE;
 			}
 
-			return self::post('server/create', $config);
+			return self::post('instances', $config);
 		}
 
 		/**
@@ -721,7 +715,7 @@ if (!class_exists('VultrAPI'))
 		 */
 		public function sshkeys_list()
 		{
-			$try = self::get('sshkey/list');
+			$try = self::get('ssh-keys');
 			if (sizeof($try) < 1)
 			{
 				return FALSE;
@@ -743,9 +737,9 @@ if (!class_exists('VultrAPI'))
 				'name' => $name,
 				'ssh_key' => $key
 			);
-			return self::post('sshkey/create', $args);
+			return self::post('ssh-keys', $args);
 		}
-
+		// leftoff
 		/**
 		 * SSH Keys Update method
 		 * @see https://www.vultr.com/api/#sshkey_sshkey_update
