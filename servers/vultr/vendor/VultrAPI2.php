@@ -179,7 +179,7 @@ if (!class_exists('VultrAPI'))
 
 		public function attach_iso($subid, $isoid)
 		{
-			return self::code('server/iso_attach', array('SUBID' => $subid, 'ISOID' => $isoid));
+			return self::code('instances/{instance-id}/iso/attach', array('SUBID' => $subid, 'ISOID' => $isoid));
 		}
 
 		public function detach_iso($subid)
@@ -864,7 +864,7 @@ if (!class_exists('VultrAPI'))
 
 			if (in_array($methodArray[0], $apiRequiredArray))
 			{
-				array_push($_defaults[CURLOPT_HTTPHEADER], "API-Key: $this->api_token");
+				array_push($_defaults[CURLOPT_HTTPHEADER], "Authorization: Bearer $this->api_token");
 				$apiRequired = true;
 			}
 
