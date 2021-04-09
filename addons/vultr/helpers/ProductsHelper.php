@@ -25,7 +25,7 @@ class ProductsHelper
 	{
 		$checkIsset = DB::table('tblproductconfiglinks')->where('pid', $productID)->get();
 
-		if ($checkIsset)
+		if (count($checkIsset) > 0)
 		{
 			return array('status' => false, 'message' => 'Product configurable options already exist!');
 		}
@@ -116,7 +116,7 @@ class ProductsHelper
 	public static function customFields($productID)
 	{
 		$result = DB::table('tblcustomfields')->where('fieldname', 'subid|Virtual machine ID')->where('type', 'product')->where('relid', $productID)->select('id')->get();
-		if (!$result)
+		if (count($result) < 1)
 		{
 			DB::table('tblcustomfields')->insert(array('type' => 'product', 'relid' => $productID, 'fieldname' => 'subid|Virtual machine ID', 'fieldtype' => 'text', 'adminonly' => 'on'));
 			return array('status' => true, 'reload' => true, 'message' => 'success');

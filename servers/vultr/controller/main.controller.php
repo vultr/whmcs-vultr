@@ -377,12 +377,12 @@ class MainController extends VultrController
 			->where('type', 'product')
 			->where('relid', $this->params['packageid'])
 			->where('fieldname', 'LIKE', 'subid|%')->get();
-		if ($customField)
+		if (count($customField) > 0)
 		{
 			$customFieldValue = Capsule::table('tblcustomfieldsvalues')
 				->where('fieldid', $customField[0]->id)
 				->where('relid', $this->serviceID)->get();
-			if ($customFieldValue)
+			if (count($customFieldValue) > 0)
 			{
 				$customFieldValue = Capsule::table('tblcustomfieldsvalues')
 					->where('fieldid', $customField[0]->id)
