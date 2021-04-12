@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use WHMCS\Database\Capsule;
 
 class SSHKeysController extends VultrController
 {
@@ -15,7 +15,8 @@ class SSHKeysController extends VultrController
 		if ($this->getVultrAPI())
 		{
 			$allowKeys = Capsule::table('vultr_sshkeys')->where('client_id', $this->clientID)->get();
-			if (count($allowKeys) < 1)
+			// if (empty($allowKeys)) https://github.com/vultr/whmcs-vultr/pull/101/files#diff-e528d8e5801f95b469223f6b1d473b92f3699c420a7db69af5063ca8e61713b9
+			if (count($allowKeys) < 1) 
 			{
 				return array();
 			}
