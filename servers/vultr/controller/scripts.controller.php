@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use WHMCS\Database\Capsule;
 
 class ScriptsController extends VultrController
 {
@@ -26,7 +26,7 @@ class ScriptsController extends VultrController
 	{
 		$id = filter_input(INPUT_GET, 'vultrID', FILTER_VALIDATE_INT);
 		$allow = Capsule::table('vultr_scripts')->where('SCRIPTID', $id)->where('client_id', $this->clientID)->first();
-		if (!empty($allow))
+		if (!empty($allow)) // this may need to be fixed to if (count($allow) > 0) but have not tested changing it yet to count
 		{
 			if ($this->getVultrAPI())
 			{
