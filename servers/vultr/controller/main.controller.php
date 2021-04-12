@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use WHMCS\Database\Capsule;
 
 class MainController extends VultrController
 {
@@ -333,16 +333,34 @@ class MainController extends VultrController
 					}
 
 					$vm = $this->vultrAPI->create($vmParams);
-
-					if (is_array($vm))
+					
+					// For debugging only. Can comment out the create statement above and then uncomment the below to simulate being passed a SUBID/instanced id to confirm the weird issues.
+					// $vm = [
+					// 	"SUBID" => "46109452",
+					// 	"v2_id" => "6593a82e-bd1f-4a5f-9396-322ffdd4bd22"
+					// ];
+					
+					// die(var_dump($vm));
+					// using if/else to detect v1 api subid/instance id or v2api
+					if (isset($vm['SUBID']) && mb_strlen($vm['SUBID']) == 8 ) {
+						$vmid = $vm['SUBID']; // $vm['SUBID'] or $vm['v2_id']  https://www.vultr.com/api/v1/#server_create
+					} elseif (isset($vm['v2_id'])) {
+						$vmid = $vm['v2_id']; // 
+					} elseif (isset($vm['instance']['id'])) {
+						$vmid = $vm['instance']['id'];	// $vm['instance']['id'] new v2API responses https://www.vultr.com/api/#operation/create-instance
+					} else {
+							$vmid = false; // no instance or server ID was found.
+					}
+					//die(var_dump($vmid));
+					if ($vmid !== false) // Bail and show an error to contact support if no server id created or returned
 					{
-						$this->addVMCustomFields($vm['SUBID']);
+						$this->addVMCustomFields($vmid);
 						SessionHelper::setFlashMessage('success', LangHelper::T('main.create.created_success'));
 						$this->redirect('clientarea.php?action=productdetails&id=' . $this->serviceID);
 					}
 					else
 					{
-						SessionHelper::setFlashMessage('danger', $vm);
+						SessionHelper::setFlashMessage('danger', 'Server creation was unsuccessful! Please contact Support!. Do not try to recreate. It will fail.');
 					}
 				}
 			}
@@ -372,27 +390,31 @@ class MainController extends VultrController
 	}
 
 	private function addVMCustomFields($SUBID)
-	{
+	{	
+
 		$customField = Capsule::table('tblcustomfields')
 			->where('type', 'product')
 			->where('relid', $this->params['packageid'])
 			->where('fieldname', 'LIKE', 'subid|%')->get();
-		if (count($customField) > 0)
+		if ($customField)
 		{
 			$customFieldValue = Capsule::table('tblcustomfieldsvalues')
 				->where('fieldid', $customField[0]->id)
 				->where('relid', $this->serviceID)->get();
-			if (count($customFieldValue) > 0)
-			{
+			if ($customFieldValue)
+			{	
 				$customFieldValue = Capsule::table('tblcustomfieldsvalues')
 					->where('fieldid', $customField[0]->id)
 					->where('relid', $this->serviceID)->update(array('value' => $SUBID));
 			}
 			else
-			{
+			{	// die(" Die before insert normal :" . var_dump($this->serviceID).PHP_EOL); never hits here which was the old fallback and seems worthless??
 				Capsule::table('tblcustomfieldsvalues')->insert(array('fieldid' => $customField[0]->id, 'relid' => $this->serviceID, 'value' => $SUBID));
 			}
+			
 		}
+		// die('Die before inserting tblcustomfieldsvalues '); // This is what was actually needed to fix the missing subid issue not being entered into tblcustomfieldsvalues.
+		Capsule::table('tblcustomfieldsvalues')->insert(array('fieldid' => $this->params['packageid'], 'relid' => $this->serviceID, 'value' => $SUBID));
 	}
 
 	public function deleteAction()
