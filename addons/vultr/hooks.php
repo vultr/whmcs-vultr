@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use WHMCS\Database\Capsule;
 use MGModule\vultr as main;
 
 require_once(dirname(dirname(__DIR__)) . "/servers/vultr/helper/vultr.helper.php");
@@ -39,7 +39,7 @@ add_hook("AdminAreaPage", 1, "vultrCronJob");
 
 function getConfigOptionId($optionname)
 {
-	$optionId = \WHMCS\Database\Capsule::table("tblproducts")
+	$optionId = Capsule::table("tblproducts")
 		->join("tblproductconfiglinks", "tblproductconfiglinks.pid", "=", "tblproducts.id")
 		->join("tblproductconfiggroups", "tblproductconfiggroups.id", "=", "tblproductconfiglinks.gid")
 		->join("tblproductconfigoptions", "tblproductconfigoptions.gid", "=", "tblproductconfiggroups.id")
@@ -126,7 +126,7 @@ add_hook("ClientAreaFooterOutput", 1, function ($params)
 		require_once 'Loader.php';
 		new main\Loader();
 
-		$productInfo = WHMCS\Database\Capsule::table("tblproducts")
+		$productInfo = Capsule::table("tblproducts")
 			->select("tblproducts.configoption2", "tblproducts.servertype")
 			->where("tblproducts.id", "=", $_SESSION['cart']['products'][$_GET['i']]['pid'])
 			->first();
@@ -137,7 +137,7 @@ add_hook("ClientAreaFooterOutput", 1, function ($params)
 		}
 
 		$productPlanId = $productInfo->configoption2;
-		$apiToken = \WHMCS\Database\Capsule::table("tbladdonmodules")
+		$apiToken = Capsule::table("tbladdonmodules")
 			->select("tbladdonmodules.value")
 			->where("tbladdonmodules.module", "=", "vultr")
 			->where("tbladdonmodules.setting", "=", "apiToken")
