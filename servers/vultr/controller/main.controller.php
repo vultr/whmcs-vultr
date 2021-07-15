@@ -377,22 +377,35 @@ class MainController extends VultrController
 			->where('type', 'product')
 			->where('relid', $this->params['packageid'])
 			->where('fieldname', 'LIKE', 'subid|%')->get();
-		if ($customField)
+
+        if( ! count( $customField ) )
+        {
+            Capsule::table('tblcustomfields')->insert(array('type' => 'product', 'relid' => $this->params['packageid'], 'fieldname' => 'subid|Virtual machine ID' ));
+
+            $customField = Capsule::table('tblcustomfields')
+			->where('type', 'product')
+			->where('relid', $this->params['packageid'])
+			->where('fieldname', 'LIKE', 'subid|%')->get();
+        }
+
+		if( count( $customField ) )
 		{
 			$customFieldValue = Capsule::table('tblcustomfieldsvalues')
 				->where('fieldid', $customField[0]->id)
 				->where('relid', $this->serviceID)->get();
-			if ($customFieldValue)
+
+            if( ! count( $customFieldValue ) )
+            {
+				Capsule::table('tblcustomfieldsvalues')->insert(array('fieldid' => $customField[0]->id, 'relid' => $this->serviceID, 'value' => $SUBID));
+            }
+            else
 			{
 				$customFieldValue = Capsule::table('tblcustomfieldsvalues')
 					->where('fieldid', $customField[0]->id)
 					->where('relid', $this->serviceID)->update(array('value' => $SUBID));
 			}
-			else
-			{
-				Capsule::table('tblcustomfieldsvalues')->insert(array('fieldid' => $customField[0]->id, 'relid' => $this->serviceID, 'value' => $SUBID));
-			}
 		}
+
 	}
 
 	public function deleteAction()
