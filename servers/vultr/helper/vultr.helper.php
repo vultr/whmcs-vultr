@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use WHMCS\Database\Capsule;
 
 if (!class_exists('VultrHelper'))
 {
@@ -490,7 +490,7 @@ if (!class_exists('VultrHelper'))
 		public static function getUserScripts($clientID, $scripts)
 		{
 			$allowScripts = Capsule::table('vultr_scripts')->where('client_id', $clientID)->get();
-			if (empty($allowScripts))
+			if (count($allowScripts) < 1)
 			{
 				return array();
 			}
@@ -521,7 +521,7 @@ if (!class_exists('VultrHelper'))
 		public static function getUserSSHKeys($clientID, $keys)
 		{
 			$allowKeys = Capsule::table('vultr_sshkeys')->where('client_id', $clientID)->get();
-			if (empty($allowKeys))
+			if (count($allowKeys) < 1)
 			{
 				return array();
 			}

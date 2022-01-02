@@ -1,6 +1,8 @@
 # WHMCS Module
 
-## Note: This module is community driven, it is no longer actively maintained.
+## Note: This module is community driven, it is no longer actively maintained. 
+I recommend switching to the ModulesGarden one recently released.
+https://www.modulesgarden.com/products/whmcs/vultr-vps
 
 ## System Requirements
 
