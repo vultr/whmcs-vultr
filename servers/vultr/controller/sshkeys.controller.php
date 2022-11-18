@@ -15,7 +15,7 @@ class SSHKeysController extends VultrController
 		if ($this->getVultrAPI())
 		{
 			$allowKeys = Capsule::table('vultr_sshkeys')->where('client_id', $this->clientID)->get();
-			if (empty($allowKeys))
+			if (count($allowKeys) < 1)
 			{
 				return array();
 			}
